@@ -1,4 +1,11 @@
 package syntaxtree;
 
-public class ReturnExpr {
+public final class ReturnStmt extends  Statement {
+
+    final Expression rExpr;
+
+    public  ReturnStmt(Expression expr) {
+        this.rExpr = expr;
+    }
+
 }

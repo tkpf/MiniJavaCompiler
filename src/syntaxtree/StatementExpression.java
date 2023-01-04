@@ -1,2 +1,4 @@
-package syntaxtree;public class StatementExpression {
+package syntaxtree;
+
+public abstract sealed class StatementExpression permits AssignStmtExpr, NewStmtExpr, MethodCallStmtExpr {
 }

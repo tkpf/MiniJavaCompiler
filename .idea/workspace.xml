@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="" />
+    <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/antlr-4.11.1-complete.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/Java.g4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/JavaMini.g4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/adapter/BlockStmtAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/adapter/ClassAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/adapter/FieldAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/adapter/MethodAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMini.interp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMini.tokens" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniBaseListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniBaseVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniLexer.interp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniLexer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniLexer.tokens" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mini-Java-Compiler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Mini-Java-Compiler.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JavaMini.g4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/AssignStmtExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/AssignStmtExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/BinaryExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/BinaryExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/BlockStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/BlockStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Class.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/IfStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/IfStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/InstVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/InstVarExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/LocalOrFieldVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/LocalOrFieldVarExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/LocalVarDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/LocalVarDeclStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/MethodCallStmtExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/MethodCallStmtExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/NewStmtExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/NewStmtExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Parameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Parameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/ReturnStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/ReturnStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Statement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/StatementExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/StatementExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/StmtExprExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/StmtExprExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/StmtExprStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/StmtExprStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/SuperExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/SuperExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/ThisExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/ThisExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/TypeExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/TypeExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/UnaryExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/UnaryExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/WhileStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/WhileStmt.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2JlZnyX1vgkLLbGl6Rqxctb0LWM" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -16,9 +80,35 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-19",
+    "last_opened_file_path": "C:/Users/Till/prjcts/Mini-Java-Compiler/antlr-4.11.1-complete.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.tools"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler" />
+      <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler\src\parser" />
+      <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler\src" />
+      <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler\docs" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="antlr-4.11.1-complete.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/antlr-4.11.1-complete.jar" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JAR Application.antlr-4.11.1-complete.jar" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -29,5 +119,25 @@
       <updated>1672654807995</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand>
+      <path>
+        <item name="Mini-Java-Compiler" type="b2602c69:ProjectViewProjectNode" />
+        <item name="Mini-Java-Compiler" type="462c0819:PsiDirectoryNode" />
+      </path>
+    </expand>
+    <select />
   </component>
 </project>
