@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="Fixing some errors and adding test-directory">
-      <change afterPath="$PROJECT_DIR$/src/parser/adapter/ProgramAdapter.java" afterDir="false" />
+    <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="Implementing ProgramAdapter, Updating UML, Delete obsolete classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mini-java_UML.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mini-java_UML.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/BinaryExpressionAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ExpressionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/StmtExprExpressionAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/StmtExprStatementAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/UnaryExpressionAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Main_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Main_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +56,7 @@
       <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler\docs" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Mini-Java-Compiler" />
@@ -128,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673022750382</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Implementing ProgramAdapter, Updating UML, Delete obsolete classes">
+      <created>1673029295935</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673029295935</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,14 +150,15 @@
     <MESSAGE value="Adapted Main File to new Syntax Structure; Updated UML Diagram" />
     <MESSAGE value="StatmentExpressions implemented in grammar and Parser" />
     <MESSAGE value="Fixing some errors and adding test-directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing some errors and adding test-directory" />
+    <MESSAGE value="Implementing ProgramAdapter, Updating UML, Delete obsolete classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing ProgramAdapter, Updating UML, Delete obsolete classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/Main_test.java</url>
-          <line>19</line>
+          <line>22</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>

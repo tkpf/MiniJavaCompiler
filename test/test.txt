@@ -10,3 +10,7 @@ class myClass {
         i = this.sampleMethod(3, 4);
    }
 }
+
+class insane {
+    int insaneInteger;
+}

@@ -1,10 +1,10 @@
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import parser.adapter.ClassAdapter;
+import parser.adapter.ProgramAdapter;
 import parser.production.JavaMiniLexer;
 import parser.production.JavaMiniParser;
-import syntaxtree.Class;
+import syntaxtree.Program;
 
 import java.io.IOException;
 
@@ -17,8 +17,8 @@ public class Main_test {
         JavaMiniLexer lexer = new JavaMiniLexer(input);
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));
 
-        Class c = ClassAdapter.adapt(parser.compilationUnit().typeDeclaration(0).classDeclaration());
-        System.out.println(c);
+        Program prgm = ProgramAdapter.adapt(parser.compilationUnit());
+        System.out.println(prgm);
 
     }
 
