@@ -1,17 +1,14 @@
 package parser.adapter;
 
 import parser.production.JavaMiniParser;
-import syntaxtree.Field;
+import syntaxtree.Parameter;
 import syntaxtree.expressions.Type;
 
-public class FieldAdapter {
-
-    public static Field adapt(JavaMiniParser.FieldDeclarationContext ctx) {
-
-        // Todo try catch
+public class ParameterAdapter {
+    public static Parameter adapt (JavaMiniParser.FormalParameterContext ctx) {
         final String name = ctx.variableDeclaratorId().getText();
         final Type type = TypeAdapter.adapt(ctx.type());
 
-        return new Field(name, type);
+        return new Parameter(name, type);
     }
 }

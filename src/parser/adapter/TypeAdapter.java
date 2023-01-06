@@ -8,8 +8,8 @@ public class TypeAdapter {
         if (ctx.Identifier() != null) {
             return new Type(ctx.Identifier().getText());
         }
-        else if (ctx.primitiveType() != null) {
-            return new Type(ctx.primitiveType().getText());
+        else if (ctx.PrimitiveType() != null) {
+            return new Type(ctx.PrimitiveType().getText());
         }
         else {
             return null; //never reached

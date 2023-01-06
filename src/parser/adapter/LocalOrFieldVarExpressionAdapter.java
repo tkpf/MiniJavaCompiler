@@ -5,7 +5,7 @@ import syntaxtree.expressions.Expression;
 import syntaxtree.expressions.LocalOrFieldVarExpr;
 
 public class LocalOrFieldVarExpressionAdapter {
-    public static Expression adapt (JavaMiniParser.ExpressionContext ctx) {
+    public static Expression adapt (JavaMiniParser.PrimaryContext ctx) {
         return new LocalOrFieldVarExpr(ctx.Identifier().getText());
     }
 }

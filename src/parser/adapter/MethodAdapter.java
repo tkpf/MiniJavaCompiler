@@ -1,6 +1,7 @@
 package parser.adapter;
 
 import parser.production.JavaMiniParser;
+import syntaxtree.expressions.Type;
 import syntaxtree.statements.BlockStmt;
 import syntaxtree.Method;
 import syntaxtree.Parameter;
@@ -13,18 +14,20 @@ public class MethodAdapter {
 
         //TODO try catch
         final String name = ctx.Identifier().getText();
-        final String rtype;
+        final Type rtype;
         final Vector<Parameter> params = new Vector<>();
         final BlockStmt body;
 
         // load rtype
         if (ctx.type()!= null) {
-            rtype = ctx.type().getText();
+            rtype = new Type(ctx.type().getText());
         }
         else if (ctx.VoidLiteral() != null){
-            rtype = "void";
+            rtype = new Type("void");
         }
-        else {} //will never be reached todo raise error
+        else {
+            rtype = null; //will never be reached
+        }
 
         // load params
         if (ctx.formalParameters().formalParameterDecls() != null) {
@@ -32,11 +35,13 @@ public class MethodAdapter {
                 params.add(ParameterAdapter.adapt(parCtx));
             }
         }
-        else params = null; // TODO case no given params
 
         // load body
         if (ctx.methodDeclarationRest().methodBody() != null) {
             body = BlockStmtAdapter.adapt(ctx.methodDeclarationRest().methodBody().block());
+        }
+        else {
+            body = null; //will never be reached
         }
 
         return new Method(name, rtype, params, body);

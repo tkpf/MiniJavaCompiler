@@ -2,13 +2,12 @@ package parser.adapter;
 
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.Expression;
-import syntaxtree.expressions.LocalOrFieldVarExpr;
 import syntaxtree.expressions.SuperExpr;
 import syntaxtree.expressions.ThisExpr;
 
 public class PrimaryExpressionAdapter {
 
-    final static Expression adapt (JavaMiniParser.PrimaryContext ctx) {
+    static Expression adapt (JavaMiniParser.PrimaryContext ctx) {
         if (ctx.expression() != null) {
             return ExpressionAdapter.adapt(ctx.expression());
         }
@@ -23,7 +22,7 @@ public class PrimaryExpressionAdapter {
             return TypeLiteralAdapter.adapt(ctx.typeLiteral());
         }
         else if (ctx.Identifier() != null) {
-            return LocalOrFieldVarExpressionAdapter.adapt(ctx.Identifier().getText());
+            return LocalOrFieldVarExpressionAdapter.adapt(ctx);
         }
         else {
             return null; //never reached
