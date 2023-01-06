@@ -1,14 +1,12 @@
 package parser.adapter;
 
 import parser.production.JavaMiniParser;
+import syntaxtree.expressions.BinaryExpr;
 import syntaxtree.expressions.Expression;
 import syntaxtree.expressions.StmtExprExpr;
-import syntaxtree.statementexpressions.AssignStmtExpr;
-import syntaxtree.statementexpressions.NewStmtExpr;
+import syntaxtree.expressions.UnaryExpr;
 import syntaxtree.statementexpressions.StatementExpression;
 
-import java.util.List;
-import java.util.Vector;
 
 public class ExpressionAdapter {
 
@@ -18,16 +16,18 @@ public class ExpressionAdapter {
         }
         else if (ctx.binaryLiterals() != null) {
             //Binary Expression
-            return BinaryExpressionAdapter.adapt(
+            return new BinaryExpr(
                     ExpressionAdapter.adapt(ctx.expression(0)),
                     ExpressionAdapter.adapt(ctx.expression(1)),
-                    ctx.binaryLiterals().start.getText());
+                    ctx.binaryLiterals().start.getText()
+            );
         }
         else if (ctx.unaryLiterals() != null) {
             //Unary Expression
-            return UnaryExpressionAdapter.adapt(
+            return new UnaryExpr(
                     ExpressionAdapter.adapt(ctx.expression(0)),
-                    ctx.unaryLiterals().start.getText());
+                    ctx.unaryLiterals().start.getText()
+            );
         }
         else if (ctx.InstLiteral() != null) {
             //InstVar
