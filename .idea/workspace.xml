@@ -4,10 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="Updated Abstract Syntax and its package structure; Plus modified and added adapters">
+    <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="Adapted Main File to new Syntax Structure; Updated UML Diagram">
+      <change afterPath="$PROJECT_DIR$/src/parser/adapter/ExpressionListAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/parser/adapter/StatementExpressionAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/mini-java_UML.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/docs/mini-java_UML.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/JavaMini.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/JavaMini.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/BlockStmtAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/BlockStmtAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ExpressionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMini.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMini.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMini.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMini.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMiniBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMiniBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMiniLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniLexer.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMiniLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMiniLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMiniListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMiniParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/production/JavaMiniVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/production/JavaMiniVisitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673009795820</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Adapted Main File to new Syntax Structure; Updated UML Diagram">
+      <created>1673011814765</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673011814765</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -107,7 +127,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Class-, Field-, MethodAdapter partly implemented; updated JavaMini grammar. Generated Parser Files" />
     <MESSAGE value="Updated Abstract Syntax and its package structure; Plus modified and added adapters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Abstract Syntax and its package structure; Plus modified and added adapters" />
+    <MESSAGE value="Adapted Main File to new Syntax Structure; Updated UML Diagram" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adapted Main File to new Syntax Structure; Updated UML Diagram" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

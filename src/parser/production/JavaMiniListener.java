@@ -228,6 +228,16 @@ public interface JavaMiniListener extends ParseTreeListener {
 	 */
 	void exitExpression(JavaMiniParser.ExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JavaMiniParser#methodCallRest}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodCallRest(JavaMiniParser.MethodCallRestContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaMiniParser#methodCallRest}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodCallRest(JavaMiniParser.MethodCallRestContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JavaMiniParser#binaryLiterals}.
 	 * @param ctx the parse tree
 	 */

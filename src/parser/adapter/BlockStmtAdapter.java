@@ -45,10 +45,10 @@ public class BlockStmtAdapter {
                 stmts.add(varDeclStmt);
             }
             else if (stmtCxt.statementExpression() != null) {
-                StmtExprStmt stmtExprStmt = StmtExprStatementAdapter.adapt(
-                        new StatementExpression()
-                )
-
+                StatementExpression stmtExpr = StatementExpressionAdapter.adapt(stmtCxt.statementExpression());
+                stmts.add(
+                        new StmtExprStmt(stmtExpr)
+                );
             }
             else {} //never reached
         }

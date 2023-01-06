@@ -143,6 +143,12 @@ public interface JavaMiniVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(JavaMiniParser.ExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JavaMiniParser#methodCallRest}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodCallRest(JavaMiniParser.MethodCallRestContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#binaryLiterals}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

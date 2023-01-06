@@ -3,7 +3,9 @@ package parser.adapter;
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.Expression;
 import syntaxtree.expressions.StmtExprExpr;
+import syntaxtree.statementexpressions.AssignStmtExpr;
 import syntaxtree.statementexpressions.NewStmtExpr;
+import syntaxtree.statementexpressions.StatementExpression;
 
 import java.util.List;
 import java.util.Vector;
@@ -28,30 +30,16 @@ public class ExpressionAdapter {
                     ctx.unaryLiterals().start.getText());
         }
         else if (ctx.InstLiteral() != null) {
-            //InstVar or Method //todo
+            //InstVar
             return InstVarExpressionAdapter.adapt(
                     ExpressionAdapter.adapt(
                             ctx.expression(0)),
                     ctx.Identifier().getText());
         }
-        else if (ctx.NewLiteral() != null) {
-            if (ctx.creator().expressionList() != null) {
-                Vector<Expression> exprList = new Vector<>();
-                List<JavaMiniParser.ExpressionContext> exprCtxList = ctx.creator().expressionList().expression();
-                for (JavaMiniParser.ExpressionContext exprCtx : exprCtxList) {
-                    exprList.add(ExpressionAdapter.adapt(exprCtx));
-                }
-                return StmtExprExpressionAdapter.adapt(new NewStmtExpr(
-                        TypeAdapter.adapt(ctx.creator().type()), exprList));
-            }
-            else {
-                return StmtExprExpressionAdapter.adapt(new NewStmtExpr(
-                        TypeAdapter.adapt(ctx.creator().type()), null));
-            }
-        }
         else {
-            return null; //never reached
-        }
+            StatementExpression stmtExpr = StatementExpressionAdapter.adapt(ctx);
+            return new StmtExprExpr(stmtExpr);
+        } // StatementExpression
 
     }
 }

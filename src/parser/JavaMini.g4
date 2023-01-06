@@ -76,11 +76,10 @@ fieldDeclaration
 variableDeclarators
     :   variableDeclarator (',' variableDeclarator)*
     ;
-*/
-// TODO optional init when declaring
-/*
+
+// todo implement declator with direct intialization
 variableDeclarator
-    :   variableDeclaratorId // ('=' variableInitializer)?
+    :   variableDeclaratorId //('=' variableInitializer)?
     ;
 */
 variableDeclaratorId
@@ -133,39 +132,30 @@ statement
     |   ReturnLiteral expression? ';'
     |   ';'
     |   statementExpression ';'
-   // |   Identifier ':' statement
     |   localVariableDeclaration
     ;
 
-
 statementExpression
-    :   expression
+    :   expression AssignLiteral expression
+    |   expression methodCallRest
+    |   NewLiteral creator
     ;
-
-/*
-forControl
-    :   forInit? ';' expression? ';' forUpdate?
-    ;
-
-forInit
-    :   localVariableDeclaration
-    |   expressionList
-    ;
-
-forUpdate
-    :   expressionList
-    ;
-*/
 
 expression
     :   primary
     |   expression InstLiteral Identifier
-  //  |   expression '(' expressionList? ')'
-    |   NewLiteral creator
     |   expression binaryLiterals expression
     |   unaryLiterals expression
+    |   expression methodCallRest
+    |   expression AssignLiteral expression
+    |   NewLiteral creator
     ;
 
+methodCallRest
+    : InstLiteral Identifier '('expressionList? ')'
+    ;
+
+AssignLiteral : '=' ;
 
 binaryLiterals
     : MulLiterals

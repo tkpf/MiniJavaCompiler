@@ -281,6 +281,18 @@ public class JavaMiniBaseListener implements JavaMiniListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMethodCallRest(JavaMiniParser.MethodCallRestContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMethodCallRest(JavaMiniParser.MethodCallRestContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx) { }
 	/**
 	 * {@inheritDoc}
