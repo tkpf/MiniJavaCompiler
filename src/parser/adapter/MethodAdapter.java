@@ -1,7 +1,7 @@
 package parser.adapter;
 
 import parser.production.JavaMiniParser;
-import syntaxtree.BlockStmt;
+import syntaxtree.statements.BlockStmt;
 import syntaxtree.Method;
 import syntaxtree.Parameter;
 
@@ -21,9 +21,10 @@ public class MethodAdapter {
         if (ctx.type()!= null) {
             rtype = ctx.type().getText();
         }
-        else {
+        else if (ctx.VoidLiteral() != null){
             rtype = "void";
         }
+        else {} //will never be reached todo raise error
 
         // load params
         if (ctx.formalParameters().formalParameterDecls() != null) {

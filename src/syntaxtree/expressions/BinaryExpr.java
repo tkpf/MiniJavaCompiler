@@ -1,4 +1,4 @@
-package syntaxtree;
+package syntaxtree.expressions;
 
 public final class BinaryExpr extends Expression {
 

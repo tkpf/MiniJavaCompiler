@@ -1,6 +1,8 @@
-package syntaxtree;
+package syntaxtree.statementexpressions;
 
-public final class AssignStmtExpr extends StatementExpression{
+import syntaxtree.expressions.Expression;
+
+public final class AssignStmtExpr extends StatementExpression {
 
     private final Expression as2Expr;
     private final Expression asFromExpr;

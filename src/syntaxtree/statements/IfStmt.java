@@ -1,6 +1,8 @@
-package syntaxtree;
+package syntaxtree.statements;
 
-public final class IfStmt extends Statement{
+import syntaxtree.expressions.Expression;
+
+public final class IfStmt extends Statement {
 
     //todo is boolean datatype right or shold i implement boolExpr?
     private final Expression boolExpr;

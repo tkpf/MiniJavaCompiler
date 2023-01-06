@@ -1,4 +1,6 @@
-package syntaxtree;
+package syntaxtree.statementexpressions;
+
+import syntaxtree.expressions.Expression;
 
 import java.util.Vector;
 

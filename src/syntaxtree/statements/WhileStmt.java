@@ -1,4 +1,6 @@
-package syntaxtree;
+package syntaxtree.statements;
+
+import syntaxtree.expressions.Expression;
 
 public final class WhileStmt extends Statement {
 

@@ -1,8 +1,8 @@
-package syntaxtree;
+package syntaxtree.statements;
 
 import java.util.Vector;
 
-public final class BlockStmt extends Statement{
+public final class BlockStmt extends Statement {
 
     private final Vector<Statement> stmtBlck;
 

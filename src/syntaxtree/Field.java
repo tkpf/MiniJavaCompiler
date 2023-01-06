@@ -1,11 +1,13 @@
 package syntaxtree;
 
+import syntaxtree.expressions.Type;
+
 public class Field {
     final private String name;
-    final private TypeExpr type;
+    final private Type type;
 
-    public Field (String name, String type) {
+    public Field (String name, Type type) {
         this.name = name;
-        this.type = new TypeExpr(type);
+        this.type = type;
     }
 }

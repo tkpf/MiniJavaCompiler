@@ -35,15 +35,19 @@ public class ClassAdapter {
                 Method m = MethodAdapter.adapt(member.methodDeclaration());
                 methods.add(m);
             }
+            /*
             else if (member.constructorDeclaration() != null) {
-                // todo implement constructor declaration
+                // implement constructor declaration
             }
             else if (member.classDeclaration() != null) {
-                // todo implement class declaration
+                // implement class declaration
             }
-            else  // can never be reached
-                // TODO raise error
-                return null;
+            */
+
+            else  {
+                return null; // can never be reached
+            }
+
         }
 
         //return Instance

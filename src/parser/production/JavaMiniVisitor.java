@@ -95,12 +95,6 @@ public interface JavaMiniVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFieldDeclaration(JavaMiniParser.FieldDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#variableDeclarator}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariableDeclarator(JavaMiniParser.VariableDeclaratorContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#variableDeclaratorId}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -119,29 +113,11 @@ public interface JavaMiniVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArrayInitializer(JavaMiniParser.ArrayInitializerContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#constructorDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitConstructorDeclaration(JavaMiniParser.ConstructorDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#constructorBody}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitConstructorBody(JavaMiniParser.ConstructorBodyContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#block}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitBlock(JavaMiniParser.BlockContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#blockStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBlockStatement(JavaMiniParser.BlockStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#localVariableDeclaration}.
 	 * @param ctx the parse tree
@@ -161,29 +137,23 @@ public interface JavaMiniVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatementExpression(JavaMiniParser.StatementExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#forControl}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitForControl(JavaMiniParser.ForControlContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#forInit}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitForInit(JavaMiniParser.ForInitContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#forUpdate}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitForUpdate(JavaMiniParser.ForUpdateContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitExpression(JavaMiniParser.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavaMiniParser#binaryLiterals}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavaMiniParser#unaryLiterals}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#expressionList}.
 	 * @param ctx the parse tree
@@ -209,15 +179,9 @@ public interface JavaMiniVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitType(JavaMiniParser.TypeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#primitiveType}.
+	 * Visit a parse tree produced by {@link JavaMiniParser#typeLiteral}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPrimitiveType(JavaMiniParser.PrimitiveTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#literal}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLiteral(JavaMiniParser.LiteralContext ctx);
+	T visitTypeLiteral(JavaMiniParser.TypeLiteralContext ctx);
 }

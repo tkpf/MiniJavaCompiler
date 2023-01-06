@@ -37,13 +37,13 @@ classBodyDeclaration
 member
     :   methodDeclaration
     |   fieldDeclaration
-    |   constructorDeclaration
-    |   classDeclaration
+  //  |   constructorDeclaration // todo optional constructor declaration in class class declaration
+   // |   classDeclaration
     ;
 
 methodDeclaration
-    :   type Identifier formalParameters ('[' ']')* methodDeclarationRest
-    |   'void' Identifier formalParameters methodDeclarationRest
+    :   type Identifier formalParameters methodDeclarationRest
+    |   VoidLiteral Identifier formalParameters methodDeclarationRest
     ;
 
 methodDeclarationRest
@@ -69,7 +69,7 @@ formalParameter
     ;
 
 fieldDeclaration
-    :   type variableDeclarator ';'
+    :   type variableDeclaratorId ';'
     ;
 
 /*
@@ -77,15 +77,16 @@ variableDeclarators
     :   variableDeclarator (',' variableDeclarator)*
     ;
 */
-// TODO aufnehmen variable Initializer für Syntax
+// TODO optional init when declaring
+/*
 variableDeclarator
-    :   variableDeclaratorId ('=' variableInitializer)?
+    :   variableDeclaratorId // ('=' variableInitializer)?
     ;
-
-
+*/
 variableDeclaratorId
-    :   Identifier ('[' ']')*
+    :   Identifier //('[' ']')*
     ;
+
 
 variableInitializer
     :   arrayInitializer
@@ -96,7 +97,7 @@ arrayInitializer
     :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
     ;
 
-
+/*
 constructorDeclaration
     :   Identifier
         constructorBody
@@ -106,39 +107,42 @@ constructorBody
     :   block
     ;
 
-
+*/
 // STATEMENTS / BLOCKS
 
 block
-    :   '{' blockStatement* '}'
+    :   '{' statement* '}'
     ;
 
+/*
 blockStatement
     :   localVariableDeclaration
     |   classDeclaration
     |   statement
     ;
+*/
 
 localVariableDeclaration
-    :   modifier* type variableDeclarator ';'
+    :   modifier* type variableDeclaratorId ';'
     ;
 
 statement
-    : block
-    |   'if' '(' expression ')' statement ('else' statement)?
-    |   'for' '(' forControl ')' statement
-    |   'while' '(' expression ')' statement
-    |   'do' statement 'while' '(' expression ')' ';'
-    |   'return' expression? ';'
+    :   IfLiteral '(' expression ')' block (ElseLiteral block)?
+  //  |   ForLiteral '(' forControl ')' block
+    |   WhileLiteral '(' expression ')' block
+    |   ReturnLiteral expression? ';'
     |   ';'
     |   statementExpression ';'
-    |   Identifier ':' statement
+   // |   Identifier ':' statement
+    |   localVariableDeclaration
     ;
+
 
 statementExpression
     :   expression
     ;
 
+/*
 forControl
     :   forInit? ';' expression? ';' forUpdate?
     ;
@@ -151,24 +155,30 @@ forInit
 forUpdate
     :   expressionList
     ;
-
+*/
 
 expression
     :   primary
-    |   expression '.' Identifier
-    |   expression '[' expression ']'
-    |   expression '(' expressionList? ')'
-    |   'new' creator
-    |   expression ('*'|'/'|'%') expression
-    |   expression ('+'|'-') expression
-    |   expression ('<' '=' | '>' '=' | '>' | '<') expression
-    |   expression ('==' | '!=') expression
-    |   expression '&&' expression
-    |   expression '||' expression
-    |   expression ('++' | '--')
-    |   ('+'|'-'|'++'|'--') expression
-    |   ('~'|'!') expression
+    |   expression InstLiteral Identifier
+  //  |   expression '(' expressionList? ')'
+    |   NewLiteral creator
+    |   expression binaryLiterals expression
+    |   unaryLiterals expression
     ;
+
+
+binaryLiterals
+    : MulLiterals
+    | AddLIterals
+    | CompareLiterals
+    | AndOrLiterals
+    ;
+
+unaryLiterals
+    : IncLiterals
+    | NotLiteral
+    ;
+
 
 expressionList
     :   expression (',' expression)*
@@ -180,23 +190,20 @@ creator
 
 primary
     :   '(' expression ')'
-    |   'this'
-    |   'super'
-    |   literal
+    |   RefLiteral
+    |   typeLiteral
     |   Identifier
-    |   type '.' 'class'
-    |   'void' '.' 'class'
     ;
 
 // EXPRESSIONS
 
 
-type:   Identifier ('[' ']')*
-    |   primitiveType ('[' ']')*
+type:   Identifier //('[' ']')*
+    |   PrimitiveType //('[' ']')*
     ;
 
 
-primitiveType
+PrimitiveType
     :   'boolean'
     |   'char'
     |   'byte'
@@ -207,33 +214,46 @@ primitiveType
     |   'double'
     ;
 
-literal
-    :   'true'
-    |   'false'
-    |   'null'
-    |   FloatingPointLiteral
+typeLiteral
+    :   BoolLiteral
+    |   NullLiteral
     |   CharacterLiteral
     |   StringLiteral
+    |   DecimalLiteral
     ;
 
-// LEXER
 
 // LEXER
 
+// LEXER
+
+IfLiteral : 'if' ;
+WhileLiteral : 'while' ;
+ReturnLiteral : 'return' ;
+ElseLiteral : 'else' ;
+//ForLiteral : 'for' ;
+
+RefLiteral : 'this' | 'super' ;
 
 DecimalLiteral : ('0' | '1'..'9' '0'..'9'*) ;
+BoolLiteral : 'true'  | 'false' ;
+CharacterLiteral : '\'' ( EscapeSequence | ~('\''|'\\') ) '\'' ;
+StringLiteral : '"' ( EscapeSequence | ~('\\'|'"') )* '"' ;
 
-FloatingPointLiteral
-    :   ('0'..'9')+ '.' ('0'..'9')*
-    ;
+NullLiteral : 'null' ;
 
-CharacterLiteral
-    :   '\'' ( EscapeSequence | ~('\''|'\\') ) '\''
-    ;
+VoidLiteral : 'void' ;
+NewLiteral  : 'new' ;
 
-StringLiteral
-    :  '"' ( EscapeSequence | ~('\\'|'"') )* '"'
-    ;
+InstLiteral : '.' ;
+
+MulLiterals : ('*'|'/'|'%') ;
+AddLIterals : ('+'|'-');
+CompareLiterals : ('<' '=' | '>' '=' | '>' | '<' | '==' | '!=');
+AndOrLiterals : '&&' | '||' ;
+IncLiterals : '++'|'--' ;
+NotLiteral : '!' ;
+//    |   IncLiteral ('++' | '--')
 
 EscapeSequence
     :   '\\' ('b'|'t'|'n'|'f'|'r'|'\''|'\\')
