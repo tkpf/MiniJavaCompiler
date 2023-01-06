@@ -1,4 +1,7 @@
 import syntaxtree.*;
+import syntaxtree.expressions.*;
+import syntaxtree.statements.*;
+import syntaxtree.statementexpressions.*;
 import syntaxtree.Class;
 
 import java.util.Arrays;
@@ -15,13 +18,13 @@ public class Main {
             }
         */
         Vector<Field> fields1 = new Vector<Field>();
-        fields1.addElement(new Field("v", "int"));
+        fields1.addElement(new Field("v", new Type("int")));
         Class ast1 = new Class("TestKlasse", fields1, new Vector<Method>());
 
         /*
             void methode (int x, char y) { }
         */
-        Method ast2 = new Method("methode", new TypeExpr("void"), new Vector<Parameter>(), new BlockStmt(null));
+        Method ast2 = new Method("methode", new Type("void"), new Vector<Parameter>(), new BlockStmt(null));
 
         /*
             x.f();
@@ -44,19 +47,19 @@ public class Main {
                 }
             }
         */
-        Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("i", "int") ));
+        Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("i", new Type("int")) ));
         BlockStmt meth1block = new BlockStmt(new Vector<Statement>( Arrays.asList(
-                new LocalVarDeclStmt("v", new TypeExpr("int")),
+                new LocalVarDeclStmt("v", new Type("int")),
                 new StmtExprStmt( new AssignStmtExpr( new LocalOrFieldVarExpr("i"), new LocalOrFieldVarExpr("v")) ),
                 new ReturnStmt(null)
         )));
         Method meth1 = new Method(
                 "methode",
-                new TypeExpr("int"),
+                new Type("int"),
                 new Vector<Parameter>( Arrays.asList(
-                        new Parameter("x", new TypeExpr("Typ")),
-                        new Parameter("y", new TypeExpr("int")),
-                        new Parameter("z", new TypeExpr("int")))),
+                        new Parameter("x", new Type("Typ")),
+                        new Parameter("y", new Type("int")),
+                        new Parameter("z", new Type("int")))),
                 meth1block);
         Class ast5 = new Class(
                 "TestKlasse",
