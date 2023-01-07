@@ -13,9 +13,12 @@ public class Main_test {
     public static void main(String[] args) throws IOException  {
 
         System.out.println("Running Main_test");
-        CharStream input = CharStreams.fromFileName("C:\\Users\\Till\\prjcts\\Mini-Java-Compiler\\test\\test.txt");
+        CharStream input = CharStreams.fromFileName(".\\test\\test.txt");
         JavaMiniLexer lexer = new JavaMiniLexer(input);
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));
+
+        System.out.print("parser output: ");
+        System.out.println(parser.compilationUnit().toStringTree(parser));
 
         Program prgm = ProgramAdapter.adapt(parser.compilationUnit());
         System.out.println(prgm);
