@@ -7,10 +7,10 @@ import java.util.Vector;
 
 public class Method {
 
-    final String name;
-    final Type rtype;
-    final Vector<Parameter> params;
-    final BlockStmt blck;
+    final public String name;
+    final public Type rtype;
+    final public Vector<Parameter> params;
+    final public BlockStmt blck;
 
     public  Method (String name, Type rtype, Vector<Parameter> params, BlockStmt blck) {
         this.name = name;
