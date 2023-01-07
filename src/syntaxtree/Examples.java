@@ -18,18 +18,18 @@ public class Examples {
             int v;
         }
     */
-    Vector<Field> fields1 = new Vector<>(Arrays.asList( new Field("v", new Type("int")) ));
-    Class ast1 = new Class("TestKlasse", fields1, new Vector<Method>());
+    public static Vector<Field> fields1 = new Vector<>(Arrays.asList( new Field("v", new Type("int")) ));
+    public static Class ast1 = new Class("TestKlasse", fields1, new Vector<Method>());
 
     /*
         void methode (int x, char y) { }
     */
-    Method ast2 = new Method("methode", new Type("void"), new Vector<Parameter>(), new BlockStmt(null));
+    public static Method ast2 = new Method("methode", new Type("void"), new Vector<Parameter>(), new BlockStmt(null));
 
     /*
         x.f();
     */
-    MethodCallStmtExpr ast3 = new MethodCallStmtExpr(new LocalOrFieldVarExpr("x"), "f", new Vector<Expression>());
+    public static MethodCallStmtExpr ast3 = new MethodCallStmtExpr(new LocalOrFieldVarExpr("x"), "f", new Vector<Expression>());
 
         /*
             return 1 + x;
@@ -47,13 +47,13 @@ public class Examples {
             }
         }
     */
-    Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("i", new Type("int")) ));
-    BlockStmt meth1block = new BlockStmt(new Vector<Statement>( Arrays.asList(
+    public static Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("i", new Type("int")) ));
+    public static BlockStmt meth1block = new BlockStmt(new Vector<Statement>( Arrays.asList(
             new LocalVarDeclStmt("v", new Type("int")),
             new StmtExprStmt( new AssignStmtExpr( new LocalOrFieldVarExpr("i"), new LocalOrFieldVarExpr("v")) ),
             new ReturnStmt(null)
     )));
-    Method meth1 = new Method(
+    public static Method meth1 = new Method(
             "methode",
             new Type("int"),
             new Vector<Parameter>( Arrays.asList(
@@ -61,7 +61,7 @@ public class Examples {
                     new Parameter("y", new Type("int")),
                     new Parameter("z", new Type("int")))),
             meth1block);
-    Class ast5 = new Class(
+    public static Class ast5 = new Class(
             "TestKlasse",
             fields2,
             new Vector<Method>(Arrays.asList( meth1 )));
