@@ -4,8 +4,8 @@ import syntaxtree.expressions.Expression;
 
 public final class WhileStmt extends Statement {
 
-    private final Expression boolExpr;
-    private final BlockStmt blck;
+    public final Expression boolExpr;
+    public final BlockStmt blck;
 
     public WhileStmt(Expression boolExpr, BlockStmt blck) {
         this.boolExpr = boolExpr;
