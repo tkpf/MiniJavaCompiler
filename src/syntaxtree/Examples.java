@@ -1,8 +1,6 @@
 package syntaxtree;
 
-import syntaxtree.expressions.Expression;
-import syntaxtree.expressions.LocalOrFieldVarExpr;
-import syntaxtree.expressions.Type;
+import syntaxtree.expressions.*;
 import syntaxtree.statementexpressions.AssignStmtExpr;
 import syntaxtree.statementexpressions.MethodCallStmtExpr;
 import syntaxtree.statements.*;
@@ -11,6 +9,7 @@ import java.util.Arrays;
 import java.util.Vector;
 
 public class Examples {
+
     // Examples for abstract syntax:
 
     /*
@@ -47,9 +46,9 @@ public class Examples {
             }
         }
     */
-    public static Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("i", new Type("int")) ));
+    public static Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("v", new Type("int")) ));
     public static BlockStmt meth1block = new BlockStmt(new Vector<Statement>( Arrays.asList(
-            new LocalVarDeclStmt("v", new Type("int")),
+            new LocalVarDeclStmt("i", new Type("int")),
             new StmtExprStmt( new AssignStmtExpr( new LocalOrFieldVarExpr("i"), new LocalOrFieldVarExpr("v")) ),
             new ReturnStmt(null)
     )));
@@ -65,4 +64,46 @@ public class Examples {
             "TestKlasse",
             fields2,
             new Vector<Method>(Arrays.asList( meth1 )));
+
+    /*
+        classe TestKlasse2 {
+            int ret1() { return 1; }
+        }
+    */
+    public static Method meth2 = new Method(
+            "ret100000",
+            new Type("int"),
+            new Vector<Parameter>(),
+            new BlockStmt(new Vector<Statement>(Arrays.asList(
+                    new ReturnStmt(
+                            new BinaryExpr(new IntegerExpr(1),
+                            new IntegerExpr(2),
+                            "+") )
+            )))
+    );
+    public static Method meth3 = new Method(
+            "retstr",
+            new Type("String"),
+            new Vector<Parameter>(),
+            new BlockStmt(new Vector<Statement>(Arrays.asList(
+                    new ReturnStmt(new BinaryExpr( new StringExpr("hello"),  new StringExpr("universe"), "+"))
+            )))
+    );
+
+    public static Method meth4 = new Method(
+            "iftest",
+            new Type("int"),
+            new Vector<Parameter>(),
+            new BlockStmt(new Vector<Statement>(Arrays.asList(
+                    new IfStmt(
+                            new UnaryExpr(new BoolExpr(true), "not"),
+                            new BlockStmt(new Vector<Statement>(Arrays.asList( new ReturnStmt(new IntegerExpr(1)) ))),
+                            new BlockStmt(new Vector<Statement>(Arrays.asList( new ReturnStmt(new IntegerExpr(2)) )))
+                    )
+            )))
+    );
+    public static Class ast6 = new Class(
+            "TestKlasse2",
+            fields1,
+            new Vector<Method>(Arrays.asList( meth2, meth3, meth4 )));
 }
