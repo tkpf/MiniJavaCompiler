@@ -1,22 +1,19 @@
 package codegen;
 
 import org.objectweb.asm.*;
+import org.objectweb.asm.Type;
 import syntaxtree.*;
 import syntaxtree.Class;
-import syntaxtree.expressions.LocalOrFieldVarExpr;
-import syntaxtree.statementexpressions.AssignStmtExpr;
-import syntaxtree.statements.*;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.Vector;
 
-public class BytecodeGenerator {
+import static codegen.StatementGenerator.*;
+
+public class ClassGenerator {
 
 
     public static ClassWriter generateClassCode(Class inputClass)
@@ -32,12 +29,11 @@ public class BytecodeGenerator {
                 null
         );
 
-        Dictionary<String, FieldVisitor> fieldVisitorDictionary = new Hashtable<>();
-        Dictionary<String, MethodVisitor> methodVisitorDictionary = new Hashtable<>();
+
 
         for (Field f : inputClass.fields)
         {
-            fieldVisitorDictionary.put(
+            inputClass.fieldVisitorDictionary.put(
                     f.name,
                     cw.visitField(
                             Opcodes.ACC_PUBLIC,
@@ -45,13 +41,14 @@ public class BytecodeGenerator {
                             fieldDescriptor(f.type.name),
                             null,
                             "value"));
-            fieldVisitorDictionary.get(f.name).visitEnd();
+            inputClass.fieldVisitorDictionary.get(f.name).visitEnd();
         }
 
+        // TODO generate standard constructor
 
         for(Method m : inputClass.meths)
         {
-            methodVisitorDictionary.put(
+            inputClass.methodVisitorDictionary.put(
                     m.name,
                     cw.visitMethod(
                             Opcodes.ACC_PUBLIC,
@@ -59,8 +56,8 @@ public class BytecodeGenerator {
                             methodDescriptor(m),
                             null,
                             null));
-            methodVisitorDictionary.get(m.name).visitEnd();
-            generateMethodCode(m, methodVisitorDictionary.get(m.name));
+            inputClass.methodVisitorDictionary.get(m.name).visitEnd();
+            generateMethodCode(m, inputClass);
         }
 
 
@@ -69,29 +66,35 @@ public class BytecodeGenerator {
         return cw;
     }
 
-    public static void generateMethodCode(Method meth, MethodVisitor mv)
+    public static void generateMethodCode(Method meth, Class inputClass)
     {
+        MethodVisitor mv = inputClass.methodVisitorDictionary.get(meth.name);
         mv.visitCode();
 
-        // TODO generate bytecode instructions
+        // TODO: generate bytecode instructions
+        //ALOAD 0
+        mv.visitVarInsn(Opcodes.ALOAD, 0);
+        // todo: generate parameters
+
+        genStmt(meth.blck, mv);
 
         mv.visitMaxs(0,0);
         mv.visitEnd();
     }
 
+
+
+
+
     static String fieldDescriptor(String typeName)
     {
-        switch (typeName){
-            case "int":
-                return Type.INT_TYPE.getDescriptor();
-            case "boolean":
-                return Type.BOOLEAN_TYPE.getDescriptor();
-            case "char":
-                return Type.CHAR_TYPE.getDescriptor();
-            case "String":
-                return Type.getType(String.class).getDescriptor();
-        }
-        return "L"+typeName+";";
+        return switch (typeName) {
+            case "int" -> Type.INT_TYPE.getDescriptor();
+            case "boolean" -> Type.BOOLEAN_TYPE.getDescriptor();
+            case "char" -> Type.CHAR_TYPE.getDescriptor();
+            case "String" -> Type.getType(String.class).getDescriptor();
+            default -> "L" + typeName + ";";
+        };
     }
 
     static String methodDescriptor(Method m)
@@ -114,6 +117,6 @@ public class BytecodeGenerator {
     }
 
     public static void main(String[] args) throws IOException {
-        cw2file(generateClassCode(Examples.ast5));
+        cw2file(generateClassCode(Examples.ast6));
     }
 }
