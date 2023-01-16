@@ -3,82 +3,83 @@ package codegen;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import syntaxtree.Method;
 import syntaxtree.expressions.Expression;
 import syntaxtree.statements.*;
-
+import static codegen.StatementExpressionGenerator.genStmtExpr;
 import static codegen.ExpressionGenerator.*;
 
 public class StatementGenerator {
-    public static void genStmt(Statement stmt, MethodVisitor mv)
+    public static void genStmt(Statement stmt, Method m)
     {
         switch (stmt) {
             case null:
-                mv.visitInsn(Opcodes.NOP);
+                m.visitor.visitInsn(Opcodes.NOP);
                 break;
             case BlockStmt s:
-                s.stmtBlck.forEach(b -> genStmt(b, mv));
+                s.stmtBlck.forEach(b -> genStmt(b, m)); // todo: delete local variables after block is closed
                 break;
             case ReturnStmt s:
-                genReturnStmt(s.rExpr, mv);
+                genReturnStmt(s.rExpr, m);
                 break;
             case LocalVarDeclStmt s:
-                //TODO
+                m.localVariableIndexes.put(s.name, m.localVariableIndexes.size()+1);
                 break;
             case IfStmt s:
-                genIfStmt(s, mv);
+                genIfStmt(s, m);
                 break;
             case WhileStmt s:
-                genWhileStmt(s, mv);
+                genWhileStmt(s, m);
                 break;
             case StmtExprStmt s:
-                //TODO
+                genStmtExpr(s.stmtExpr, m);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + stmt);
         }
 
     }
-    public static void genReturnStmt(Expression rexpr, MethodVisitor mv)
+    public static void genReturnStmt(Expression rexpr, Method m)
     {
         String type = "int"; //TODO: get type from rexpr
         switch (type) {
             case "int", "char", "boolean" -> {
-                genExpr(rexpr, mv);
-                mv.visitInsn(Opcodes.IRETURN);
+                genExpr(rexpr, m);
+                m.visitor.visitInsn(Opcodes.IRETURN);
             }
             case "String", "null" -> {
-                genExpr(rexpr, mv);
-                mv.visitInsn(Opcodes.ARETURN);
+                genExpr(rexpr, m);
+                m.visitor.visitInsn(Opcodes.ARETURN);
             }
         }
     }
 
-    private static void genIfStmt(IfStmt stmt, MethodVisitor mv){
+    private static void genIfStmt(IfStmt stmt, Method m){
         Label elseBranch = new Label();
         Label end = new Label();
 
-        genExpr(stmt.boolExpr, mv);
-        mv.visitJumpInsn(Opcodes.IFEQ, elseBranch);
-        genStmt(stmt.ifBlck, mv);
-        mv.visitJumpInsn(Opcodes.GOTO, end);
+        genExpr(stmt.boolExpr, m);
+        m.visitor.visitJumpInsn(Opcodes.IFEQ, elseBranch);
+        genStmt(stmt.ifBlck, m);
+        m.visitor.visitJumpInsn(Opcodes.GOTO, end);
 
-        mv.visitLabel(elseBranch);
-        genStmt(stmt.elseBlck, mv);
+        m.visitor.visitLabel(elseBranch);
+        genStmt(stmt.elseBlck, m);
 
-        mv.visitLabel(end);
+        m.visitor.visitLabel(end);
     }
 
-    private static void genWhileStmt(WhileStmt stmt, MethodVisitor mv){
+    private static void genWhileStmt(WhileStmt stmt, Method m){
         Label loop = new Label();
         Label end = new Label();
 
-        mv.visitLabel(loop);
-        genExpr(stmt.boolExpr, mv);
-        mv.visitJumpInsn(Opcodes.IFEQ, end);
+        m.visitor.visitLabel(loop);
+        genExpr(stmt.boolExpr, m);
+        m.visitor.visitJumpInsn(Opcodes.IFEQ, end);
 
-        genStmt(stmt.blck, mv);
-        mv.visitJumpInsn(Opcodes.GOTO, loop);
+        genStmt(stmt.blck, m);
+        m.visitor.visitJumpInsn(Opcodes.GOTO, loop);
 
-        mv.visitLabel(end);
+        m.visitor.visitLabel(end);
     }
 }
