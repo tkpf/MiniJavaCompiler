@@ -4,7 +4,7 @@ import syntaxtree.expressions.Type;
 
 public final class LocalVarDeclStmt extends Statement {
 
-    private final String name;
+    public final String name;
     private final Type type;
 
     public LocalVarDeclStmt(String name, Type type) {
