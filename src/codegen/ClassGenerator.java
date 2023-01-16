@@ -15,6 +15,8 @@ import static codegen.StatementGenerator.*;
 
 public class ClassGenerator {
 
+    public static Dictionary<String, FieldVisitor> fieldVisitorDictionary = new Hashtable<>();
+    private static Dictionary<String, MethodVisitor> methodVisitorDictionary = new Hashtable<>();
 
     public static ClassWriter generateClassCode(Class inputClass)
     {
@@ -30,10 +32,10 @@ public class ClassGenerator {
         );
 
 
-
+        // generating fields
         for (Field f : inputClass.fields)
         {
-            inputClass.fieldVisitorDictionary.put(
+            fieldVisitorDictionary.put(
                     f.name,
                     cw.visitField(
                             Opcodes.ACC_PUBLIC,
@@ -41,14 +43,15 @@ public class ClassGenerator {
                             fieldDescriptor(f.type.name),
                             null,
                             "value"));
-            inputClass.fieldVisitorDictionary.get(f.name).visitEnd();
+            fieldVisitorDictionary.get(f.name).visitEnd();
         }
 
         // TODO generate standard constructor
 
+        // generating methods
         for(Method m : inputClass.meths)
         {
-            inputClass.methodVisitorDictionary.put(
+            methodVisitorDictionary.put(
                     m.name,
                     cw.visitMethod(
                             Opcodes.ACC_PUBLIC,
@@ -56,7 +59,7 @@ public class ClassGenerator {
                             methodDescriptor(m),
                             null,
                             null));
-            inputClass.methodVisitorDictionary.get(m.name).visitEnd();
+            methodVisitorDictionary.get(m.name).visitEnd();
             generateMethodCode(m, inputClass);
         }
 
@@ -66,24 +69,31 @@ public class ClassGenerator {
         return cw;
     }
 
-    public static void generateMethodCode(Method meth, Class inputClass)
+    public static void generateMethodCode(Method m, Class inputClass)   // this only works for non-static methods
     {
-        MethodVisitor mv = inputClass.methodVisitorDictionary.get(meth.name);
-        mv.visitCode();
+        m.visitor = methodVisitorDictionary.get(m.name);;
+        m.visitor.visitCode();
 
-        // TODO: generate bytecode instructions
-        //ALOAD 0
-        mv.visitVarInsn(Opcodes.ALOAD, 0);
-        // todo: generate parameters
+        generateParameters(m);
 
-        genStmt(meth.blck, mv);
+        genStmt(m.blck, m);
 
-        mv.visitMaxs(0,0);
-        mv.visitEnd();
+        m.visitor.visitMaxs(0,0);
+        m.visitor.visitEnd();
     }
 
 
+    private static void generateParameters(Method m) {
+        //ALOAD 0
+        m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
 
+        //other parameters
+        int count = 1;
+        for (Parameter p : m.params) {
+            m.localVariableIndexes.put(p.name, count);
+            count++;
+        }
+    }
 
 
     static String fieldDescriptor(String typeName)
