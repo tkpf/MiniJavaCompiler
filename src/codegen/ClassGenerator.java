@@ -46,7 +46,7 @@ public class ClassGenerator {
             fieldVisitorDictionary.get(f.name).visitEnd();
         }
 
-        // TODO generate standard constructor
+
 
         // generating methods
         for(Method m : inputClass.meths)
@@ -61,6 +61,21 @@ public class ClassGenerator {
                             null));
             methodVisitorDictionary.get(m.name).visitEnd();
             generateMethodCode(m, inputClass);
+        }
+
+        if(methodVisitorDictionary.get(inputClass.name) == null) {
+            MethodVisitor constructor = cw.visitMethod(
+                    Opcodes.ACC_PUBLIC,
+                    "<init>",
+                    "()V",
+                    null,
+                    null);
+            constructor.visitCode();
+            constructor.visitVarInsn(Opcodes.ALOAD, 0);
+            constructor.visitMethodInsn(Opcodes.INVOKESPECIAL,"java/lang/Object", "<init>", "()V", false);
+            constructor.visitInsn(Opcodes.RETURN);
+            constructor.visitMaxs(0, 0);
+            constructor.visitEnd();
         }
 
 
@@ -127,6 +142,8 @@ public class ClassGenerator {
     }
 
     public static void main(String[] args) throws IOException {
-        cw2file(generateClassCode(Examples.ast6));
+        ClassWriter cw;
+        cw = generateClassCode(Examples.ast6);
+        cw2file(cw);
     }
 }
