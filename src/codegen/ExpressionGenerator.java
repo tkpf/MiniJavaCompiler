@@ -42,10 +42,15 @@ public class ExpressionGenerator {
                 m.visitor.visitInsn(Opcodes.ACONST_NULL);
                 break;
             case LocalOrFieldVarExpr e:
-                genLocalOrFieldVarExpr(e, m);
+                throw new IllegalStateException("LocalOrFieldVarExpr hasn't been resolved!");
+            case LocalVar e:
+                genLocalVar(e, m);
+                break;
+            case FieldVar e:
+                genFieldVar(e, m);
                 break;
             case InstVarExpr e:
-                //TODO
+                genInstVar(e, m);
                 break;
             case BinaryExpr e:
                 genBinaryExpr(e, m);
@@ -57,7 +62,7 @@ public class ExpressionGenerator {
                 m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
                 break;
             case SuperExpr e:
-                //TODO
+                m.visitor.visitLdcInsn(Object.class);
                 break;
             case StmtExprExpr e:
                 genStmtExpr(e.stmtExprExpr, m);
@@ -112,11 +117,11 @@ public class ExpressionGenerator {
                 // TODO
                 /*switch (expr.eval){
                     case "+":
-                        genExpr(expr.expr1, mv);
-                        genExpr(expr.expr2, mv);
-                        mv.visitMethodInsn(
+                        genExpr(expr.expr1, m);
+                        genExpr(expr.expr2, m);
+                        m.visitor.visitMethodInsn(
                                 Opcodes.INVOKEDYNAMIC,
-                                "this",
+                                null,
                                 "makeConcatWithConstants",
                                 "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
                                 false);
@@ -154,15 +159,6 @@ public class ExpressionGenerator {
     }
 
 
-    private static void genLocalOrFieldVarExpr(LocalOrFieldVarExpr var, Method m) {
-        String type = "asdf"; //TODO: get type from expression
-
-        //TODO:
-        // look for variable names in parameters, locals and fields
-        // a name cannot occur both in locals and parameters!
-        // this means, that the method at hand has to know about the fields of the class, the method parameters and the local variables
-    }
-
     private static void genLocalVar(LocalVar v, Method m) {
         String type = "int"; //TODO get type from expression
         int index = m.localVariableIndexes.get(v.name);
@@ -181,7 +177,12 @@ public class ExpressionGenerator {
     private static void genFieldVar(FieldVar f, Method m) {
         String type = "int"; //TODO get type from expression
 
-        //m.visitor.visitFieldInsn(Opcodes.GETFIELD, f.owner, f.name, fieldDescriptor(f.type));
+        //m.visitor.visitFieldInsn(Opcodes.GETFIELD, ???, f.name, fieldDescriptor(f.type));
+    }
+
+    private static void genInstVar(InstVarExpr var, Method m) {
+        genExpr(var.inst, m);
+        //m.visitor.visitFieldInsn(Opcodes.GETFIELD, var.inst.type.name, var.name, fieldDescriptor(var.type.name), false);
     }
 
 }
