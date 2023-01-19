@@ -3,6 +3,7 @@ package syntaxtree;
 import syntaxtree.expressions.*;
 import syntaxtree.statementexpressions.AssignStmtExpr;
 import syntaxtree.statementexpressions.MethodCallStmtExpr;
+import syntaxtree.statementexpressions.StatementExpression;
 import syntaxtree.statements.*;
 
 import java.util.Arrays;
@@ -28,7 +29,7 @@ public class Examples {
     /*
         x.f();
     */
-    public static MethodCallStmtExpr ast3 = new MethodCallStmtExpr(new LocalOrFieldVarExpr("x"), "f", new Vector<Expression>());
+    //public static MethodCallStmtExpr ast3 = new MethodCallStmtExpr(new LocalOrFieldVarExpr("x"), "f", new Vector<Expression>());
 
         /*
             return 1 + x;
@@ -49,8 +50,8 @@ public class Examples {
     public static Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("v", new Type("int")) ));
     public static BlockStmt meth1block = new BlockStmt(new Vector<Statement>( Arrays.asList(
             new LocalVarDeclStmt("i", new Type("int")),
-            new StmtExprStmt( new AssignStmtExpr( new LocalOrFieldVarExpr("i"), new LocalOrFieldVarExpr("v")) ),
-            new ReturnStmt(null)
+            new StmtExprStmt( new AssignStmtExpr( new LocalVar("i"), new FieldVar("v")) ),
+            new ReturnStmt(new LocalVar("z"))
     )));
     public static Method meth1 = new Method(
             "methode",
@@ -76,9 +77,10 @@ public class Examples {
             new Vector<Parameter>(),
             new BlockStmt(new Vector<Statement>(Arrays.asList(
                     new ReturnStmt(
-                            new BinaryExpr(new IntegerExpr(1),
-                            new IntegerExpr(2),
-                            "+") )
+                            new BinaryExpr(
+                                    new IntegerExpr(1),
+                                    new IntegerExpr(2),
+                                "+") )
             )))
     );
     public static Method meth3 = new Method(
@@ -102,8 +104,26 @@ public class Examples {
                     )
             )))
     );
+
+    public static Method meth5 = new Method(
+            "add",
+            new Type("int"),
+            new Vector<Parameter>(Arrays.asList(
+                    new Parameter("a", new Type("int")),
+                    new Parameter("b", new Type("int")))),
+            new BlockStmt(new Vector<Statement>(Arrays.asList(
+                    new LocalVarDeclStmt("result", new Type("int")),
+                    new StmtExprStmt(new AssignStmtExpr(new LocalVar("result"),
+                            new BinaryExpr(
+                            new LocalVar("a"),
+                            new LocalVar("b"),
+                            "+"
+                    ))),
+                    new ReturnStmt(new LocalVar("result"))
+            )))
+    );
     public static Class ast6 = new Class(
             "TestKlasse2",
             fields1,
-            new Vector<Method>(Arrays.asList( meth2, meth3, meth4 )));
+            new Vector<Method>(Arrays.asList( meth2, meth3, meth4, meth5 )));
 }
