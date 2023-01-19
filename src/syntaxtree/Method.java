@@ -5,6 +5,7 @@ import syntaxtree.expressions.Type;
 import syntaxtree.statements.BlockStmt;
 
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.Vector;
 
 public class Method {
@@ -22,6 +23,7 @@ public class Method {
         this.rtype = rtype;
         this.params = params;
         this.blck = blck;
+        this.localVariableIndexes = new Hashtable<>();
     }
 
 
