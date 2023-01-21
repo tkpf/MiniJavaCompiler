@@ -117,6 +117,7 @@ public class ClassGenerator {
             case "int" -> Type.INT_TYPE.getDescriptor();
             case "boolean" -> Type.BOOLEAN_TYPE.getDescriptor();
             case "char" -> Type.CHAR_TYPE.getDescriptor();
+            case "void" -> Type.VOID_TYPE.getDescriptor();
             case "String" -> Type.getType(String.class).getDescriptor();
             default -> "L" + typeName + ";";
         };

@@ -64,6 +64,6 @@ public class StatementExpressionGenerator {
 
     public static void genMethodCall(MethodCallStmtExpr mcall, Method m) {
         mcall.methParams.forEach(e -> genExpr(e, m));
-        // m.visitor.visitMethodInsn(Opcodes.INVOKEVIRTUAL, mcall.obj.type, mcall.meth, methodDescriptor(m), false);
+        //m.visitor.visitMethodInsn(Opcodes.INVOKEVIRTUAL, mcall.obj.type, mcall.meth, methodDescriptor(m), false);
     }
 }
