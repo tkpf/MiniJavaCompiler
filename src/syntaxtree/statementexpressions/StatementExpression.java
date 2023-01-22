@@ -1,9 +1,6 @@
 package syntaxtree.statementexpressions;
 
-import syntaxtree.expressions.Type;
-import syntaxtree.statementexpressions.AssignStmtExpr;
-import syntaxtree.statementexpressions.MethodCallStmtExpr;
-import syntaxtree.statementexpressions.NewStmtExpr;
+import syntaxtree.Type;
 
 public abstract sealed class StatementExpression permits AssignStmtExpr, NewStmtExpr, MethodCallStmtExpr {
 

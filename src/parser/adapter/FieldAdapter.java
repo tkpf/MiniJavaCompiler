@@ -2,7 +2,7 @@ package parser.adapter;
 
 import parser.production.JavaMiniParser;
 import syntaxtree.Field;
-import syntaxtree.expressions.Type;
+import syntaxtree.Type;
 
 public class FieldAdapter {
 

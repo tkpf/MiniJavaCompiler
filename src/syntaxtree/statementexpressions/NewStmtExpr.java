@@ -1,7 +1,7 @@
 package syntaxtree.statementexpressions;
 
 import syntaxtree.expressions.Expression;
-import syntaxtree.expressions.Type;
+import syntaxtree.Type;
 
 import java.util.Vector;
 

@@ -2,8 +2,6 @@ package syntaxtree;
 
 import syntaxtree.expressions.*;
 import syntaxtree.statementexpressions.AssignStmtExpr;
-import syntaxtree.statementexpressions.MethodCallStmtExpr;
-import syntaxtree.statementexpressions.StatementExpression;
 import syntaxtree.statements.*;
 
 import java.util.Arrays;

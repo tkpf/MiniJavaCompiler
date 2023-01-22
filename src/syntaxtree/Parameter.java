@@ -1,7 +1,5 @@
 package syntaxtree;
 
-import syntaxtree.expressions.Type;
-
 public class Parameter {
 
     final public String name;

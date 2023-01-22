@@ -1,7 +1,5 @@
 package syntaxtree;
 
-import syntaxtree.expressions.Type;
-
 public class Field {
     final public String name;
     final public Type type;

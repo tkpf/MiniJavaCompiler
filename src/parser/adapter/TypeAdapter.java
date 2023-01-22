@@ -1,7 +1,7 @@
 package parser.adapter;
 
 import parser.production.JavaMiniParser;
-import syntaxtree.expressions.Type;
+import syntaxtree.Type;
 
 public class TypeAdapter {
     public static Type adapt (JavaMiniParser.TypeContext ctx) {

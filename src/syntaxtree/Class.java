@@ -1,11 +1,5 @@
 package syntaxtree;
 
-import org.objectweb.asm.FieldVisitor;
-import org.objectweb.asm.MethodVisitor;
-import syntaxtree.expressions.Type;
-
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.Vector;
 
 public class Class {

@@ -1,7 +1,6 @@
 package syntaxtree;
 
 import org.objectweb.asm.MethodVisitor;
-import syntaxtree.expressions.Type;
 import syntaxtree.statements.BlockStmt;
 
 import java.util.Dictionary;

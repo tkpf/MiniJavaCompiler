@@ -1,4 +1,4 @@
-package syntaxtree.expressions;
+package syntaxtree;
 
 public final class Type {
 

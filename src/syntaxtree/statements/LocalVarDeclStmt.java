@@ -1,6 +1,6 @@
 package syntaxtree.statements;
 
-import syntaxtree.expressions.Type;
+import syntaxtree.Type;
 
 public final class LocalVarDeclStmt extends Statement {
 
