@@ -8,4 +8,15 @@ public class Program {
     public Program(Vector<Class> classes) {
         this.classes = classes;
     }
+
+    @Override
+    public String toString() {
+        String result = "(Program [";
+        for (Class c : this.classes) {
+            result += c.toString() + " ";
+        }
+        result += "])";
+
+        return result;
+    }
 }

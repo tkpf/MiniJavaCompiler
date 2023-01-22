@@ -18,7 +18,7 @@ public class Main_test {
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));
 
         System.out.print("parser output: ");
-        System.out.println(parser.compilationUnit().toStringTree(parser));
+        //System.out.println(parser.compilationUnit().toStringTree(parser));
 
         Program prgm = ProgramAdapter.adapt(parser.compilationUnit());
         System.out.println(prgm);

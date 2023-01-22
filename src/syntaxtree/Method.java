@@ -26,6 +26,14 @@ public class Method {
         this.localVariableIndexes = new Hashtable<>();
     }
 
-
+    @Override
+    public String toString() {
+        String result =  "(Method " + this.name + " " + this.rtype + " [";
+        for (Parameter p : params) {
+            result += p.toString();
+        }
+        result += "] [Statements]";
+        return result;
+    }
 
 }
