@@ -7,6 +7,6 @@ public final class IntegerExpr extends Expression {
 
     @Override
     public String toString() {
-        return "(" + this.type + " " + this.i + ")";
+        return "(int " + this.i + ")";
     }
 }

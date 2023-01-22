@@ -13,7 +13,7 @@ public class Main_test {
     public static void main(String[] args) throws IOException  {
 
         System.out.println("Running Main_test");
-        CharStream input = CharStreams.fromFileName(".\\test\\test.txt");
+        CharStream input = CharStreams.fromFileName("./test/test.txt");
         JavaMiniLexer lexer = new JavaMiniLexer(input);
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));
 

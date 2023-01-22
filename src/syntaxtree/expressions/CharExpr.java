@@ -7,6 +7,6 @@ public final class CharExpr extends Expression {
 
     @Override
     public String toString() {
-        return "(" + this.type + " " + this.c + ")";
+        return "(char " + this.c + ")";
     }
 }

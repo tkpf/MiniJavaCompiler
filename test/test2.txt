@@ -1,0 +1,18 @@
+class Klassenname {
+    int v;
+    int methode(Typ x, int y, int z) {
+        int i;
+        i = 7;
+        i = v;
+        return i;
+    }
+}
+
+class A { int m2(int a) {return a;} }
+class bct {
+    void m () {
+        int j = 0;
+        A aa = new A();
+        int i = aa.m2(j);
+    }
+}

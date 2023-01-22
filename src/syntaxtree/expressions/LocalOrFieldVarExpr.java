@@ -10,6 +10,6 @@ public final class LocalOrFieldVarExpr extends Expression {
 
     @Override
     public String toString() {
-        return name;
+        return "(LoFVar " + name + ")";
     }
 }

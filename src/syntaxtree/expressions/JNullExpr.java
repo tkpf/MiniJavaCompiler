@@ -5,6 +5,6 @@ public final class JNullExpr extends Expression {
 
     @Override
     public String toString() {
-        return "(" + this.type + ")";
+        return "(null)";
     }
 }
