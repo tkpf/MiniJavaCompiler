@@ -1,7 +1,10 @@
 package syntaxtree.expressions;
 
 public final class JNullExpr extends Expression {
-    public JNullExpr(){
-    }
+    public JNullExpr(){  }
 
+    @Override
+    public String toString() {
+        return "(" + this.type + ")";
+    }
 }

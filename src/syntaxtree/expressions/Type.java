@@ -2,7 +2,7 @@ package syntaxtree.expressions;
 
 public final class Type {
 
-    public String name;
+    public final String name;
 
     public Type(String name) {
         this.name = name;

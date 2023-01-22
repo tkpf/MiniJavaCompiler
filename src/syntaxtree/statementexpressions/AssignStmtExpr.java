@@ -12,4 +12,8 @@ public final class AssignStmtExpr extends StatementExpression {
         this.asFromExpr = asFromExpr;
     }
 
+    @Override
+    public String toString() {
+        return "(= " + as2Expr.toString() + " " + asFromExpr.toString() + ")";
+    }
 }

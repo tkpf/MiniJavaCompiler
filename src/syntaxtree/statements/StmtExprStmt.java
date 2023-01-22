@@ -10,4 +10,8 @@ public final class StmtExprStmt extends Statement {
         this.stmtExpr = stmtExpr;
     }
 
+    @Override
+    public String toString() {
+        return this.stmtExpr.toString();
+    }
 }

@@ -10,4 +10,8 @@ public final class ReturnStmt extends Statement {
         this.rExpr = expr;
     }
 
+    @Override
+    public String toString() {
+        return "(Return " + rExpr.toString() + ")";
+    }
 }

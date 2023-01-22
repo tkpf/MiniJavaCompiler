@@ -10,5 +10,8 @@ public final class StmtExprExpr extends Expression {
         this.stmtExprExpr = stmtExprExpr;
     }
 
-
+    @Override
+    public String toString() {
+        return stmtExprExpr.toString();
+    }
 }

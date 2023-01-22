@@ -32,7 +32,7 @@ public class Method {
         for (Parameter p : params) {
             result += p.toString();
         }
-        result += "] [Statements]";
+        result += "] " + blck.toString() + ")";
         return result;
     }
 
