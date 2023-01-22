@@ -11,16 +11,16 @@ import java.util.Vector;
 public class Method {
 
     final public String name;
-    final public Type rtype;
+    final public Type type;
     final public Vector<Parameter> params;
     final public BlockStmt blck;
 
     public MethodVisitor visitor;
     public Dictionary<String, Integer> localVariableIndexes;
 
-    public  Method (String name, Type rtype, Vector<Parameter> params, BlockStmt blck) {
+    public  Method (String name, Type type, Vector<Parameter> params, BlockStmt blck) {
         this.name = name;
-        this.rtype = rtype;
+        this.type = type;
         this.params = params;
         this.blck = blck;
         this.localVariableIndexes = new Hashtable<>();
@@ -28,7 +28,7 @@ public class Method {
 
     @Override
     public String toString() {
-        String result =  "(Method " + this.name + " " + this.rtype + " [";
+        String result =  "(Method " + this.name + " " + this.type + " [";
         for (Parameter p : params) {
             result += p.toString();
         }
