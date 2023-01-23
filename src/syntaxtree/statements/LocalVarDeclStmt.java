@@ -13,6 +13,6 @@ public final class LocalVarDeclStmt extends Statement {
 
     @Override
     public String toString() {
-        return "(LVarDecl " + this.name + " " + this.type + ")";
+        return "(LVarDecl " + name + " " + type + ")";
     }
 }

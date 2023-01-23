@@ -12,6 +12,6 @@ public final class UnaryExpr extends Expression {
 
     @Override
     public String toString() {
-        return "(" + super.toString() + " " + eval + " " + expr + ")";
+        return "(" + eval + " " + expr + ")";
     }
 }

@@ -5,23 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="Implementing ProgramAdapter, Updating UML, Delete obsolete classes">
-      <change afterPath="$PROJECT_DIR$/src/syntaxtree/AST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/typecheck/LocalContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/BinaryExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/BinaryExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/Expression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/InstVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/InstVarExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/FieldVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/FieldVar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/LocalVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/LocalVar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/StmtExprExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/StmtExprExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/StringExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/StringExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/SuperExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/SuperExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/ThisExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/ThisExpr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/UnaryExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/UnaryExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/AssignStmtExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/AssignStmtExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/MethodCallStmtExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/MethodCallStmtExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/NewStmtExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/NewStmtExpr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/StatementExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/StatementExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/BlockStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/BlockStmt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/IfStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/IfStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/LocalVarDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/LocalVarDeclStmt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/ReturnStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/ReturnStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/Statement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/typecheck/Environment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/typecheck/Environment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/typecheck/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/typecheck/TypeCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Main_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Main_test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Type_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Type_test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/StmtExprStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/StmtExprStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/WhileStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/WhileStmt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

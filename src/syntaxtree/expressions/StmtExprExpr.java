@@ -12,6 +12,6 @@ public final class StmtExprExpr extends Expression {
 
     @Override
     public String toString() {
-        return stmtExprExpr.toString();
+        return "(StmtExprExpr "+ stmtExprExpr + ")";
     }
 }

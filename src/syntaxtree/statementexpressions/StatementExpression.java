@@ -7,4 +7,6 @@ public abstract sealed class StatementExpression extends AST permits AssignStmtE
 
     public Type type;
 
+    @Override
+    public String toString() { return "{" + type + "}"; }
 }

@@ -7,6 +7,6 @@ public final class StringExpr extends Expression {
 
     @Override
     public String toString() {
-        return "(" + this.type + " " + this.s + ")";
+        return "(String " + this.s + ")";
     }
 }

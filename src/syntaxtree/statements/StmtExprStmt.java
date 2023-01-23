@@ -12,6 +12,6 @@ public final class StmtExprStmt extends Statement {
 
     @Override
     public String toString() {
-        return this.stmtExpr.toString();
+        return "(StmtExpr " + stmtExpr + ")";
     }
 }

@@ -23,6 +23,6 @@ public final class IfStmt extends Statement {
 
     @Override
     public String toString() {
-        return "(" + super.toString() + "If " + this.boolExpr + " " + this.ifBlck + " " + this.elseBlck + ")";
+        return "(If " + boolExpr + " " + ifBlck + " " + elseBlck + ")";
     }
 }

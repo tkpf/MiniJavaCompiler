@@ -14,5 +14,13 @@ public final class NewStmtExpr extends StatementExpression {
         this.initParams = initParams;
     }
 
-
+    @Override
+    public String toString() {
+        String result = "(New " + type + " [";
+        for (Expression e : initParams) {
+            result += e + " ";
+        }
+        result += "])";
+        return result;
+    }
 }

@@ -12,8 +12,8 @@ public final class BlockStmt extends Statement {
 
     @Override
     public String toString() {
-        String result = "[" + super.toString();
-        for (Statement s : this.stmtBlck) {
+        String result = "[B";
+        for (Statement s : stmtBlck) {
             result += s.toString() + " ";
         }
         result += "]";
