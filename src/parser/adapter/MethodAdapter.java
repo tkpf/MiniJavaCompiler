@@ -1,7 +1,7 @@
 package parser.adapter;
 
 import parser.production.JavaMiniParser;
-import syntaxtree.expressions.Type;
+import syntaxtree.Type;
 import syntaxtree.statements.BlockStmt;
 import syntaxtree.Method;
 import syntaxtree.Parameter;

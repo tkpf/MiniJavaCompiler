@@ -16,5 +16,13 @@ public final class MethodCallStmtExpr extends StatementExpression {
         this.methParams = methParams;
     }
 
-
+    @Override
+    public String toString() {
+        String result = "(MethodCall " + meth + " [";
+        for (Expression e : methParams) {
+            result += e + " ";
+        }
+        result += "])";
+        return result;
+    }
 }

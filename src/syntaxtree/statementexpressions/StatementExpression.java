@@ -1,8 +1,11 @@
 package syntaxtree.statementexpressions;
 
-import syntaxtree.statementexpressions.AssignStmtExpr;
-import syntaxtree.statementexpressions.MethodCallStmtExpr;
-import syntaxtree.statementexpressions.NewStmtExpr;
+import syntaxtree.Type;
 
 public abstract sealed class StatementExpression permits AssignStmtExpr, NewStmtExpr, MethodCallStmtExpr {
+
+    public Type type;
+
+    @Override
+    public String toString() { return "{" + type + "}"; }
 }

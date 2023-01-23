@@ -10,4 +10,13 @@ public final class BlockStmt extends Statement {
         this.stmtBlck = stmts;
     }
 
+    @Override
+    public String toString() {
+        String result = "[B";
+        for (Statement s : stmtBlck) {
+            result += s.toString() + " ";
+        }
+        result += "]";
+        return result;
+    }
 }

@@ -12,6 +12,8 @@ public final class WhileStmt extends Statement {
         this.blck = blck;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "(While " + boolExpr + " " + blck + ")";
+    }
 }

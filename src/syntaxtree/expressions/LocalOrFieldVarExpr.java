@@ -8,5 +8,8 @@ public final class LocalOrFieldVarExpr extends Expression {
         this.name = name;
     }
 
-
+    @Override
+    public String toString() {
+        return "(LoFVar " + name + ")";
+    }
 }
