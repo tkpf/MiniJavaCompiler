@@ -1,8 +1,9 @@
 package syntaxtree.expressions;
 
+import syntaxtree.AST;
 import syntaxtree.Type;
 
-public abstract sealed class Expression
+public abstract sealed class Expression extends AST
         permits StringExpr, BinaryExpr, BoolExpr, CharExpr, InstVarExpr, IntegerExpr, JNullExpr, LocalOrFieldVarExpr, StmtExprExpr, SuperExpr, ThisExpr, UnaryExpr, LocalVar, FieldVar {
 
     public Type type;

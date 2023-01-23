@@ -14,6 +14,6 @@ public final class BinaryExpr extends Expression {
 
     @Override
     public String toString() {
-        return "(" + eval + " " + expr1.toString() + " " + expr2.toString() + ")";
+        return "(" + super.toString() + eval + " " + expr1.toString() + " " + expr2.toString() + ")";
     }
 }

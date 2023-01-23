@@ -12,7 +12,7 @@ public final class BlockStmt extends Statement {
 
     @Override
     public String toString() {
-        String result = "[";
+        String result = "[" + super.toString();
         for (Statement s : this.stmtBlck) {
             result += s.toString() + " ";
         }
