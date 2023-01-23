@@ -1,4 +1,3 @@
-import syntaxtree.AST;
 import syntaxtree.expressions.BoolExpr;
 import syntaxtree.expressions.IntegerExpr;
 import syntaxtree.Type;
