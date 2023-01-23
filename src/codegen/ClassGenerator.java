@@ -129,7 +129,7 @@ public class ClassGenerator {
         {
             paramDesc += fieldDescriptor(p.type.name);
         }
-        return "("+paramDesc+")"+fieldDescriptor(m.rtype.name);
+        return "("+paramDesc+")"+fieldDescriptor(m.type.name);
     }
 
     static void cw2file(ClassWriter cw) throws IOException {

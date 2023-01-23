@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="Implementing ProgramAdapter, Updating UML, Delete obsolete classes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/Main_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Main_test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,9 +54,16 @@
       <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler\docs" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main_test">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Mini-Java-Compiler" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main_test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main_test" />
       <module name="Mini-Java-Compiler" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -69,11 +74,13 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.Main_test" />
       <item itemvalue="Application.Main" />
       <item itemvalue="JAR Application.antlr-4.11.1-complete.jar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main_test" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JAR Application.antlr-4.11.1-complete.jar" />
       </list>
