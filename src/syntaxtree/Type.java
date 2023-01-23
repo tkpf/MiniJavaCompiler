@@ -9,6 +9,11 @@ public final class Type {
     }
 
     @Override
+    public int hashCode() {
+        return this.name.hashCode();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (!(obj instanceof Type)) return false;

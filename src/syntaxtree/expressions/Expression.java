@@ -11,4 +11,8 @@ public abstract sealed class Expression
         //todo implement codeGen
     }
 
+    @Override
+    public String toString() {
+        return "{" + type + "}";
+    }
 }

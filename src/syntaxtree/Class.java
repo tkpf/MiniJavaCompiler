@@ -27,7 +27,7 @@ public class Class {
         for (Method m : meths) {
             result += m.toString();
         }
-        result += "]";
+        result += "])";
         return result;
     }
 }

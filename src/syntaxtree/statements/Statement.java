@@ -9,4 +9,8 @@ public abstract sealed class Statement permits BlockStmt, ReturnStmt, IfStmt, Wh
             //todo implement codeGen
         }
 
+        @Override
+        public String toString() {
+                return "{" + type + "}";
+        }
 }
