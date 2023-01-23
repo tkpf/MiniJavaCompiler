@@ -5,11 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="Implementing ProgramAdapter, Updating UML, Delete obsolete classes">
+      <change afterPath="$PROJECT_DIR$/src/syntaxtree/AST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/typecheck/LocalContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/BinaryExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/BinaryExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/InstVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/InstVarExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/UnaryExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/UnaryExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/StatementExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/StatementExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/BlockStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/BlockStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/IfStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/IfStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/ReturnStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/ReturnStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/Statement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/typecheck/Environment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/typecheck/Environment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/typecheck/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/typecheck/TypeCheck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/Main_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Main_test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/Type_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Type_test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test3.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,19 +49,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kim/Documents/Java/MiniJavaCompiler/test/test.txt&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-19",
+    "last_opened_file_path": "/home/kim/Documents/Java/MiniJavaCompiler/test/test3.txt",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler" />
@@ -61,11 +73,7 @@
       <recent name="syntaxtree" />
     </key>
   </component>
-<<<<<<< Updated upstream
-  <component name="RunManager" selected="Application.Main">
-=======
-  <component name="RunManager" selected="Application.Type_test">
->>>>>>> Stashed changes
+  <component name="RunManager" selected="Application.Main_test">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Mini-Java-Compiler" />
@@ -99,8 +107,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Type_test" />
         <item itemvalue="Application.Main_test" />
+        <item itemvalue="Application.Type_test" />
         <item itemvalue="JAR Application.antlr-4.11.1-complete.jar" />
         <item itemvalue="Application.Main" />
       </list>
@@ -185,8 +193,14 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/Main_test.java</url>
-          <line>22</line>
+          <line>28</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/syntaxtree/Class.java</url>
+          <line>7</line>
+          <properties field="fields" class="syntaxtree.Class" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

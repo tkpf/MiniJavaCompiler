@@ -1,0 +1,7 @@
+class MyClass {
+    int a;
+    int m() {
+        int i;
+    return i;
+    }
+}

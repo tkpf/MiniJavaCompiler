@@ -14,7 +14,7 @@ import java.util.Set;
 public class Environment {
     public static Set<Type> primitives = Set.of(
             new Type("int"),
-            new Type("bool"),
+            new Type("boolean"),
             new Type("char"),
             new Type("String"),
             new Type("void")
