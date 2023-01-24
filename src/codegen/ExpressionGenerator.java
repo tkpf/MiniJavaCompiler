@@ -97,6 +97,12 @@ public class ExpressionGenerator {
                         genExpr(expr.expr2, m);
                         m.visitor.visitInsn(Opcodes.IDIV);
                     }
+                    case "<=" -> {
+                        genExpr(expr.expr1, m);
+                        genExpr(expr.expr2, m);
+                        m.visitor.visitInsn(Opcodes.ISUB);
+                        // TODO
+                    }
                 }
                 break;
             case "boolean":
@@ -115,18 +121,18 @@ public class ExpressionGenerator {
                 break;
             case "String":
                 // TODO
-                /*switch (expr.eval){
+                switch (expr.eval){
                     case "+":
                         genExpr(expr.expr1, m);
                         genExpr(expr.expr2, m);
                         m.visitor.visitMethodInsn(
-                                Opcodes.INVOKEDYNAMIC,
-                                null,
-                                "makeConcatWithConstants",
-                                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+                                Opcodes.INVOKEVIRTUAL,
+                                "java/lang/String",
+                                "concat",
+                                "(Ljava/lang/String;)Ljava/lang/String",
                                 false);
                         break;
-                }*/
+                }
                 break;
 
             default:
@@ -182,7 +188,7 @@ public class ExpressionGenerator {
 
     private static void genInstVar(InstVarExpr var, Method m) {
         genExpr(var.inst, m);
-        //m.visitor.visitFieldInsn(Opcodes.GETFIELD, var.inst.type.name, var.name, fieldDescriptor(var.type.name), false);
+        m.visitor.visitFieldInsn(Opcodes.GETFIELD, var.inst.type.name, var.name, fieldDescriptor(var.type.name));
     }
 
 }
