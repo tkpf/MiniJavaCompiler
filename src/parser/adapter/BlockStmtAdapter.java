@@ -2,7 +2,6 @@ package parser.adapter;
 
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.Expression;
-import syntaxtree.statementexpressions.NewStmtExpr;
 import syntaxtree.statementexpressions.StatementExpression;
 import syntaxtree.statements.*;
 
@@ -39,7 +38,7 @@ public class BlockStmtAdapter {
                 stmts.add(rStmt);
             }
             else if (stmtCxt.localVariableDeclaration() != null) {
-                LocalVarDeclStmt varDeclStmt =  new LocalVarDeclStmt(
+                VarDeclStmt varDeclStmt =  new VarDeclStmt(
                         stmtCxt.localVariableDeclaration().variableDeclaratorId().Identifier().getText(),
                         TypeAdapter.adapt(stmtCxt.localVariableDeclaration().type()));
                 stmts.add(varDeclStmt);
