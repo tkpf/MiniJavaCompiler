@@ -1,7 +1,6 @@
 package codegen;
 
 import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import syntaxtree.Method;
 import syntaxtree.expressions.Expression;
@@ -22,7 +21,7 @@ public class StatementGenerator {
             case ReturnStmt s:
                 genReturnStmt(s.rExpr, m);
                 break;
-            case LocalVarDeclStmt s:
+            case VarDeclStmt s:
                 m.localVariableIndexes.put(s.name, m.localVariableIndexes.size()+1);
                 break;
             case IfStmt s:

@@ -69,24 +69,28 @@ formalParameter
     ;
 
 fieldDeclaration
-    :   type variableDeclaratorId ';'
+    :   type variableDeclarator ';'
     ;
 
 /*
 variableDeclarators
     :   variableDeclarator (',' variableDeclarator)*
     ;
-
-// todo implement declator with direct intialization
-variableDeclarator
-    :   variableDeclaratorId //('=' variableInitializer)?
-    ;
 */
+
+variableDeclarator
+    :   variableDeclaratorId directInitialization?
+    ;
+
+directInitialization
+    :   AssignLiteral expression      //variableInitializer
+    ;
+
 variableDeclaratorId
     :   Identifier //('[' ']')*
     ;
 
-
+/*
 variableInitializer
     :   arrayInitializer
     |   expression
@@ -95,7 +99,7 @@ variableInitializer
 arrayInitializer
     :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
     ;
-
+*/
 /*
 constructorDeclaration
     :   Identifier
@@ -122,7 +126,7 @@ blockStatement
 */
 
 localVariableDeclaration
-    :   modifier* type variableDeclaratorId ';'
+    :   modifier* type variableDeclarator ';'
     ;
 
 statement
