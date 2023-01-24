@@ -39,7 +39,7 @@ public class BlockStmtAdapter {
             }
             else if (stmtCxt.localVariableDeclaration() != null) {
                 VarDeclStmt varDeclStmt =  new VarDeclStmt(
-                        stmtCxt.localVariableDeclaration().variableDeclaratorId().Identifier().getText(),
+                        stmtCxt.localVariableDeclaration().variableDeclarator().variableDeclaratorId().Identifier().getText(),
                         TypeAdapter.adapt(stmtCxt.localVariableDeclaration().type()));
                 stmts.add(varDeclStmt);
             }
