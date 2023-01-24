@@ -37,12 +37,12 @@ classBodyDeclaration
 member
     :   methodDeclaration
     |   fieldDeclaration
-  //  |   constructorDeclaration // todo optional constructor declaration in class class declaration
+  //  |   constructorDeclaration // constructor is seen as method with method name (class name) as type
    // |   classDeclaration
     ;
 
 methodDeclaration
-    :   type Identifier formalParameters methodDeclarationRest
+    :   type? Identifier formalParameters methodDeclarationRest     //if no type is available the method may be a constructor
     |   VoidLiteral Identifier formalParameters methodDeclarationRest
     ;
 
