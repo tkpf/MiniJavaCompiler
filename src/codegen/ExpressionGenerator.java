@@ -13,8 +13,7 @@ import static codegen.ClassGenerator.fieldDescriptor;
 
 
 public class ExpressionGenerator {
-    public static void genExpr(Expression exp, Method m)
-    {
+    public static void genExpr(Expression exp, Method m) {
         switch (exp) {
             case IntegerExpr e:
                 switch (e.i) {
@@ -32,8 +31,11 @@ public class ExpressionGenerator {
                 m.visitor.visitLdcInsn(e);
                 break;
             case BoolExpr e:
-                if (e.b) { m.visitor.visitInsn(Opcodes.ICONST_1); }
-                else { m.visitor.visitInsn(Opcodes.ICONST_0); }
+                if (e.b) {
+                    m.visitor.visitInsn(Opcodes.ICONST_1);
+                } else {
+                    m.visitor.visitInsn(Opcodes.ICONST_0);
+                }
                 break;
             case StringExpr e:
                 m.visitor.visitLdcInsn(e.s);
@@ -74,7 +76,7 @@ public class ExpressionGenerator {
 
     private static void genBinaryExpr(BinaryExpr expr, Method m) {
         String type = "int"; //TODO: get type from expr
-        switch (type){
+        switch (type) {
             case "int", "char":
                 switch (expr.eval) {
                     case "+" -> {
@@ -97,22 +99,48 @@ public class ExpressionGenerator {
                         genExpr(expr.expr2, m);
                         m.visitor.visitInsn(Opcodes.IDIV);
                     }
-                    case "<=" -> {
+                    case "<" -> {
                         genExpr(expr.expr1, m);
                         genExpr(expr.expr2, m);
-                        m.visitor.visitInsn(Opcodes.ISUB);
-                        // TODO
+
+                        Label retfalse = new Label();
+                        Label end = new Label();
+
+                        m.visitor.visitJumpInsn(Opcodes.IF_ICMPGE, retfalse);
+                        m.visitor.visitInsn(Opcodes.ICONST_1);
+                        m.visitor.visitJumpInsn(Opcodes.GOTO, end);
+
+                        m.visitor.visitLabel(retfalse);
+                        m.visitor.visitInsn(Opcodes.ICONST_0);
+
+                        m.visitor.visitLabel(end);
+                    }
+                    case "==" -> {
+                        genExpr(expr.expr1, m);
+                        genExpr(expr.expr2, m);
+
+                        Label retfalse = new Label();
+                        Label end = new Label();
+
+                        m.visitor.visitJumpInsn(Opcodes.IF_ICMPNE, retfalse);
+                        m.visitor.visitInsn(Opcodes.ICONST_1);
+                        m.visitor.visitJumpInsn(Opcodes.GOTO, end);
+
+                        m.visitor.visitLabel(retfalse);
+                        m.visitor.visitInsn(Opcodes.ICONST_0);
+
+                        m.visitor.visitLabel(end);
                     }
                 }
                 break;
             case "boolean":
                 switch (expr.eval) {
-                    case "and","&&" -> {
+                    case "and", "&&" -> {
                         genExpr(expr.expr1, m);
                         genExpr(expr.expr2, m);
                         m.visitor.visitInsn(Opcodes.IAND);
                     }
-                    case "or","||" -> {
+                    case "or", "||" -> {
                         genExpr(expr.expr1, m);
                         genExpr(expr.expr2, m);
                         m.visitor.visitInsn(Opcodes.IOR);
@@ -121,7 +149,7 @@ public class ExpressionGenerator {
                 break;
             case "String":
                 // TODO
-                switch (expr.eval){
+                switch (expr.eval) {
                     case "+":
                         genExpr(expr.expr1, m);
                         genExpr(expr.expr2, m);
@@ -140,13 +168,13 @@ public class ExpressionGenerator {
         }
     }
 
-    private static void genUnaryExpr(UnaryExpr expr, Method m){
-        switch (expr.eval){
+    private static void genUnaryExpr(UnaryExpr expr, Method m) {
+        switch (expr.eval) {
             case "-":
                 genExpr(expr.expr, m);
                 m.visitor.visitInsn(Opcodes.INEG);
                 break;
-            case "not","!":
+            case "not", "!":
                 Label retzero = new Label();
                 Label end = new Label();
 
