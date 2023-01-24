@@ -1,6 +1,6 @@
-package codegen;
+package codegen.testing;
 
-public class CodegenTests {
+
 
     class Empty {}
 
@@ -61,6 +61,8 @@ public class CodegenTests {
             return num + sumUpRecursive(num - 1);
         }
 
+        public String addStrings(String a, String b) { return a + b; }
+
         public int testStore()
         {
             Store st = new Store();
@@ -73,7 +75,7 @@ public class CodegenTests {
 
     }
 
-    //storeThings(1, 'Q', false, "foo");
 
 
-}
+
+
