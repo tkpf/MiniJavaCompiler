@@ -1,21 +1,21 @@
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import parser.adapter.ClassAdapter;
 import parser.adapter.ProgramAdapter;
 import parser.production.JavaMiniLexer;
 import parser.production.JavaMiniParser;
-import syntaxtree.Class;
 import syntaxtree.Program;
-
 import java.io.IOException;
 
 public class Main_test {
 
     public static void main(String[] args) throws IOException  {
 
+        String basicTest = "test_basicClasses.txt";
+        String elevatedTest = "test_ProgrammAboutShapes.txt";
+
         System.out.println("Running Main_test");
-        CharStream input = CharStreams.fromFileName("test\\test.txt");
+        CharStream input = CharStreams.fromFileName("test\\" + elevatedTest);
         JavaMiniLexer lexer = new JavaMiniLexer(input);
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));
 

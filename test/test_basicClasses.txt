@@ -1,0 +1,72 @@
+class emptyClass {}
+
+class basicTypeFieldClass {
+    int field1;
+    char field2;
+    boolean field3;
+}
+
+class stringFieldClass {
+    String field1;
+}
+
+class directInitClass {
+    int field1 = 1;
+    char field2 = 'a';
+    boolean field3 = true;
+    String field4 = "I love my mamma!"
+}
+
+class voidMethod {
+    void doNothing(){
+
+    }
+}
+
+class returnMethods{
+    int returnFive(){
+        return 5;
+    }
+    boolean returnTrue(){
+        return true;
+    }
+    char returnAnA(){
+        return 'a'
+    }
+    String returnHello(){
+        return "Hello"
+    }
+}
+
+class methodsWithInput{
+    void thisMethodHasAnInput(int i) {
+
+    }
+}
+
+class constructorClass{
+    constructorClass(){
+
+    }
+}
+
+class constructorClassWithThisAssignment {
+    int i;
+    constructorClassWithThisAssignment(int i) {
+        this.i = i;
+    }
+}
+
+class newAssignmentClass {
+    int i = new Int(99);
+}
+
+class commentClass {
+    //this part is empty but containes strong words: this super int String
+    /*
+    this is also
+    very
+    very
+    empty
+    */
+}
