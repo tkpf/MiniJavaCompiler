@@ -10,6 +10,8 @@ public final class UnaryExpr extends Expression {
         this.eval = eval;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "(" + eval + " " + expr + ")";
+    }
 }

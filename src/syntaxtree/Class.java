@@ -1,11 +1,5 @@
 package syntaxtree;
 
-import org.objectweb.asm.FieldVisitor;
-import org.objectweb.asm.MethodVisitor;
-import syntaxtree.expressions.Type;
-
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.Vector;
 
 public class Class {
@@ -21,5 +15,19 @@ public class Class {
         this.fields = fields;
         this.meths = meths;
 
+    }
+
+    @Override
+    public String toString() {
+        String result = "(Class " + this.name + " [";
+        for (Field f : this.fields) {
+            result += f.toString();
+        }
+        result += "] [";
+        for (Method m : meths) {
+            result += m.toString();
+        }
+        result += "])";
+        return result;
     }
 }

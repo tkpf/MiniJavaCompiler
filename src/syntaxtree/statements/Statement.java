@@ -1,10 +1,16 @@
 package syntaxtree.statements;
 
-import syntaxtree.expressions.Type;
-import syntaxtree.statements.*;
+import syntaxtree.Type;
 
 public abstract sealed class Statement permits BlockStmt, ReturnStmt, IfStmt, WhileStmt, LocalVarDeclStmt, StmtExprStmt {
 
-    public Type type;
+        public Type type;
+        private void codeGen() {
+            //todo implement codeGen
+        }
 
+        @Override
+        public String toString() {
+                return "{" + type + "}";
+        }
 }

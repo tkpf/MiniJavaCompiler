@@ -1,13 +1,12 @@
 package syntaxtree.statementexpressions;
 
 import syntaxtree.expressions.Expression;
-import syntaxtree.expressions.Type;
+import syntaxtree.Type;
 
 import java.util.Vector;
 
 public final class NewStmtExpr extends StatementExpression {
 
-    public final Type type;
     public final Vector<Expression> initParams;
 
     public NewStmtExpr (Type type, Vector<Expression> initParams) {
@@ -15,5 +14,13 @@ public final class NewStmtExpr extends StatementExpression {
         this.initParams = initParams;
     }
 
-
+    @Override
+    public String toString() {
+        String result = "(New " + type + " [";
+        for (Expression e : initParams) {
+            result += e + " ";
+        }
+        result += "])";
+        return result;
+    }
 }

@@ -21,4 +21,8 @@ public final class IfStmt extends Statement {
         this.elseBlck = null;
     }
 
+    @Override
+    public String toString() {
+        return "(If " + boolExpr + " " + ifBlck + " " + elseBlck + ")";
+    }
 }
