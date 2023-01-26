@@ -95,23 +95,23 @@ public interface JavaMiniVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFieldDeclaration(JavaMiniParser.FieldDeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JavaMiniParser#variableDeclarator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableDeclarator(JavaMiniParser.VariableDeclaratorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavaMiniParser#directInitialization}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDirectInitialization(JavaMiniParser.DirectInitializationContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#variableDeclaratorId}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitVariableDeclaratorId(JavaMiniParser.VariableDeclaratorIdContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#variableInitializer}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariableInitializer(JavaMiniParser.VariableInitializerContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#arrayInitializer}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArrayInitializer(JavaMiniParser.ArrayInitializerContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#block}.
 	 * @param ctx the parse tree

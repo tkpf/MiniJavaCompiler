@@ -1,18 +1,20 @@
 package syntaxtree;
 
+import syntaxtree.statements.Statement;
+
 import java.util.Vector;
 
 public class Class {
 
     public final Type name;
-    public final Vector<Field> fields;
+    public final Vector<Statement> stmts;
     public final Vector<Method> meths;
 
 
 
-    public Class(String name, Vector<Field> fields, Vector<Method> meths) {
+    public Class(String name, Vector<Statement> stmts, Vector<Method> meths) {
         this.name = new Type(name);
-        this.fields = fields;
+        this.stmts = stmts;
         this.meths = meths;
 
     }
@@ -20,8 +22,9 @@ public class Class {
     @Override
     public String toString() {
         String result = "(Class " + this.name + " [";
-        for (Field f : this.fields) {
-            result += f.toString();
+        //todo overriden by tkpf, because field do not exist anymore
+        for (Statement s : this.stmts) {
+            result += stmts.toString();
         }
         result += "] [";
         for (Method m : meths) {

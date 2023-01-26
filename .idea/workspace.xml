@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="Implementing ProgramAdapter, Updating UML, Delete obsolete classes">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/typecheck/Signature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -25,6 +26,9 @@
       <change beforePath="$PROJECT_DIR$/test/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test4.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/test4.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/test/Main_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Main_test.java" afterDir="false" />
+>>>>>>> master
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +80,11 @@
       <recent name="syntaxtree" />
     </key>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Application.Type_test">
+=======
+  <component name="RunManager" selected="Application.Main_test">
+>>>>>>> master
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Mini-Java-Compiler" />
@@ -91,6 +99,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="Type_test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Type_test" />
       <module name="Mini-Java-Compiler" />
@@ -98,20 +107,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+=======
+>>>>>>> master
     <configuration name="antlr-4.11.1-complete.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/antlr-4.11.1-complete.jar" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Application.Main_test" />
+<<<<<<< HEAD
       <item itemvalue="Application.Type_test" />
+=======
+>>>>>>> master
       <item itemvalue="Application.Main" />
       <item itemvalue="JAR Application.antlr-4.11.1-complete.jar" />
     </list>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="Application.Type_test" />
         <item itemvalue="Application.Main_test" />
+=======
+        <item itemvalue="Application.Main_test" />
+        <item itemvalue="Application.Main" />
+>>>>>>> master
         <item itemvalue="JAR Application.antlr-4.11.1-complete.jar" />
         <item itemvalue="Application.Main" />
       </list>

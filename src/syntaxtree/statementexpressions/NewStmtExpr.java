@@ -21,7 +21,6 @@ public final class NewStmtExpr extends StatementExpression {
             for (Expression e : initParams) {
                 result += e + " ";
             }
-
         }
         result += "])";
         return result;

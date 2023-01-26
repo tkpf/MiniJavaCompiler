@@ -16,7 +16,6 @@ public class Program {
             if (c != null) {
                 result += c.toString() + " ";
             }
-
         }
         result += "])";
 

@@ -47,7 +47,7 @@ public class Examples {
     */
     public static Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("v", new Type("int")) ));
     public static BlockStmt meth1block = new BlockStmt(new Vector<Statement>( Arrays.asList(
-            new LocalVarDeclStmt("i", new Type("int")),
+            new VarDeclStmt("i", new Type("int")),
             new StmtExprStmt( new AssignStmtExpr( new LocalVar("i"), new FieldVar("v")) ),
             new ReturnStmt(new LocalVar("z"))
     )));
@@ -110,7 +110,7 @@ public class Examples {
                     new Parameter("a", new Type("int")),
                     new Parameter("b", new Type("int")))),
             new BlockStmt(new Vector<Statement>(Arrays.asList(
-                    new LocalVarDeclStmt("result", new Type("int")),
+                    new VarDeclStmt("result", new Type("int")),
                     new StmtExprStmt(new AssignStmtExpr(new LocalVar("result"),
                             new BinaryExpr(
                             new LocalVar("a"),

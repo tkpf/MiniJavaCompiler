@@ -4,6 +4,9 @@ import syntaxtree.Class;
 import parser.production.JavaMiniParser;
 import syntaxtree.Field;
 import syntaxtree.Method;
+import syntaxtree.statements.BlockStmt;
+import syntaxtree.statements.Statement;
+import syntaxtree.statements.VarDeclStmt;
 
 import java.util.Vector;
 
@@ -24,12 +27,21 @@ public class ClassAdapter {
         }
         //load fields and methods
         Vector<Method> methods = new Vector<>();
-        Vector<Field> fields = new Vector<>();
+        Vector<Statement> stmts = new Vector<>();
 
         for(JavaMiniParser.MemberContext member: members) {
             if (member.fieldDeclaration() != null) {
-                Field f = FieldAdapter.adapt(member.fieldDeclaration());
-                fields.add(f);
+                Statement fieldStmt;
+                //check if direct initialization takes place
+                if (member.fieldDeclaration().variableDeclarator().directInitialization() != null) {
+                    fieldStmt = FieldAdapter
+                            .adapt(member.fieldDeclaration(), true);
+                }
+                else {
+                    fieldStmt =  FieldAdapter
+                            .adapt(member.fieldDeclaration(), false);
+                }
+                stmts.add(fieldStmt);
             }
             else if (member.methodDeclaration() != null) {
                 Method m = MethodAdapter.adapt(member.methodDeclaration());
@@ -51,7 +63,7 @@ public class ClassAdapter {
         }
 
         //return Instance
-        return new Class(name, fields, methods);
+        return new Class(name, stmts, methods);
     }
 
 
