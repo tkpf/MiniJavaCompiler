@@ -13,7 +13,10 @@ public class Program {
     public String toString() {
         String result = "(Program [";
         for (Class c : this.classes) {
-            result += c.toString() + " ";
+            if (c != null) {
+                result += c.toString() + " ";
+            }
+
         }
         result += "])";
 
