@@ -66,7 +66,7 @@ public class TypeCheck {
                             throw new TypeMismatchException();
                         }
                     }
-                    case "++", "--" -> {
+                    case "+", "-", "++", "--" -> {
                         if (t1.equals("int")) {
                             exp.type = t1;
                         } else {
@@ -92,6 +92,7 @@ public class TypeCheck {
                 for (Statement s : blockStmt.stmtBlck) {
                     types.add(typeStatement(s));
                 }
+                // TODO: correct deduction
                 stmt.type = types.lastElement();
             }
             case ReturnStmt returnStmt -> {
@@ -103,7 +104,7 @@ public class TypeCheck {
                 }
                 Type ifType = typeStatement(ifStmt.ifBlck);
                 Type elseType = typeStatement(ifStmt.elseBlck);
-                if (elseType.equals("null") || ifType.equals(elseType)) {
+                if (elseType == null || ifType.equals(elseType)) {
                     stmt.type = ifType;
                 } else {
                     throw new TypeMismatchException();
@@ -137,6 +138,9 @@ public class TypeCheck {
                 }
             }
             case NewStmtExpr newStmtExpr -> {
+                // TODO: new Integer, Char, Boolean, String, etc deprecated
+                stmtExp.type = newStmtExpr.type;
+                // TODO: check if constructor signature has been defined
             }
             case MethodCallStmtExpr methodCallStmtExpr -> {
             }

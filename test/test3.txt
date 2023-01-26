@@ -1,7 +1,12 @@
 class MyClass {
-    int a;
-    int m() {
-        int i;
-    return i;
+    int i;
+    C c;
+    public int MyClass(int i, int j) {
+        this.i = c.m(a,b,c);
+        j = +5;
     }
+}
+
+class C {
+
 }

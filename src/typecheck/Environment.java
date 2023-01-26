@@ -63,6 +63,13 @@ public class Environment {
         }
     }
 
+    public Type lookupClass(String name) throws MissingSymbolException {
+        if (fields.containsKey(name)) {
+            return new Type("name");
+        } else {
+            throw new MissingSymbolException();
+        }
+    }
 
 
 }

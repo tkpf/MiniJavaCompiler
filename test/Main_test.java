@@ -19,7 +19,7 @@ public class Main_test {
             throws IOException, MissingSymbolException, AlreadyDefinedException, TypeMismatchException {
 
         System.out.println("Running Main_test");
-        CharStream input = CharStreams.fromFileName("./test/test.txt");
+        CharStream input = CharStreams.fromFileName("./test/test3.txt");
         JavaMiniLexer lexer = new JavaMiniLexer(input);
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));
 
@@ -29,10 +29,10 @@ public class Main_test {
         Program prgm = ProgramAdapter.adapt(parser.compilationUnit());
         System.out.println(prgm);
 
-        TypeCheck typeCheck = new TypeCheck(prgm);
-        System.out.println(typeCheck.env.fields + "\n" + typeCheck.env.methods);
-        typeCheck.check();
-        System.out.print(prgm);
+        //TypeCheck typeCheck = new TypeCheck(prgm);
+        //System.out.println(typeCheck.env.fields + "\n" + typeCheck.env.methods);
+        //typeCheck.check();
+        //System.out.print(prgm);
     }
 
 

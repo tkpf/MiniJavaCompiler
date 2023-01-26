@@ -1,14 +1,18 @@
 class myClass {
-    int i;
 
-   int sampleMethod(int n, int m) {
+    int sampleMethod(int n, int m) {
 
         return n+m;
-   }
+    }
 
-   void meth2() {
+    int m() {
+        int j;
+    }
+
+    void meth2() {
         i = this.sampleMethod(3, 4);
-   }
+        i = this.m();
+    }
 }
 
 class insane {
