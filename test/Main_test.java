@@ -6,6 +6,7 @@ import parser.production.JavaMiniLexer;
 import parser.production.JavaMiniParser;
 import syntaxtree.Program;
 
+import typecheck.TypeCheck;
 import typecheck.exceptions.AlreadyDefinedException;
 import typecheck.exceptions.MissingSymbolException;
 import typecheck.exceptions.TypeMismatchException;
@@ -38,12 +39,9 @@ public class Main_test {
         //System.out.print("parser output: ");
         //System.out.println(parser.compilationUnit().toStringTree(parser));
 
-
-
-        //TypeCheck typeCheck = new TypeCheck(prgm);
-        //System.out.println(typeCheck.env.fields + "\n" + typeCheck.env.methods);
-        //typeCheck.check();
-        //System.out.print(prgm);
+        TypeCheck typeCheck = new TypeCheck(prgm);
+        typeCheck.check();
+        System.out.print(prgm);
     }
 
 

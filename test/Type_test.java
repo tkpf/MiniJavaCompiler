@@ -1,10 +1,12 @@
 import syntaxtree.expressions.BoolExpr;
 import syntaxtree.expressions.IntegerExpr;
 import syntaxtree.Type;
+import syntaxtree.expressions.LocalOrFieldVarExpr;
 import typecheck.Signature;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 
 class Test {
@@ -16,6 +18,9 @@ class Test {
         boolean l = i;
     }
 
+    void t(Test test){
+
+    }
     // block is local
     {
         int i = 1;
@@ -59,11 +64,12 @@ public class Type_test {
         Type t1 = new Type("String");
         Type t2 = new Type("int");
         Type t3 = new Type("boolean");
-        Signature sig1 = new Signature("m", t1, t1, t3);
-        Signature sig2 = new Signature("m", t1, t2, t3);
+        Signature sig1 = new Signature("m", List.of(t1, t2, t3));
+        Signature sig2 = new Signature("m", List.of(t1, t2, t3));
         System.out.println(sig1.equals(sig2) + "\n" + sig1.hashCode() + "\n" + sig2.hashCode());
         String[] strings = {"a", "b", "c"};
         Vector<String> s = new Vector<>(Arrays.asList(strings));
         System.out.println(s);
+        int len = ("test"+"test").length();
     }
 }
