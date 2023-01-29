@@ -18,7 +18,7 @@ public final class MethodCallStmtExpr extends StatementExpression {
 
     @Override
     public String toString() {
-        String result = "(MethodCall " + meth + " [";
+        String result = "(MethodCall " + obj + " " + meth + " [";
         if (methParams != null) {
             for (Expression e : methParams) {
                 result += e + " ";
