@@ -1,4 +1,8 @@
 class myClass {
+    bool b;
+    C c = new C(a);
+    int i = 2+2;
+
 
     int sampleMethod(int n, int m) {
 

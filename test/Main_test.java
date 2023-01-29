@@ -23,6 +23,7 @@ public class Main_test {
         System.out.println("Running Main_test");
 
         CharStream input = CharStreams.fromFileName("./test/test3.txt");
+
         JavaMiniLexer lexer = new JavaMiniLexer(input);
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));
 
@@ -31,6 +32,7 @@ public class Main_test {
 
         Program prgm = ProgramAdapter.adapt(parser.compilationUnit());
         System.out.println("Abstract syntax was generated!");
+        System.out.println(prgm);
 
         // If you want to have a StringTree output in the console please comment the 2 above lines when constructing object prgm, because this makes the parser object unusable.
         //System.out.print("parser output: ");
