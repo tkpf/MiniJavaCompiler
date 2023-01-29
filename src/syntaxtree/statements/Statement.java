@@ -3,7 +3,7 @@ package syntaxtree.statements;
 import syntaxtree.Type;
 
 public abstract sealed class Statement
-        permits BlockStmt, ReturnStmt, IfStmt, WhileStmt, VarDeclStmt, StmtExprStmt, LocalVarDeclStmt {
+        permits BlockStmt, ReturnStmt, IfStmt, WhileStmt, VarDeclStmt, StmtExprStmt {
 
         public Type type;
         private void codeGen() {
@@ -13,7 +13,7 @@ public abstract sealed class Statement
         @Override
         public String toString() {
                 if (type != null) {
-                        return ": " + type;
+                        return ":" + type + " ";
                 } else {
                         return ": ";
                 }

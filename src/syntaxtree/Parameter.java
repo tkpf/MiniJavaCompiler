@@ -12,6 +12,6 @@ public class Parameter {
 
     @Override
     public String toString() {
-        return "(Parameter:" + this.type + " " + this.name + " " + ")";
+        return "(Parameter:" + this.type + " " + this.name + ")";
     }
 }

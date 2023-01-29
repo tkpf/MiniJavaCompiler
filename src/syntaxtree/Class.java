@@ -23,12 +23,14 @@ public class Class {
     public String toString() {
         String result = "(Class " + this.name + " [F ";
         for (Field f : this.fields) {
-            result += f.toString();
+            result += f + " ";
         }
+        result = result.substring(0, result.length() - 1);
         result += "] [M ";
         for (Method m : meths) {
-            result += m.toString();
+            result += m + " ";
         }
+        result = result.substring(0, result.length() - 1);
         result += "])";
         return result;
     }

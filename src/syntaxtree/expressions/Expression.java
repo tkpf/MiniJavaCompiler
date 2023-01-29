@@ -14,7 +14,7 @@ public abstract sealed class Expression
     @Override
     public String toString() {
         if (type != null) {
-            return ": " + type;
+            return ":" + type + " ";
         } else {
             return ": ";
         }

@@ -20,9 +20,9 @@ public class Field {
     @Override
     public String toString() {
         if (assignment != null) {
-            return "(Field " + name + " " + type + assignment + ")";
+            return "(Field:" + type + " " + name + " " + assignment + ")";
         } else {
-            return "(Field " + name + " " + type + ")";
+            return "(Field:" + type + " " + name + ")";
 
         }
     }

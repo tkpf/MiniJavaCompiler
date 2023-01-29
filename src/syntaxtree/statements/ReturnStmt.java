@@ -12,6 +12,6 @@ public final class ReturnStmt extends Statement {
 
     @Override
     public String toString() {
-        return "(Return " + rExpr + ")";
+        return "(Return" + super.toString() + rExpr + ")";
     }
 }

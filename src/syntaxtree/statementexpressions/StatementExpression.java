@@ -9,7 +9,7 @@ public abstract sealed class StatementExpression permits AssignStmtExpr, NewStmt
     @Override
     public String toString() {
         if (type != null) {
-            return ": " + type;
+            return ":" + type + " ";
         } else {
             return ": ";
         }
