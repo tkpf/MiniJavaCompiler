@@ -15,12 +15,13 @@ public class Main_test {
         String elevatedTest = "test_ProgrammAboutShapes.txt";
 
         System.out.println("Running Main_test");
-        CharStream input = CharStreams.fromFileName("test\\" + elevatedTest);
+        CharStream input = CharStreams.fromFileName("test/test.txt");
         JavaMiniLexer lexer = new JavaMiniLexer(input);
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));
 
         Program prgm = ProgramAdapter.adapt(parser.compilationUnit());
         System.out.println("Abstract syntax was generated!");
+        System.out.println(prgm);
 
         // If you want to have a StringTree output in the console please comment the 2 above lines when constructing object prgm, because this makes the parser object unusable.
         //System.out.print("parser output: ");
