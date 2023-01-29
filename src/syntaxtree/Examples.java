@@ -1,3 +1,4 @@
+/*
 package syntaxtree;
 
 import syntaxtree.expressions.*;
@@ -11,30 +12,39 @@ public class Examples {
 
     // Examples for abstract syntax:
 
-    /*
+    */
+/*
         class TestKlasse {
             int v;
         }
-    */
+    *//*
+
     public static Vector<Field> fields1 = new Vector<>(Arrays.asList( new Field("v", new Type("int")) ));
     public static Class ast1 = new Class("TestKlasse", fields1, new Vector<Method>());
 
-    /*
-        void methode (int x, char y) { }
     */
+/*
+        void methode (int x, char y) { }
+    *//*
+
     public static Method ast2 = new Method("methode", new Type("void"), new Vector<Parameter>(), new BlockStmt(null));
 
-    /*
-        x.f();
     */
+/*
+        x.f();
+    *//*
+
     //public static MethodCallStmtExpr ast3 = new MethodCallStmtExpr(new LocalOrFieldVarExpr("x"), "f", new Vector<Expression>());
 
-        /*
-            return 1 + x;
         */
+/*
+            return 1 + x;
+        *//*
+
     //ReturnStmt ast4 = new ReturnStmt( new BinaryExpr(IntLiteral(1), new LocalOrFieldVarExpr("x"), "+" ) );
 
-    /*
+    */
+/*
         class TestKlasse {
             int v;
             int methode (Typ x, int y, int z)
@@ -44,7 +54,8 @@ public class Examples {
                 return i;
             }
         }
-    */
+    *//*
+
     public static Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("v", new Type("int")) ));
     public static BlockStmt meth1block = new BlockStmt(new Vector<Statement>( Arrays.asList(
             new VarDeclStmt("i", new Type("int")),
@@ -64,11 +75,13 @@ public class Examples {
             fields2,
             new Vector<Method>(Arrays.asList( meth1 )));
 
-    /*
+    */
+/*
         classe TestKlasse2 {
             int ret1() { return 1; }
         }
-    */
+    *//*
+
     public static Method meth2 = new Method(
             "ret100000",
             new Type("int"),
@@ -125,3 +138,4 @@ public class Examples {
             fields1,
             new Vector<Method>(Arrays.asList( meth2, meth3, meth4, meth5 )));
 }
+*/

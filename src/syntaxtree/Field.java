@@ -23,6 +23,7 @@ public class Field {
             return "(Field " + name + " " + type + assignment + ")";
         } else {
             return "(Field " + name + " " + type + ")";
+
         }
     }
 }

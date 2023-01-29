@@ -30,6 +30,7 @@ public class ClassAdapter {
         Vector<Field> fields = new Vector<>();
 
         for(JavaMiniParser.MemberContext member: members) {
+            //System.out.println(member);
             if (member.fieldDeclaration() != null) {
                 Field field;
                 //check if direct initialization takes place

@@ -3,7 +3,9 @@ import syntaxtree.expressions.IntegerExpr;
 import syntaxtree.Type;
 import typecheck.Signature;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Vector;
 
 class Test {
     int i = 5;
@@ -60,5 +62,8 @@ public class Type_test {
         Signature sig1 = new Signature("m", t1, t1, t3);
         Signature sig2 = new Signature("m", t1, t2, t3);
         System.out.println(sig1.equals(sig2) + "\n" + sig1.hashCode() + "\n" + sig2.hashCode());
+        String[] strings = {"a", "b", "c"};
+        Vector<String> s = new Vector<>(Arrays.asList(strings));
+        System.out.println(s);
     }
 }

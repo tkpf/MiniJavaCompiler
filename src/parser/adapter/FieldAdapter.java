@@ -1,24 +1,20 @@
 package parser.adapter;
 
 import parser.production.JavaMiniParser;
-import syntaxtree.Field;
 import syntaxtree.Type;
-<<<<<<< HEAD
-=======
+import syntaxtree.Field;
 import syntaxtree.expressions.FieldVar;
 import syntaxtree.expressions.LocalOrFieldVarExpr;
 import syntaxtree.expressions.StmtExprExpr;
 import syntaxtree.statementexpressions.AssignStmtExpr;
-import syntaxtree.statementexpressions.NewStmtExpr;
 import syntaxtree.statements.BlockStmt;
 import syntaxtree.statements.Statement;
 import syntaxtree.statements.StmtExprStmt;
 import syntaxtree.statements.VarDeclStmt;
 
-import javax.swing.plaf.nimbus.State;
+
 import java.util.Arrays;
 import java.util.Vector;
->>>>>>> master
 
 public class FieldAdapter {
 

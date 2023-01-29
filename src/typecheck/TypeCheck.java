@@ -121,6 +121,9 @@ public class TypeCheck {
             case StmtExprStmt stmtExprStmt -> {
                 stmt.type = typeStatementExpression(stmtExprStmt.stmtExpr);
             }
+            case VarDeclStmt varDeclStmt -> {
+
+            }
         }
         return stmt.type;
     }

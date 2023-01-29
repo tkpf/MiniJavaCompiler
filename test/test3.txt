@@ -1,12 +1,9 @@
 class MyClass {
     int i;
-    C c;
-    public int MyClass(int i, int j) {
-        this.i = c.m(a,b,c);
-        j = +5;
+    C c = new C();
+    boolean b = true;
+
+    public MyClass(int i) {
+    this.i = i;
     }
-}
-
-class C {
-
 }

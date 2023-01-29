@@ -7,8 +7,8 @@ import java.util.Vector;
 public class Class {
 
     public final Type name;
-    public final Vector<Field> fields;
     public final Vector<Method> meths;
+    public Vector<Field> fields;
 
 
 
