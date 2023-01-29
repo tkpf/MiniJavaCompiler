@@ -1,9 +1,25 @@
-class MyClass {
-    int i;
-    C c = new C();
-    boolean b = true;
+class A {
+    int m(boolean a, int i, String s) {
+        return 1;
+    }
+}
 
-    public MyClass(int i) {
-    this.i = i;
+class C {
+    int a = 1;
+    int i = 5;
+    String s = "test";
+    int k = this.m2("Hallo");
+
+    void m(boolean a) {
+        int j;
+        boolean b;
+        b = a;
+        j = this.a;
+        i = i + j;
+    }
+
+    int m2(String s) {
+        int j;
+        return 1;
     }
 }

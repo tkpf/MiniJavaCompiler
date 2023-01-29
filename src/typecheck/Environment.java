@@ -5,9 +5,11 @@ import syntaxtree.Method;
 import syntaxtree.Field;
 import syntaxtree.Program;
 import syntaxtree.Type;
+import syntaxtree.Parameter;
 import typecheck.exceptions.AlreadyDefinedException;
 import typecheck.exceptions.MissingSymbolException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -21,7 +23,7 @@ public class Environment {
     );
 
     public HashMap<String, HashMap<String, Type>> fields;
-    public HashMap<String, HashMap<String, Type>> methods;
+    public HashMap<String, HashMap<Signature, Type>> methods;
 
     public Environment(Program prgm)
             throws AlreadyDefinedException, MissingSymbolException {
@@ -39,22 +41,27 @@ public class Environment {
                         throw new AlreadyDefinedException();
                     }
                 } else {
-                    if (fields.containsKey(f.type)) {
+                    if (fields.containsKey(f.type.toString())) {
                         fieldsMap.put(f.name, f.type);
                     } else {
                         throw new MissingSymbolException();
                     }
                 }
             }
-            HashMap<String, Type> methodsMap = methods.get(c.name.toString());
+            HashMap<Signature, Type> methodsMap = methods.get(c.name.toString());
             for (Method m : c.meths) {
+                ArrayList<Type> paramTypes = new ArrayList<>(m.params.size());
+                for (Parameter p : m.params) {
+                    paramTypes.add(p.type);
+                }
+                Signature methodSignature = new Signature(m.name, paramTypes);
                 if (primitives.contains(m.type)) {
-                    if (methodsMap.put(m.name, m.type) != null) {
+                    if (methodsMap.put(methodSignature, m.type) != null) {
                         throw new AlreadyDefinedException();
                     }
                 } else {
                     if (methods.containsKey(m.type)) {
-                        methodsMap.put(m.name, m.type);
+                        methodsMap.put(methodSignature, m.type);
                     } else {
                         throw new MissingSymbolException();
                     }
@@ -68,6 +75,35 @@ public class Environment {
             return new Type("name");
         } else {
             throw new MissingSymbolException();
+        }
+    }
+
+    public Type lookupField(Type className, String fieldName) throws MissingSymbolException {
+        HashMap<String, Type> classFields = fields.get(className.toString());
+        if (classFields != null) {
+            Type result = classFields.get(fieldName);
+            if (result != null) {
+                return result;
+            } else {
+                throw new MissingSymbolException(fieldName);
+            }
+        } else {
+            throw new MissingSymbolException(className.toString());
+        }
+    }
+
+    public Type lookupMethod(Type className, Signature methodSignature)
+            throws MissingSymbolException {
+        HashMap<Signature, Type> classMethods = methods.get(className.toString());
+        if (classMethods != null) {
+            Type result = classMethods.get(methodSignature);
+            if (result != null) {
+                return result;
+            } else {
+                throw new MissingSymbolException(methodSignature.name);
+            }
+        } else {
+            throw new MissingSymbolException(className.toString());
         }
     }
 
