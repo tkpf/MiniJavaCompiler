@@ -7,6 +7,6 @@ public final class BoolExpr extends Expression {
 
     @Override
     public String toString() {
-        return "(bool " + this.b + ")";
+        return "(boolean " + this.b + ")";
     }
 }

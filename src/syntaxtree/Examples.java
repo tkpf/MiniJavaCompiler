@@ -1,3 +1,4 @@
+/*
 package syntaxtree;
 
 import syntaxtree.expressions.*;
@@ -14,30 +15,39 @@ public class Examples {
 
     // Examples for abstract syntax:
 
-    /*
+    */
+/*
         class TestKlasse {
             int v;
         }
-    */
+    *//*
+
     public static Vector<Field> fields1 = new Vector<>(Arrays.asList( new Field("v", new Type("int")) ));
     public static Class ast1 = new Class("TestKlasse", fields1, new Vector<Method>());
 
-    /*
-        void methode (int x, char y) { }
     */
+/*
+        void methode (int x, char y) { }
+    *//*
+
     public static Method ast2 = new Method("methode", new Type("void"), new Vector<Parameter>(), new BlockStmt(null));
 
-    /*
-        x.f();
     */
+/*
+        x.f();
+    *//*
+
     //public static MethodCallStmtExpr ast3 = new MethodCallStmtExpr(new LocalOrFieldVarExpr("x"), "f", new Vector<Expression>());
 
-        /*
-            return 1 + x;
         */
+/*
+            return 1 + x;
+        *//*
+
     //ReturnStmt ast4 = new ReturnStmt( new BinaryExpr(IntLiteral(1), new LocalOrFieldVarExpr("x"), "+" ) );
 
-    /*
+    */
+/*
         class TestKlasse {
             int v;
             int methode (Typ x, int y, int z)
@@ -47,10 +57,11 @@ public class Examples {
                 return i;
             }
         }
-    */
+    *//*
+
     public static Vector<Field> fields2 = new Vector<>( Arrays.asList( new Field("v", new Type("int")) ));
     public static BlockStmt meth1block = new BlockStmt(new Vector<Statement>( Arrays.asList(
-            new LocalVarDeclStmt("i", new Type("int")),
+            new VarDeclStmt("i", new Type("int")),
             new StmtExprStmt( new AssignStmtExpr( new LocalVar("i"), new FieldVar("v")) ),
             new ReturnStmt(new LocalVar("z"))
     )));
@@ -67,11 +78,13 @@ public class Examples {
             fields2,
             new Vector<Method>(Arrays.asList( meth1 )));
 
-    /*
+    */
+/*
         classe TestKlasse2 {
             int ret1() { return 1; }
         }
-    */
+    *//*
+
     public static Method meth2 = new Method(
             "ret100000",
             new Type("int"),
@@ -113,7 +126,7 @@ public class Examples {
                     new Parameter("a", new Type("int")),
                     new Parameter("b", new Type("int")))),
             new BlockStmt(new Vector<Statement>(Arrays.asList(
-                    new LocalVarDeclStmt("result", new Type("int")),
+                    new VarDeclStmt("result", new Type("int")),
                     new StmtExprStmt(new AssignStmtExpr(new LocalVar("result"),
                             new BinaryExpr(
                             new LocalVar("a"),
@@ -153,3 +166,4 @@ public class Examples {
 
     public static Class emptyClass = new Class("Empty", new Vector<Field>(), new Vector<Method>());
 }
+*/

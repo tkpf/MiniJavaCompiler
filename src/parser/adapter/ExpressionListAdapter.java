@@ -9,7 +9,8 @@ import java.util.Vector;
 public class ExpressionListAdapter {
     public static Vector<Expression> adapt (JavaMiniParser.ExpressionListContext ctx) {
         if (ctx == null) {
-            return null;
+            //return empty vector
+            return new Vector<Expression>();
         }
         Vector<Expression> exprList = new Vector<>();
         List<JavaMiniParser.ExpressionContext> exprCtxList = ctx.expression();

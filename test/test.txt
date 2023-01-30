@@ -1,14 +1,22 @@
 class myClass {
-    int i;
+    bool b;
+    C c = new C(a);
+    int i = 2+2;
 
-   int sampleMethod(int n, int m) {
+
+    int sampleMethod(int n, int m) {
 
         return n+m;
-   }
+    }
 
-   void meth2() {
+    int m() {
+        int j;
+    }
+
+    void meth2() {
         i = this.sampleMethod(3, 4);
-   }
+        i = this.m();
+    }
 }
 
 class insane {

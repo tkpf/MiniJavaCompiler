@@ -1,12 +1,14 @@
 package syntaxtree;
 
+import syntaxtree.statements.Statement;
+
 import java.util.Vector;
 
 public class Class {
 
     public final Type name;
-    public final Vector<Field> fields;
     public final Vector<Method> meths;
+    public Vector<Field> fields;
 
 
 
@@ -19,14 +21,16 @@ public class Class {
 
     @Override
     public String toString() {
-        String result = "(Class " + this.name + " [";
+        String result = "(Class " + this.name + " [F ";
         for (Field f : this.fields) {
-            result += f.toString();
+            result += f + " ";
         }
-        result += "] [";
+        result = result.substring(0, result.length() - 1);
+        result += "] [M ";
         for (Method m : meths) {
-            result += m.toString();
+            result += m + " ";
         }
+        result = result.substring(0, result.length() - 1);
         result += "])";
         return result;
     }

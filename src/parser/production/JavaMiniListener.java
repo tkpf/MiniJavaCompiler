@@ -148,6 +148,26 @@ public interface JavaMiniListener extends ParseTreeListener {
 	 */
 	void exitFieldDeclaration(JavaMiniParser.FieldDeclarationContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JavaMiniParser#variableDeclarator}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableDeclarator(JavaMiniParser.VariableDeclaratorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaMiniParser#variableDeclarator}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableDeclarator(JavaMiniParser.VariableDeclaratorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaMiniParser#directInitialization}.
+	 * @param ctx the parse tree
+	 */
+	void enterDirectInitialization(JavaMiniParser.DirectInitializationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaMiniParser#directInitialization}.
+	 * @param ctx the parse tree
+	 */
+	void exitDirectInitialization(JavaMiniParser.DirectInitializationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JavaMiniParser#variableDeclaratorId}.
 	 * @param ctx the parse tree
 	 */
@@ -157,26 +177,6 @@ public interface JavaMiniListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariableDeclaratorId(JavaMiniParser.VariableDeclaratorIdContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link JavaMiniParser#variableInitializer}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariableInitializer(JavaMiniParser.VariableInitializerContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JavaMiniParser#variableInitializer}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariableInitializer(JavaMiniParser.VariableInitializerContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link JavaMiniParser#arrayInitializer}.
-	 * @param ctx the parse tree
-	 */
-	void enterArrayInitializer(JavaMiniParser.ArrayInitializerContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JavaMiniParser#arrayInitializer}.
-	 * @param ctx the parse tree
-	 */
-	void exitArrayInitializer(JavaMiniParser.ArrayInitializerContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaMiniParser#block}.
 	 * @param ctx the parse tree

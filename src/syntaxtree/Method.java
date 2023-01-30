@@ -27,7 +27,7 @@ public class Method {
 
     @Override
     public String toString() {
-        String result =  "(Method " + this.name + " " + this.type + " [";
+        String result =  "(Method:" + this.type + " " + this.name + " [";
         for (Parameter p : params) {
             result += p.toString();
         }

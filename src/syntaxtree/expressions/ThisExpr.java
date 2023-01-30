@@ -8,6 +8,6 @@ public final class ThisExpr extends Expression {
 
     @Override
     public String toString() {
-        return "(This)";
+        return "(This" + super.toString() + ")";
     }
 }

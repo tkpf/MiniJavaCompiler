@@ -13,6 +13,10 @@ public abstract sealed class Expression
 
     @Override
     public String toString() {
-        return "{" + type + "}";
+        if (type != null) {
+            return ":" + type + " ";
+        } else {
+            return ": ";
+        }
     }
 }

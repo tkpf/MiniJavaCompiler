@@ -4,20 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="Implementing ProgramAdapter, Updating UML, Delete obsolete classes">
+    <list default="true" id="eca8292b-fb0f-4fd9-b568-0228e8f9ee75" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codegen/ClassGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/ClassGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ClassAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ClassAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/FieldAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/FieldAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Class.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Examples.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Examples.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Parameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Parameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/BoolExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/BoolExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/AssignStmtExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/AssignStmtExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/StatementExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/StatementExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/BlockStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/BlockStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/Statement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/VarDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/VarDeclStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/typecheck/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/typecheck/TypeCheck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/Main_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Main_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Type_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Type_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test3.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="CoverageOptionsProvider">
+    <option name="myActivateViewOnRun" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,10 +40,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2JlZnyX1vgkLLbGl6Rqxctb0LWM" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2KziiSYcO7sWkQkx3OJfk9z0akw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -37,31 +49,11 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Till/prjcts/Compilerbau/uebungsaufgaben/Markdown&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;coverage&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler" />
-      <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler\src\parser" />
-      <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler\src" />
-      <recent name="C:\Users\Till\prjcts\Mini-Java-Compiler\docs" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.Main_test">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Mini-Java-Compiler" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="Main_test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main_test" />
       <module name="Mini-Java-Compiler" />
@@ -69,123 +61,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="antlr-4.11.1-complete.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/antlr-4.11.1-complete.jar" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Application.Main_test" />
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JAR Application.antlr-4.11.1-complete.jar" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main_test" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JAR Application.antlr-4.11.1-complete.jar" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8335a35b-f216-4398-81f3-ea3b5bf8eeed" name="Changes" comment="" />
-      <created>1672654807995</created>
+      <changelist id="eca8292b-fb0f-4fd9-b568-0228e8f9ee75" name="Changes" comment="" />
+      <created>1674983939905</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1672654807995</updated>
+      <updated>1674983939905</updated>
     </task>
-    <task id="LOCAL-00001" summary="Class-, Field-, MethodAdapter partly implemented; updated JavaMini grammar. Generated Parser Files">
-      <created>1672830295680</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1672830295680</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Updated Abstract Syntax and its package structure; Plus modified and added adapters">
-      <created>1673009795820</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1673009795820</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Adapted Main File to new Syntax Structure; Updated UML Diagram">
-      <created>1673011814765</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1673011814765</updated>
-    </task>
-    <task id="LOCAL-00004" summary="StatmentExpressions implemented in grammar and Parser">
-      <created>1673019022880</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1673019022880</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Fixing some errors and adding test-directory">
-      <created>1673022750382</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1673022750382</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Implementing ProgramAdapter, Updating UML, Delete obsolete classes">
-      <created>1673029295935</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1673029295935</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Class-, Field-, MethodAdapter partly implemented; updated JavaMini grammar. Generated Parser Files" />
-    <MESSAGE value="Updated Abstract Syntax and its package structure; Plus modified and added adapters" />
-    <MESSAGE value="Adapted Main File to new Syntax Structure; Updated UML Diagram" />
-    <MESSAGE value="StatmentExpressions implemented in grammar and Parser" />
-    <MESSAGE value="Fixing some errors and adding test-directory" />
-    <MESSAGE value="Implementing ProgramAdapter, Updating UML, Delete obsolete classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementing ProgramAdapter, Updating UML, Delete obsolete classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/Main_test.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="9" />
+          <line>31</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="syntaxtree.statements.ReturnStmt" memberName="rExpr" />
-        <PinnedItemInfo parentTag="syntaxtree.expressions.LocalOrFieldVarExpr" memberName="name" />
-        <PinnedItemInfo parentTag="syntaxtree.Class" memberName="meths" />
-        <PinnedItemInfo parentTag="syntaxtree.Method" memberName="rtype" />
-      </pinned-members>
-    </pin-to-top-manager>
   </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand>
-      <path>
-        <item name="Mini-Java-Compiler" type="b2602c69:ProjectViewProjectNode" />
-        <item name="Mini-Java-Compiler" type="462c0819:PsiDirectoryNode" />
-      </path>
-    </expand>
-    <select />
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/MiniJavaCompiler$Main_test.ic" NAME="Main_test Coverage Results" MODIFIED="1674989322298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

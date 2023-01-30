@@ -26,7 +26,8 @@ public class MethodAdapter {
             rtype = new Type("void");
         }
         else {
-            rtype = null; //will never be reached
+            // this must be a constructor
+            rtype = new Type(name); //will never be reached
         }
 
         // load params

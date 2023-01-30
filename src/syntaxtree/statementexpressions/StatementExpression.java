@@ -7,5 +7,11 @@ public abstract sealed class StatementExpression permits AssignStmtExpr, NewStmt
     public Type type;
 
     @Override
-    public String toString() { return "{" + type + "}"; }
+    public String toString() {
+        if (type != null) {
+            return ":" + type + " ";
+        } else {
+            return ": ";
+        }
+    }
 }

@@ -142,9 +142,9 @@ public class ClassGenerator {
         output.close();
     }
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         ClassWriter cw;
         cw = generateClassCode(Examples.ast6);
         cw2file(cw);
-    }
+    }*/
 }
