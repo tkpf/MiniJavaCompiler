@@ -45,6 +45,7 @@ public class StatementExpressionGenerator {
 
                 break;
             case FieldVar field:
+                // TODO putfield
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + s.as2Expr);
