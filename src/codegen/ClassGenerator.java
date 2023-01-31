@@ -60,6 +60,7 @@ public class ClassGenerator {
                             null,
                             null));
             methodVisitorDictionary.get(m.name).visitEnd();
+            m.ownerClass = inputClass.name;
             generateMethodCode(m, inputClass);
         }
 
