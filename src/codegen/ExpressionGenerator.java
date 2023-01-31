@@ -44,12 +44,11 @@ public class ExpressionGenerator {
                 m.visitor.visitInsn(Opcodes.ACONST_NULL);
                 break;
             case LocalOrFieldVarExpr e:
-                throw new IllegalStateException("LocalOrFieldVarExpr hasn't been resolved!");
-            case LocalVar e:
-                genLocalVar(e, m);
-                break;
-            case FieldVar e:
-                genFieldVar(e, m);
+                switch (e.context) {
+                    case local -> genLocalVar(e, m);
+                    case field -> genFieldVar(e, m);
+                    case unknown -> throw new IllegalStateException("Variable unknown!");
+                }
                 break;
             case InstVarExpr e:
                 genInstVar(e, m);
@@ -75,8 +74,7 @@ public class ExpressionGenerator {
     }
 
     private static void genBinaryExpr(BinaryExpr expr, Method m) {
-        String type = "int"; //TODO: get type from expr
-        switch (type) {
+        switch (expr.type.name) {
             case "int", "char":
                 switch (expr.eval) {
                     case "+" -> {
@@ -164,7 +162,7 @@ public class ExpressionGenerator {
                 break;
 
             default:
-                throw new IllegalStateException("Unexpected value: " + type);
+                throw new IllegalStateException("Unexpected value: " + expr.type.name);
         }
     }
 
@@ -193,8 +191,8 @@ public class ExpressionGenerator {
     }
 
 
-    private static void genLocalVar(LocalVar v, Method m) {
-        String type = "int"; //TODO get type from expression
+    private static void genLocalVar(LocalOrFieldVarExpr v, Method m) {
+        String type = v.type.name;
         int index = m.localVariableIndexes.get(v.name);
 
         switch (type) {
@@ -208,10 +206,10 @@ public class ExpressionGenerator {
 
     }
 
-    private static void genFieldVar(FieldVar f, Method m) {
-        String type = "int"; //TODO get type from expression
+    private static void genFieldVar(LocalOrFieldVarExpr f, Method m) {
+        String type = f.type.name;
 
-        //m.visitor.visitFieldInsn(Opcodes.GETFIELD, ???, f.name, fieldDescriptor(f.type));
+        m.visitor.visitFieldInsn(Opcodes.GETFIELD, f.type.name, f.name, fieldDescriptor(f.type.name));
     }
 
     private static void genInstVar(InstVarExpr var, Method m) {

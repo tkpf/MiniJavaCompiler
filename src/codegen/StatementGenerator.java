@@ -40,7 +40,7 @@ public class StatementGenerator {
     }
     public static void genReturnStmt(Expression rexpr, Method m)
     {
-        String type = "int"; //TODO: get type from rexpr
+        String type = rexpr.type.name;
         switch (type) {
             case "int", "char", "boolean" -> {
                 genExpr(rexpr, m);

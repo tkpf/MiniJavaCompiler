@@ -3,10 +3,12 @@ package codegen;
 import org.objectweb.asm.Opcodes;
 import syntaxtree.Method;
 import syntaxtree.expressions.FieldVar;
+import syntaxtree.expressions.LocalOrFieldVarExpr;
 import syntaxtree.expressions.LocalVar;
 import syntaxtree.statementexpressions.*;
 
 import static codegen.ClassGenerator.methodDescriptor;
+import static codegen.ClassGenerator.fieldDescriptor;
 import static codegen.ExpressionGenerator.genExpr;
 
 
@@ -27,28 +29,37 @@ public class StatementExpressionGenerator {
 
     public static void genAssign(AssignStmtExpr s, Method m) {
         genExpr(s.asFromExpr, m);
+        String type = s.as2Expr.type.name;
 
         switch (s.as2Expr) {
-            case LocalVar var:
-                String type = "int"; //TODO get type from expression
+            case LocalOrFieldVarExpr var:
 
-                int index = m.localVariableIndexes.get(var.name);
+                switch (var.context){
+                    case local -> {
+                        int index = m.localVariableIndexes.get(var.name);
 
-                switch (type) {
-                    case "int", "char", "boolean" -> {
-                        m.visitor.visitVarInsn(Opcodes.ISTORE, index);
+                        switch (type) {
+                            case "int", "char", "boolean" -> {
+                                m.visitor.visitVarInsn(Opcodes.ISTORE, index);
+                            }
+                            case default -> {
+                                m.visitor.visitVarInsn(Opcodes.ASTORE, index);
+                            }
+                        }
+                        break;
                     }
-                    case default -> {
-                        m.visitor.visitVarInsn(Opcodes.ASTORE, index);
+                    case field -> {
+                        m.visitor.visitFieldInsn(Opcodes.PUTFIELD, m.ownerClass.name, var.name, fieldDescriptor(var.type.name));
+                        break;
+                    }
+                    case unknown -> {
+                        throw new IllegalStateException("variable unknown");
                     }
                 }
 
                 break;
-            case FieldVar field:
-                // TODO putfield
-                break;
             default:
-                throw new IllegalStateException("Unexpected value: " + s.as2Expr);
+                throw new IllegalStateException("cannot assign to anything other than LocalOrFieldVarExpr: " + s.as2Expr);
         }
     }
 
@@ -65,6 +76,6 @@ public class StatementExpressionGenerator {
 
     public static void genMethodCall(MethodCallStmtExpr mcall, Method m) {
         mcall.methParams.forEach(e -> genExpr(e, m));
-        //m.visitor.visitMethodInsn(Opcodes.INVOKEVIRTUAL, mcall.obj.type, mcall.meth, methodDescriptor(m), false);
+        m.visitor.visitMethodInsn(Opcodes.INVOKEVIRTUAL, mcall.obj.type.name, mcall.meth, methodDescriptor(m), false);
     }
 }
