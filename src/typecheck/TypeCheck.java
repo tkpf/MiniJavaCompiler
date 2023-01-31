@@ -117,8 +117,17 @@ public class TypeCheck {
                 for (Statement s : blockStmt.stmtBlck) {
                     types.add(typeStatement(s, localScope));
                 }
-                // TODO: correct deduction
-                stmt.type = types.lastElement();
+                Type resultType = new Type("void");
+                for (Type t : types) {
+                    if (resultType.equals("void")) {
+                        resultType = t;
+                    } else if (t.equals("void")) {
+                        // do nothing
+                    } else if (!resultType.equals(t)) {
+                        throw new TypeMismatchException(t.name);
+                    } // else types match -> do nothing
+                }
+                stmt.type = resultType;
             }
             case ReturnStmt returnStmt -> {
                 stmt.type = typeExpression(returnStmt.rExpr, localScope);
@@ -146,7 +155,7 @@ public class TypeCheck {
             }
             case VarDeclStmt varDeclStmt -> {
                 localScope.addField(varDeclStmt.name, varDeclStmt.type);
-                //stmt.type = varDeclStmt.type;
+                stmt.type = new Type("void");
             }
         }
         return stmt.type;
