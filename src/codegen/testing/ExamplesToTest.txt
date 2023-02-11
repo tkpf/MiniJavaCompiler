@@ -1,24 +1,26 @@
 class Empty {}
 class Empty2 {
     int i;
-    public void seti9() {i = 9; return;} //Problem keine leeren 'return;' möglich & Bytecode benötigt 'return' am Ende von void-Blöcken!
+    public void seti9() {i = 9;}
     public int return1() {return 1;}
     public int return1plus1() {return 1 + 1;}
-    //public void doNothing() { }
+    public void doNothing() { }
 }
 
-/*class Store
+class Store
 {
     int store;
 
-    Store(){
+    /*Store(){
         store = 0;
+    }*/
+
+    void countUp() {
+        store = store + 1;
     }
+}
 
-    void add1() {store = store + 1;}
-} */
 
-/*
     class TestClass
     {
         int intField;
@@ -28,17 +30,18 @@ class Empty2 {
 
         public void storeThings(int i, char c, boolean b, String s)
         {
-            String h = "Hello Universe";
+            String h;
+            h = "Hello Universe";
             intField = i;
             charField = c;
             boolField = b;
             stringField = s;
         }
 
-        public Empty createEmpty()
+        /*public Empty createEmpty()
         {
             return new Empty();
-        }
+        }*/
 
         public int choose(int a, int b, boolean c)
         {
@@ -47,22 +50,43 @@ class Empty2 {
         }
 
 
+        /*public int sumUpRecursive(int num)
+        {
+            if (num == 0) {
+                return 0;
+            }
+            return num + sumUpRecursive(num - 1);
+        }*/
+
+
+        /*public int sumUp(int num)
+        {
+            int res = 0;
+            while (0 < num)
+            {
+                res = res + num;
+                num = num - 1;
+            }
+            return res;
+        }*/
 
 
         public String addStrings(String a, String b) { return a + b; }
 
+
         public int testStore()
         {
             Store st = new Store();
-            st.add1();
-            st.add1();
-            st.add1();
-            st.add1();
+            st.countUp();
+            st.countUp();
+            st.countUp();
+            st.countUp();
             return  st.store;
         }
 
+
     }
 
-*/
+
 
 

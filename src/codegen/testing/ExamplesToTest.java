@@ -4,6 +4,14 @@ package codegen.testing;
 
     class Empty {}
 
+    class Empty2 {
+        int i;
+        public void seti9() {i = 9;}
+        public int return1() {return 1;}
+        public int return1plus1() {return 1 + 1;}
+        public void doNothing() { }
+    }
+
     class Store
     {
         int store;
@@ -12,7 +20,7 @@ package codegen.testing;
             store = 0;
         }
 
-        void add1() {store = store + 1;}
+        void countUp() {store = store + 1;}
     }
 
     class TestClass
@@ -65,11 +73,12 @@ package codegen.testing;
 
         public int testStore()
         {
-            Store st = new Store();
-            st.add1();
-            st.add1();
-            st.add1();
-            st.add1();
+            Store st;
+            st = new Store();
+            st.countUp();
+            st.countUp();
+            st.countUp();
+            st.countUp();
             return  st.store;
         }
 
