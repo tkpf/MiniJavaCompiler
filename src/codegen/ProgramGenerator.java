@@ -1,7 +1,6 @@
 package codegen;
 
 import syntaxtree.Class;
-import syntaxtree.Examples;
 import syntaxtree.Program;
 
 import java.io.IOException;
@@ -18,6 +17,6 @@ public class ProgramGenerator {
     }
 
     public static void main(String[] args) throws IOException {
-        generateProgram(Examples.program1);
+
     }
 }
