@@ -15,6 +15,8 @@ import static codegen.ClassGenerator.fieldDescriptor;
 public class ExpressionGenerator {
     public static void genExpr(Expression exp, Method m) {
         switch (exp) {
+            case null:
+                break;
             case IntegerExpr e:
                 switch (e.i) {
                     case -1 -> m.visitor.visitInsn(Opcodes.ICONST_M1);
@@ -155,7 +157,7 @@ public class ExpressionGenerator {
                                 Opcodes.INVOKEVIRTUAL,
                                 "java/lang/String",
                                 "concat",
-                                "(Ljava/lang/String;)Ljava/lang/String",
+                                "(Ljava/lang/String;)Ljava/lang/String;",
                                 false);
                         break;
                 }
@@ -208,8 +210,8 @@ public class ExpressionGenerator {
 
     private static void genFieldVar(LocalOrFieldVarExpr f, Method m) {
         String type = f.type.name;
-
-        m.visitor.visitFieldInsn(Opcodes.GETFIELD, f.type.name, f.name, fieldDescriptor(f.type.name));
+        m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
+        m.visitor.visitFieldInsn(Opcodes.GETFIELD, m.ownerClass.name, f.name, fieldDescriptor(f.type.name));
     }
 
     private static void genInstVar(InstVarExpr var, Method m) {
