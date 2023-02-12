@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import parser.adapter.ProgramAdapter;
+import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniLexer;
 import parser.production.JavaMiniParser;
 import syntaxtree.Program;
@@ -17,7 +18,7 @@ import static codegen.ProgramGenerator.generateProgram;
 public class TestingExamples {
 
 
-    public static void main(String[] args) throws IOException, MissingSymbolException, AlreadyDefinedException, TypeMismatchException {
+    public static void main(String[] args) throws IOException, MissingSymbolException, AlreadyDefinedException, TypeMismatchException, EscapeHatchException {
         /*
         TestClass t = new TestClass();
 
