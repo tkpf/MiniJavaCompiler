@@ -22,7 +22,7 @@ public class JavaMiniLexer extends Lexer {
 		PrimitiveType=17, IfLiteral=18, WhileLiteral=19, ReturnLiteral=20, ElseLiteral=21, 
 		RefLiteral=22, DecimalLiteral=23, BoolLiteral=24, CharacterLiteral=25, 
 		StringLiteral=26, NullLiteral=27, VoidLiteral=28, NewLiteral=29, InstLiteral=30, 
-		MulLiterals=31, AddLIterals=32, CompareLiterals=33, AndOrLiterals=34, 
+		MulLiterals=31, AddLiterals=32, CompareLiterals=33, AndOrLiterals=34, 
 		IncLiterals=35, NotLiteral=36, EscapeSequence=37, Identifier=38, Letter=39, 
 		JavaIDDigit=40, COMMENT=41, WS=42, LINE_COMMENT=43;
 	public static String[] channelNames = {
@@ -40,7 +40,7 @@ public class JavaMiniLexer extends Lexer {
 			"PrimitiveType", "IfLiteral", "WhileLiteral", "ReturnLiteral", "ElseLiteral", 
 			"RefLiteral", "DecimalLiteral", "BoolLiteral", "CharacterLiteral", "StringLiteral", 
 			"NullLiteral", "VoidLiteral", "NewLiteral", "InstLiteral", "MulLiterals", 
-			"AddLIterals", "CompareLiterals", "AndOrLiterals", "IncLiterals", "NotLiteral", 
+			"AddLiterals", "CompareLiterals", "AndOrLiterals", "IncLiterals", "NotLiteral", 
 			"EscapeSequence", "Identifier", "Letter", "JavaIDDigit", "COMMENT", "WS", 
 			"LINE_COMMENT"
 		};
@@ -63,7 +63,7 @@ public class JavaMiniLexer extends Lexer {
 			null, null, null, null, "AssignLiteral", "PrimitiveType", "IfLiteral", 
 			"WhileLiteral", "ReturnLiteral", "ElseLiteral", "RefLiteral", "DecimalLiteral", 
 			"BoolLiteral", "CharacterLiteral", "StringLiteral", "NullLiteral", "VoidLiteral", 
-			"NewLiteral", "InstLiteral", "MulLiterals", "AddLIterals", "CompareLiterals", 
+			"NewLiteral", "InstLiteral", "MulLiterals", "AddLiterals", "CompareLiterals", 
 			"AndOrLiterals", "IncLiterals", "NotLiteral", "EscapeSequence", "Identifier", 
 			"Letter", "JavaIDDigit", "COMMENT", "WS", "LINE_COMMENT"
 		};

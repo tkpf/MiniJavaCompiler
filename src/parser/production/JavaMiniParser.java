@@ -22,7 +22,7 @@ public class JavaMiniParser extends Parser {
 		PrimitiveType=17, IfLiteral=18, WhileLiteral=19, ReturnLiteral=20, ElseLiteral=21, 
 		RefLiteral=22, DecimalLiteral=23, BoolLiteral=24, CharacterLiteral=25, 
 		StringLiteral=26, NullLiteral=27, VoidLiteral=28, NewLiteral=29, InstLiteral=30, 
-		MulLiterals=31, AddLIterals=32, CompareLiterals=33, AndOrLiterals=34, 
+		MulLiterals=31, AddLiterals=32, CompareLiterals=33, AndOrLiterals=34, 
 		IncLiterals=35, NotLiteral=36, EscapeSequence=37, Identifier=38, Letter=39, 
 		JavaIDDigit=40, COMMENT=41, WS=42, LINE_COMMENT=43;
 	public static final int
@@ -65,7 +65,7 @@ public class JavaMiniParser extends Parser {
 			null, null, null, null, "AssignLiteral", "PrimitiveType", "IfLiteral", 
 			"WhileLiteral", "ReturnLiteral", "ElseLiteral", "RefLiteral", "DecimalLiteral", 
 			"BoolLiteral", "CharacterLiteral", "StringLiteral", "NullLiteral", "VoidLiteral", 
-			"NewLiteral", "InstLiteral", "MulLiterals", "AddLIterals", "CompareLiterals", 
+			"NewLiteral", "InstLiteral", "MulLiterals", "AddLiterals", "CompareLiterals", 
 			"AndOrLiterals", "IncLiterals", "NotLiteral", "EscapeSequence", "Identifier", 
 			"Letter", "JavaIDDigit", "COMMENT", "WS", "LINE_COMMENT"
 		};
@@ -1236,7 +1236,7 @@ public class JavaMiniParser extends Parser {
 			setState(171);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 378760210418L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 383055177714L) != 0) {
 				{
 				{
 				setState(168);
@@ -1433,7 +1433,7 @@ public class JavaMiniParser extends Parser {
 				setState(203);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (((_la) & ~0x3f) == 0 && ((1L << _la) & 378758242304L) != 0) {
+				if (((_la) & ~0x3f) == 0 && ((1L << _la) & 383053209600L) != 0) {
 					{
 					setState(202);
 					expression(0);
@@ -1641,13 +1641,14 @@ public class JavaMiniParser extends Parser {
 				primary();
 				}
 				break;
+			case AddLiterals:
 			case IncLiterals:
 			case NotLiteral:
 				{
 				setState(226);
 				unaryLiterals();
 				setState(227);
-				expression(4);
+				expression(5);
 				}
 				break;
 			case NewLiteral:
@@ -1678,11 +1679,11 @@ public class JavaMiniParser extends Parser {
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(233);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
 						setState(234);
 						binaryLiterals();
 						setState(235);
-						expression(6);
+						expression(5);
 						}
 						break;
 					case 2:
@@ -1781,7 +1782,7 @@ public class JavaMiniParser extends Parser {
 			setState(254);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (((_la) & ~0x3f) == 0 && ((1L << _la) & 378758242304L) != 0) {
+			if (((_la) & ~0x3f) == 0 && ((1L << _la) & 383053209600L) != 0) {
 				{
 				setState(253);
 				expressionList();
@@ -1806,7 +1807,7 @@ public class JavaMiniParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class BinaryLiteralsContext extends ParserRuleContext {
 		public TerminalNode MulLiterals() { return getToken(JavaMiniParser.MulLiterals, 0); }
-		public TerminalNode AddLIterals() { return getToken(JavaMiniParser.AddLIterals, 0); }
+		public TerminalNode AddLiterals() { return getToken(JavaMiniParser.AddLiterals, 0); }
 		public TerminalNode CompareLiterals() { return getToken(JavaMiniParser.CompareLiterals, 0); }
 		public TerminalNode AndOrLiterals() { return getToken(JavaMiniParser.AndOrLiterals, 0); }
 		public BinaryLiteralsContext(ParserRuleContext parent, int invokingState) {
@@ -1862,6 +1863,7 @@ public class JavaMiniParser extends Parser {
 	public static class UnaryLiteralsContext extends ParserRuleContext {
 		public TerminalNode IncLiterals() { return getToken(JavaMiniParser.IncLiterals, 0); }
 		public TerminalNode NotLiteral() { return getToken(JavaMiniParser.NotLiteral, 0); }
+		public TerminalNode AddLiterals() { return getToken(JavaMiniParser.AddLiterals, 0); }
 		public UnaryLiteralsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1890,7 +1892,7 @@ public class JavaMiniParser extends Parser {
 			{
 			setState(260);
 			_la = _input.LA(1);
-			if ( !(_la==IncLiterals || _la==NotLiteral) ) {
+			if ( !(((_la) & ~0x3f) == 0 && ((1L << _la) & 107374182400L) != 0) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -2017,7 +2019,7 @@ public class JavaMiniParser extends Parser {
 			setState(273);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (((_la) & ~0x3f) == 0 && ((1L << _la) & 378758242304L) != 0) {
+			if (((_la) & ~0x3f) == 0 && ((1L << _la) & 383053209600L) != 0) {
 				{
 				setState(272);
 				expressionList();
@@ -2245,7 +2247,7 @@ public class JavaMiniParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 5);
+			return precpred(_ctx, 4);
 		case 1:
 			return precpred(_ctx, 2);
 		case 2:
@@ -2305,7 +2307,7 @@ public class JavaMiniParser extends Parser {
 		"\u001c\u0001\u001c\u0001\u001d\u0001\u001d\u0001\u001d\u0000\u0001*\u001e"+
 		"\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a"+
 		"\u001c\u001e \"$&(*,.02468:\u0000\u0005\u0001\u0000\u0004\n\u0001\u0000"+
-		"\u001f\"\u0001\u0000#$\u0002\u0000\u0011\u0011&&\u0001\u0000\u0017\u001b"+
+		"\u001f\"\u0002\u0000  #$\u0002\u0000\u0011\u0011&&\u0001\u0000\u0017\u001b"+
 		"\u012a\u0000?\u0001\u0000\u0000\u0000\u0002L\u0001\u0000\u0000\u0000\u0004"+
 		"N\u0001\u0000\u0000\u0000\u0006V\u0001\u0000\u0000\u0000\bX\u0001\u0000"+
 		"\u0000\u0000\ni\u0001\u0000\u0000\u0000\fm\u0001\u0000\u0000\u0000\u000e"+
@@ -2402,12 +2404,12 @@ public class JavaMiniParser extends Parser {
 		"\u00de\u00d5\u0001\u0000\u0000\u0000\u00de\u00d9\u0001\u0000\u0000\u0000"+
 		"\u00de\u00dc\u0001\u0000\u0000\u0000\u00df)\u0001\u0000\u0000\u0000\u00e0"+
 		"\u00e1\u0006\u0015\uffff\uffff\u0000\u00e1\u00e8\u00036\u001b\u0000\u00e2"+
-		"\u00e3\u00030\u0018\u0000\u00e3\u00e4\u0003*\u0015\u0004\u00e4\u00e8\u0001"+
+		"\u00e3\u00030\u0018\u0000\u00e3\u00e4\u0003*\u0015\u0005\u00e4\u00e8\u0001"+
 		"\u0000\u0000\u0000\u00e5\u00e6\u0005\u001d\u0000\u0000\u00e6\u00e8\u0003"+
 		"4\u001a\u0000\u00e7\u00e0\u0001\u0000\u0000\u0000\u00e7\u00e2\u0001\u0000"+
 		"\u0000\u0000\u00e7\u00e5\u0001\u0000\u0000\u0000\u00e8\u00f7\u0001\u0000"+
-		"\u0000\u0000\u00e9\u00ea\n\u0005\u0000\u0000\u00ea\u00eb\u0003.\u0017"+
-		"\u0000\u00eb\u00ec\u0003*\u0015\u0006\u00ec\u00f6\u0001\u0000\u0000\u0000"+
+		"\u0000\u0000\u00e9\u00ea\n\u0004\u0000\u0000\u00ea\u00eb\u0003.\u0017"+
+		"\u0000\u00eb\u00ec\u0003*\u0015\u0005\u00ec\u00f6\u0001\u0000\u0000\u0000"+
 		"\u00ed\u00ee\n\u0002\u0000\u0000\u00ee\u00ef\u0005\u0010\u0000\u0000\u00ef"+
 		"\u00f6\u0003*\u0015\u0003\u00f0\u00f1\n\u0006\u0000\u0000\u00f1\u00f2"+
 		"\u0005\u001e\u0000\u0000\u00f2\u00f6\u0005&\u0000\u0000\u00f3\u00f4\n"+
