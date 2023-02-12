@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eca8292b-fb0f-4fd9-b568-0228e8f9ee75" name="Changes" comment="Adding EscapeHatchException and adding some comments">
-      <change afterPath="$PROJECT_DIR$/src/parser/exceptions/EscapeHatchException.java" afterDir="false" />
+    <list default="true" id="eca8292b-fb0f-4fd9-b568-0228e8f9ee75" name="Changes" comment="Declaration of Exception EscapeHatchException in Mains">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/BlockStmtAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/BlockStmtAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ClassAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ClassAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ExpressionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ExpressionListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ExpressionListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/FieldAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/FieldAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/MethodAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/MethodAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ParameterAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ParameterAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/PrimaryExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/PrimaryExpressionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ProgramAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ProgramAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/StatementExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/StatementExpressionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/TypeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/TypeAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/adapter/TypeLiteralAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/TypeLiteralAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +69,21 @@
       <option name="presentableId" value="Default" />
       <updated>1674983939905</updated>
     </task>
+    <task id="LOCAL-00001" summary="Adding EscapeHatchException and adding some comments">
+      <created>1676238780898</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676238780898</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Declaration of Exception EscapeHatchException in Mains">
+      <created>1676239045663</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676239045663</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -97,14 +99,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding EscapeHatchException and adding some comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding EscapeHatchException and adding some comments" />
+    <MESSAGE value="Declaration of Exception EscapeHatchException in Mains" />
+    <option name="LAST_COMMIT_MESSAGE" value="Declaration of Exception EscapeHatchException in Mains" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/Main_test.java</url>
-          <line>31</line>
+          <line>32</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
