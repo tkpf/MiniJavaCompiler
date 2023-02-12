@@ -1,5 +1,6 @@
 package parser.adapter;
 
+import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniParser;
 import syntaxtree.Type;
 import syntaxtree.statements.BlockStmt;
@@ -10,15 +11,14 @@ import java.util.Vector;
 
 public class MethodAdapter {
 
-    public static Method adapt(JavaMiniParser.MethodDeclarationContext ctx) {
+    public static Method adapt(JavaMiniParser.MethodDeclarationContext ctx) throws EscapeHatchException {
 
-        //TODO try catch
         final String name = ctx.Identifier().getText();
         final Type rtype;
         final Vector<Parameter> params = new Vector<>();
         final BlockStmt body;
 
-        // load rtype
+        // load return type (rType)
         if (ctx.type()!= null) {
             rtype = new Type(ctx.type().getText());
         }
@@ -27,7 +27,7 @@ public class MethodAdapter {
         }
         else {
             // this must be a constructor
-            rtype = new Type(name); //will never be reached
+            rtype = new Type(name);
         }
 
         // load params
@@ -42,7 +42,8 @@ public class MethodAdapter {
             body = BlockStmtAdapter.adapt(ctx.methodDeclarationRest().methodBody().block());
         }
         else {
-            body = null; //will never be reached
+            // should never be reached
+            throw new EscapeHatchException();
         }
 
         return new Method(name, rtype, params, body);

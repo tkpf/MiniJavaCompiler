@@ -4,27 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eca8292b-fb0f-4fd9-b568-0228e8f9ee75" name="Changes" comment="">
+    <list default="true" id="eca8292b-fb0f-4fd9-b568-0228e8f9ee75" name="Changes" comment="Adding EscapeHatchException and adding some comments">
+      <change afterPath="$PROJECT_DIR$/src/parser/exceptions/EscapeHatchException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codegen/ClassGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/ClassGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/BlockStmtAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/BlockStmtAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/adapter/ClassAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ClassAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ExpressionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ExpressionListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ExpressionListAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/adapter/FieldAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/FieldAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Class.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Examples.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Examples.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Field.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Method.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/Parameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/Parameter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/BoolExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/BoolExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/expressions/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/expressions/Expression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/AssignStmtExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/AssignStmtExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/StatementExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statementexpressions/StatementExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/BlockStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/BlockStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/Statement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/syntaxtree/statements/VarDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/syntaxtree/statements/VarDeclStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/typecheck/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/typecheck/TypeCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Main_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Main_test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Type_test.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/Type_test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/test3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/MethodAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/MethodAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ParameterAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ParameterAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/PrimaryExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/PrimaryExpressionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/ProgramAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/ProgramAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/StatementExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/StatementExpressionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/TypeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/TypeAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/adapter/TypeLiteralAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/adapter/TypeLiteralAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +28,19 @@
   <component name="CoverageOptionsProvider">
     <option name="myActivateViewOnRun" value="false" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -77,6 +83,21 @@
       <updated>1674983939905</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adding EscapeHatchException and adding some comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding EscapeHatchException and adding some comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
