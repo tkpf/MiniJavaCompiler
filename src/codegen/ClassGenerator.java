@@ -51,17 +51,34 @@ public class ClassGenerator {
         // generating methods
         for(Method m : inputClass.meths)
         {
-            methodVisitorDictionary.put(
-                    m.name,
-                    cw.visitMethod(
-                            Opcodes.ACC_PUBLIC,
-                            m.name,
-                            methodDescriptor(m),
-                            null,
-                            null));
-            methodVisitorDictionary.get(m.name).visitEnd();
-            m.ownerClass = inputClass.name;
-            generateMethodCode(m, inputClass);
+            if (m.name == inputClass.name.name)
+            {
+                methodVisitorDictionary.put(
+                        m.name,
+                        cw.visitMethod(
+                                Opcodes.ACC_PUBLIC,
+                                "<init>",
+                                methodDescriptor(m),
+                                null,
+                                null));
+                methodVisitorDictionary.get(m.name).visitEnd();
+                m.ownerClass = inputClass.name;
+                generateMethodCode(m, inputClass);
+            }
+            else
+            {
+                methodVisitorDictionary.put(
+                        m.name,
+                        cw.visitMethod(
+                                Opcodes.ACC_PUBLIC,
+                                m.name,
+                                methodDescriptor(m),
+                                null,
+                                null));
+                methodVisitorDictionary.get(m.name).visitEnd();
+                m.ownerClass = inputClass.name;
+                generateMethodCode(m, inputClass);
+            }
         }
 
         if(methodVisitorDictionary.get(inputClass.name) == null) {
