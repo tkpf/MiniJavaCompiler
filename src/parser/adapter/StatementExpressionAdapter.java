@@ -14,8 +14,8 @@ import java.util.Vector;
 public class StatementExpressionAdapter {
     public static StatementExpression adapt (JavaMiniParser.ExpressionContext ctx) {
         if (ctx.NewLiteral() != null) {
+            Vector<Expression> exprList = new Vector<>();
             if (ctx.creator().expressionList() != null) {
-                Vector<Expression> exprList = new Vector<>();
                 List<JavaMiniParser.ExpressionContext> exprCtxList = ctx.creator().expressionList().expression();
                 for (JavaMiniParser.ExpressionContext exprCtx : exprCtxList) {
                     exprList.add(ExpressionAdapter.adapt(exprCtx));
@@ -27,7 +27,7 @@ public class StatementExpressionAdapter {
             }
             else {
                 return new NewStmtExpr(
-                        TypeAdapter.adapt(ctx.creator().type()), null
+                        TypeAdapter.adapt(ctx.creator().type()), exprList
                 );
             }
         }
@@ -51,8 +51,8 @@ public class StatementExpressionAdapter {
 
     public static StatementExpression adapt (JavaMiniParser.StatementExpressionContext ctx) {
         if (ctx.NewLiteral() != null) {
+            Vector<Expression> exprList = new Vector<>();
             if (ctx.creator().expressionList() != null) {
-                Vector<Expression> exprList = new Vector<>();
                 List<JavaMiniParser.ExpressionContext> exprCtxList = ctx.creator().expressionList().expression();
                 for (JavaMiniParser.ExpressionContext exprCtx : exprCtxList) {
                     exprList.add(ExpressionAdapter.adapt(exprCtx));
@@ -63,7 +63,7 @@ public class StatementExpressionAdapter {
                 );
             } else {
                 return new NewStmtExpr(
-                        TypeAdapter.adapt(ctx.creator().type()), null
+                        TypeAdapter.adapt(ctx.creator().type()), exprList
                 );
             }
         } else if (ctx.AssignLiteral() != null) {
