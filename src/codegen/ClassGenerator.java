@@ -10,14 +10,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Objects;
+import java.util.function.BinaryOperator;
 
 import static codegen.StatementGenerator.*;
 
 public class ClassGenerator {
-
-    public static Dictionary<String, FieldVisitor> fieldVisitorDictionary = new Hashtable<>();
-    private static Dictionary<String, MethodVisitor> methodVisitorDictionary = new Hashtable<>();
-
     public static ClassWriter generateClassCode(Class inputClass)
     {
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
@@ -35,15 +33,12 @@ public class ClassGenerator {
         // generating fields
         for (Field f : inputClass.fields)
         {
-            fieldVisitorDictionary.put(
+            cw.visitField(
+                    Opcodes.ACC_PUBLIC,
                     f.name,
-                    cw.visitField(
-                            Opcodes.ACC_PUBLIC,
-                            f.name,
-                            fieldDescriptor(f.type.name),
-                            null,
-                            "value"));
-            fieldVisitorDictionary.get(f.name).visitEnd();
+                    fieldDescriptor(f.type.name),
+                    null,
+                    "value").visitEnd();
         }
 
 
@@ -51,37 +46,35 @@ public class ClassGenerator {
         // generating methods
         for(Method m : inputClass.meths)
         {
-            if (m.name == inputClass.name.name)
+            if (Objects.equals(m.name, inputClass.name.name))
             {
-                methodVisitorDictionary.put(
-                        m.name,
-                        cw.visitMethod(
-                                Opcodes.ACC_PUBLIC,
-                                "<init>",
-                                methodDescriptor(m),
-                                null,
-                                null));
-                methodVisitorDictionary.get(m.name).visitEnd();
-                m.ownerClass = inputClass.name;
-                generateMethodCode(m, inputClass);
+               m.visitor = cw.visitMethod(
+                        Opcodes.ACC_PUBLIC,
+                        "<init>",
+                        constructorDescriptor(m),
+                        null,
+                        null);
+               m.visitor.visitEnd();
+               m.ownerClass = inputClass.name;
+               generateConstructor(m);
             }
             else
             {
-                methodVisitorDictionary.put(
+                m.visitor = cw.visitMethod(
+                        Opcodes.ACC_PUBLIC,
                         m.name,
-                        cw.visitMethod(
-                                Opcodes.ACC_PUBLIC,
-                                m.name,
-                                methodDescriptor(m),
-                                null,
-                                null));
-                methodVisitorDictionary.get(m.name).visitEnd();
+                        methodDescriptor(m),
+                        null,
+                        null);
+                m.visitor.visitEnd();
                 m.ownerClass = inputClass.name;
-                generateMethodCode(m, inputClass);
+                generateMethodCode(m);
             }
         }
 
-        if(methodVisitorDictionary.get(inputClass.name) == null) {
+        // generate deafault constructor if no constructor is explicitly stated
+
+        if(inputClass.meths.stream().noneMatch(m -> Objects.equals(m.name, inputClass.name.name))) {
             MethodVisitor constructor = cw.visitMethod(
                     Opcodes.ACC_PUBLIC,
                     "<init>",
@@ -102,11 +95,11 @@ public class ClassGenerator {
         return cw;
     }
 
-    public static void generateMethodCode(Method m, Class inputClass)   // this only works for non-static methods
+    public static void generateMethodCode(Method m)   // this only works for non-static methods
     {
-        m.visitor = methodVisitorDictionary.get(m.name);;
         m.visitor.visitCode();
 
+        m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
         generateParameters(m);
 
         genStmt(m.blck, m);
@@ -115,13 +108,22 @@ public class ClassGenerator {
         m.visitor.visitEnd();
     }
 
+    public static void generateConstructor(Method m)
+    {
+        m.visitor.visitCode();
+
+        m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
+        m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL,"java/lang/Object", "<init>", "()V", false);
+        generateParameters(m);
+        genStmt(m.blck, m);
+
+        m.visitor.visitMaxs(0, 0);
+        m.visitor.visitEnd();
+    }
+
 
     private static void generateParameters(Method m) {
-        //ALOAD 0
-        m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
-
-        //other parameters
-        int count = 1;
+        int count = 1;  //'this' is at index 0
         for (Parameter p : m.params) {
             m.localVariableIndexes.put(p.name, count);
             count++;
@@ -149,6 +151,15 @@ public class ClassGenerator {
             paramDesc += fieldDescriptor(p.type.name);
         }
         return "("+paramDesc+")"+fieldDescriptor(m.type.name);
+    }
+
+    static String constructorDescriptor(Method m){
+        String paramDesc = "";
+        for (Parameter p : m.params)
+        {
+            paramDesc += fieldDescriptor(p.type.name);
+        }
+        return "("+paramDesc+")V";
     }
 
     static void cw2file(ClassWriter cw) throws IOException {
