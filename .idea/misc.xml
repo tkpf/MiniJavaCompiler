@@ -16,7 +16,7 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/parser/JavaMini.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\Till\prjcts\Mini-Java-Compiler\src\" />
+          <option name="outputDir" value="$PROJECT_DIR$/src" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="parser.production" />

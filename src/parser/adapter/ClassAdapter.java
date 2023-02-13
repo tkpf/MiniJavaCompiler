@@ -1,36 +1,32 @@
 package parser.adapter;
 
+import parser.exceptions.EscapeHatchException;
 import syntaxtree.Class;
 import parser.production.JavaMiniParser;
 import syntaxtree.Field;
 import syntaxtree.Method;
-import syntaxtree.statements.BlockStmt;
-import syntaxtree.statements.Statement;
-import syntaxtree.statements.VarDeclStmt;
-
 import java.util.Vector;
 
 
 public class ClassAdapter {
 
-    public static Class adapt(JavaMiniParser.ClassDeclarationContext ctx) {
+    public static Class adapt(JavaMiniParser.ClassDeclarationContext ctx) throws EscapeHatchException {
         // modifier get ignored
         // inheritance get ignored
 
         // load name
-        // TODO try catch
         final String name = ctx.Identifier().getText();
+
         // load members
         Vector<JavaMiniParser.MemberContext> members = new Vector<>();
-        for (JavaMiniParser.ClassBodyDeclarationContext classbodydeclaration : ctx.classBody().classBodyDeclaration()) {
-            members.add(classbodydeclaration.member());
+        for (JavaMiniParser.ClassBodyDeclarationContext classBodyDeclaration : ctx.classBody().classBodyDeclaration()) {
+            members.add(classBodyDeclaration.member());
         }
         //load fields and methods
         Vector<Method> methods = new Vector<>();
         Vector<Field> fields = new Vector<>();
 
         for(JavaMiniParser.MemberContext member: members) {
-            //System.out.println(member);
             if (member.fieldDeclaration() != null) {
                 Field field;
                 //check if direct initialization takes place
@@ -48,17 +44,10 @@ public class ClassAdapter {
                 Method m = MethodAdapter.adapt(member.methodDeclaration());
                 methods.add(m);
             }
-            /*
-            else if (member.constructorDeclaration() != null) {
-                // implement constructor declaration
-            }
-            else if (member.classDeclaration() != null) {
-                // implement class declaration
-            }
-            */
 
             else  {
-                return null; // can never be reached
+                // should never be reached
+                throw new EscapeHatchException();
             }
 
         }

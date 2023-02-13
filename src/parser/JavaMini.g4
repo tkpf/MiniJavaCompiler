@@ -148,8 +148,8 @@ statementExpression
 expression
     :   primary
     |   expression InstLiteral Identifier
-    |   expression binaryLiterals expression
     |   unaryLiterals expression
+    |   expression binaryLiterals expression
     |   expression methodCallRest
     |   expression AssignLiteral expression
     |   NewLiteral creator
@@ -163,7 +163,7 @@ AssignLiteral : '=' ;
 
 binaryLiterals
     : MulLiterals
-    | AddLIterals
+    | AddLiterals
     | CompareLiterals
     | AndOrLiterals
     ;
@@ -171,6 +171,7 @@ binaryLiterals
 unaryLiterals
     : IncLiterals
     | NotLiteral
+    | AddLiterals
     ;
 
 
@@ -242,7 +243,7 @@ NewLiteral  : 'new' ;
 InstLiteral : '.' ;
 
 MulLiterals : ('*'|'/'|'%') ;
-AddLIterals : ('+'|'-');
+AddLiterals : ('+'|'-');
 CompareLiterals : ('<' '=' | '>' '=' | '>' | '<' | '==' | '!=');
 AndOrLiterals : '&&' | '||' ;
 IncLiterals : '++'|'--' ;

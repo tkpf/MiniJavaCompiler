@@ -2,6 +2,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import parser.adapter.ProgramAdapter;
+import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniLexer;
 import parser.production.JavaMiniParser;
 import syntaxtree.Program;
@@ -16,7 +17,7 @@ import java.io.IOException;
 public class Main_test {
 
     public static void main(String[] args)
-            throws IOException, MissingSymbolException, AlreadyDefinedException, TypeMismatchException {
+            throws IOException, MissingSymbolException, AlreadyDefinedException, TypeMismatchException, EscapeHatchException {
 
         String basicTest = "test_basicClasses.txt";
         String elevatedTest = "test_ProgrammAboutShapes.txt";

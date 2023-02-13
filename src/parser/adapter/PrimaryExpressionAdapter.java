@@ -1,5 +1,6 @@
 package parser.adapter;
 
+import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.Expression;
 import syntaxtree.expressions.SuperExpr;
@@ -7,7 +8,7 @@ import syntaxtree.expressions.ThisExpr;
 
 public class PrimaryExpressionAdapter {
 
-    static Expression adapt (JavaMiniParser.PrimaryContext ctx) {
+    static Expression adapt (JavaMiniParser.PrimaryContext ctx) throws EscapeHatchException{
         if (ctx.expression() != null) {
             return ExpressionAdapter.adapt(ctx.expression());
         }
@@ -15,7 +16,7 @@ public class PrimaryExpressionAdapter {
             return switch (ctx.RefLiteral().getText()) {
                 case "this" -> new ThisExpr();
                 case "super" -> new SuperExpr();
-                default -> null; // is never reached
+                default -> throw new EscapeHatchException(); // should never be reached
             };
         }
         else if (ctx.typeLiteral() != null) {
@@ -25,7 +26,8 @@ public class PrimaryExpressionAdapter {
             return LocalOrFieldVarExpressionAdapter.adapt(ctx);
         }
         else {
-            return null; //never reached
+            // should never be reached
+            throw new EscapeHatchException();
         }
     }
 }

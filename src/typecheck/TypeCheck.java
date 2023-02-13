@@ -36,7 +36,12 @@ public class TypeCheck {
                     localScope.addField(p.name, p.type);
                 }
                 Type methodBodyType = typeStatement(m.blck, localScope);
-                if (!m.type.equals(methodBodyType)) {
+                // body of constructors must be of type `void`
+                if (m.type.equals(m.name)) {
+                    if (!methodBodyType.equals("void")) {
+                        throw new TypeMismatchException(methodBodyType.toString());
+                    }
+                }else if (!m.type.equals(methodBodyType)) {
                     throw new TypeMismatchException(methodBodyType.toString());
                 }
             }
@@ -174,8 +179,12 @@ public class TypeCheck {
             }
             case NewStmtExpr newStmtExpr -> {
                 // TODO: new Integer, Char, Boolean, String, etc deprecated
-                stmtExp.type = new Type("void");
-                // TODO: check if constructor signature has been defined
+                ArrayList<Type> paramTypes = new ArrayList<>(newStmtExpr.initParams.size());
+                for (Expression e : newStmtExpr.initParams) {
+                    paramTypes.add(typeExpression(e, localScope));
+                }
+                Signature constSignature = new Signature(newStmtExpr.type.name, paramTypes);
+                stmtExp.type = env.lookupMethod(newStmtExpr.type, constSignature);
             }
             case MethodCallStmtExpr methodCallStmtExpr -> {
                 Type objType = typeExpression(methodCallStmtExpr.obj, localScope);
