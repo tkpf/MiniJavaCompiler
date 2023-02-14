@@ -99,6 +99,20 @@ public class ExpressionGenerator {
                         genExpr(expr.expr2, m);
                         m.visitor.visitInsn(Opcodes.IDIV);
                     }
+                }
+                break;
+            case "boolean":
+                switch (expr.eval) {
+                    case "and", "&&" -> {
+                        genExpr(expr.expr1, m);
+                        genExpr(expr.expr2, m);
+                        m.visitor.visitInsn(Opcodes.IAND);
+                    }
+                    case "or", "||" -> {
+                        genExpr(expr.expr1, m);
+                        genExpr(expr.expr2, m);
+                        m.visitor.visitInsn(Opcodes.IOR);
+                    }
                     case "<" -> {
                         genExpr(expr.expr1, m);
                         genExpr(expr.expr2, m);
@@ -130,20 +144,6 @@ public class ExpressionGenerator {
                         m.visitor.visitInsn(Opcodes.ICONST_0);
 
                         m.visitor.visitLabel(end);
-                    }
-                }
-                break;
-            case "boolean":
-                switch (expr.eval) {
-                    case "and", "&&" -> {
-                        genExpr(expr.expr1, m);
-                        genExpr(expr.expr2, m);
-                        m.visitor.visitInsn(Opcodes.IAND);
-                    }
-                    case "or", "||" -> {
-                        genExpr(expr.expr1, m);
-                        genExpr(expr.expr2, m);
-                        m.visitor.visitInsn(Opcodes.IOR);
                     }
                 }
                 break;
