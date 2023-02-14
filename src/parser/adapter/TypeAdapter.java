@@ -1,10 +1,11 @@
 package parser.adapter;
 
+import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniParser;
 import syntaxtree.Type;
 
 public class TypeAdapter {
-    public static Type adapt (JavaMiniParser.TypeContext ctx) {
+    public static Type adapt (JavaMiniParser.TypeContext ctx) throws EscapeHatchException {
         if (ctx.Identifier() != null) {
             return new Type(ctx.Identifier().getText());
         }
@@ -12,7 +13,8 @@ public class TypeAdapter {
             return new Type(ctx.PrimitiveType().getText());
         }
         else {
-            return null; //never reached
+            // should never be reached
+            throw new EscapeHatchException();
         }
     }
 }

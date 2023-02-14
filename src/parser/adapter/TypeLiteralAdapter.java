@@ -1,11 +1,12 @@
 package parser.adapter;
 
+import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.*;
 
 public class TypeLiteralAdapter {
 
-    static Expression adapt(JavaMiniParser.TypeLiteralContext ctx) {
+    static Expression adapt(JavaMiniParser.TypeLiteralContext ctx) throws EscapeHatchException {
         if (ctx.BoolLiteral() != null) {
             return new BoolExpr(
                     Boolean.parseBoolean(
@@ -26,7 +27,8 @@ public class TypeLiteralAdapter {
             return new JNullExpr();
         }
         else {
-            return null; //never reached
+            // should never be reached
+            throw new EscapeHatchException();
         }
     }
 
