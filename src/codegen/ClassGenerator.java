@@ -4,6 +4,9 @@ import org.objectweb.asm.*;
 import org.objectweb.asm.Type;
 import syntaxtree.*;
 import syntaxtree.Class;
+import syntaxtree.expressions.Expression;
+import syntaxtree.expressions.JNullExpr;
+import syntaxtree.statements.ReturnStmt;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -104,6 +107,13 @@ public class ClassGenerator {
 
         genStmt(m.blck, m);
 
+        // adding 'return;' at the end of void-blocks in case they are not explicit in the code (since java allows to omit them)
+        if (m.blck.stmtBlck.isEmpty() ||
+                (Objects.equals(m.blck.type.name, "void") && m.blck.stmtBlck.lastElement().getClass() != ReturnStmt.class))
+        {
+            m.visitor.visitInsn(Opcodes.RETURN);
+        }
+
         m.visitor.visitMaxs(0,0);
         m.visitor.visitEnd();
     }
@@ -116,6 +126,11 @@ public class ClassGenerator {
         m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL,"java/lang/Object", "<init>", "()V", false);
         generateParameters(m);
         genStmt(m.blck, m);
+
+        if (m.blck.stmtBlck.lastElement().getClass() != ReturnStmt.class)
+        {
+            m.visitor.visitInsn(Opcodes.RETURN);
+        }
 
         m.visitor.visitMaxs(0, 0);
         m.visitor.visitEnd();
