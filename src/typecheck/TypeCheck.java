@@ -217,6 +217,13 @@ public class TypeCheck {
                         throw new TypeMismatchException();
                     }
                 }
+                case "<", "==" -> {
+                    if ((t1.equals("int") || t1.equals("char")) && t1.equals(t2)) {
+                        binaryExpr.type = new Type("boolean");
+                    } else {
+                        throw new TypeMismatchException();
+                    }
+                }
                 case "&&", "||" -> {
                     if (t1.equals("boolean") && t1.equals(t2)) {
                         binaryExpr.type = t1;
