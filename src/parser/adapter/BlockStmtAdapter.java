@@ -49,6 +49,7 @@ public class BlockStmtAdapter {
                 VarDeclStmt varDeclStmt =  new VarDeclStmt(
                         localOrFieldName,
                         TypeAdapter.adapt(stmtCxt.localVariableDeclaration().type()));
+                stmts.add(varDeclStmt);
                 // check for inline initialization
                 if (stmtCxt.localVariableDeclaration().variableDeclarator().directInitialization() != null) {
                     AssignStmtExpr directAssignStmtExpr = new AssignStmtExpr(
@@ -59,7 +60,6 @@ public class BlockStmtAdapter {
                             new StmtExprStmt(directAssignStmtExpr)
                     );
                 }
-                stmts.add(varDeclStmt);
             }
             // check if current statement is a hidden statement expression
             else if (stmtCxt.statementExpression() != null) {
