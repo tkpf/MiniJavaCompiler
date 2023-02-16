@@ -66,7 +66,7 @@ public class TypeCheck {
                     loFVarExpr.context = LocalOrFieldVarExpr.VarType.local;
                     exp.type = varType;
                 } catch (MissingSymbolException localMissing) {
-                    varType = env.lookupField(localScope.thisClass, loFVarExpr.name);
+                    varType = env.lookupField(localScope.getCurrentClass(), loFVarExpr.name);
                     loFVarExpr.context = LocalOrFieldVarExpr.VarType.field;
                     exp.type = varType;
                 }
@@ -78,7 +78,7 @@ public class TypeCheck {
                 exp.type = new Type("Object");
             }
             case ThisExpr thisExpr -> {
-                exp.type = localScope.thisClass;
+                exp.type = localScope.getCurrentClass();
             }
             case UnaryExpr unaryExpr -> {
                 Type t1 = typeExpression(unaryExpr.expr, localScope);

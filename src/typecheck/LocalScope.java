@@ -4,33 +4,29 @@ import syntaxtree.Type;
 import typecheck.exceptions.AlreadyDefinedException;
 import typecheck.exceptions.MissingSymbolException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LocalScope {
-    public final Type thisClass;
-    private HashMap<String, Type> fields;
-    private HashMap<String, Type> methods;
+    private ArrayList<Scope> layers;
+    private int currentScope;
 
-    LocalScope(Type thisClass) {
-        this.thisClass = thisClass;
-        this.fields = new HashMap<>();
-        this.methods = new HashMap<>();
+    public LocalScope(Type className) {
+        layers = new ArrayList<>();
+        currentScope = 0;
+        layers.add(0, new Scope(className));
     }
 
     public void addField(String name, Type type) throws AlreadyDefinedException {
-        if (fields.containsKey(name)) {
-            throw new AlreadyDefinedException(name);
-        } else {
-            fields.put(name, type);
-        }
+        layers.get(currentScope).addField(name, type);
     }
 
     public Type lookupField(String name) throws MissingSymbolException {
-        Type result = fields.get(name);
-        if (result == null) {
-            throw new MissingSymbolException(name);
-        } else {
-            return result;
-        }
+        // TODO: Implement nested blocks
+        return layers.get(currentScope).lookupField(name);
+    }
+
+    public Type getCurrentClass() {
+        return layers.get(currentScope).thisClass;
     }
 }
