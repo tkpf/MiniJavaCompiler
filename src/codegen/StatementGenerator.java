@@ -35,12 +35,12 @@ public class StatementGenerator {
                 genExpr(rexpr, m);
                 m.visitor.visitInsn(Opcodes.IRETURN);
             }
-            case "String", "null" -> {
-                genExpr(rexpr, m);
-                m.visitor.visitInsn(Opcodes.ARETURN);
-            }
             case "void" -> {
                 m.visitor.visitInsn(Opcodes.RETURN);
+            }
+            case "String", "null", default -> {
+                genExpr(rexpr, m);
+                m.visitor.visitInsn(Opcodes.ARETURN);
             }
         }
     }

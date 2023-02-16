@@ -7,6 +7,7 @@ import syntaxtree.expressions.LocalOrFieldVarExpr;
 import syntaxtree.expressions.LocalVar;
 import syntaxtree.statementexpressions.*;
 
+import static codegen.ClassGenerator.constructorDescriptor;
 import static codegen.ClassGenerator.methodDescriptor;
 import static codegen.ClassGenerator.fieldDescriptor;
 import static codegen.ExpressionGenerator.genExpr;
@@ -70,7 +71,7 @@ public class StatementExpressionGenerator {
         //gen params
         s.initParams.forEach(e -> genExpr(e, m));
         // invokespecial Konstruktor
-        m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL, s.type.name, "<init>", methodDescriptor(m), false);
+        m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL, s.type.name, "<init>", constructorDescriptor(m), false);
     }
 
     public static void genMethodCall(MethodCallStmtExpr mcall, Method m) {
