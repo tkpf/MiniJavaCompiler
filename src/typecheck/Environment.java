@@ -11,6 +11,7 @@ import typecheck.exceptions.MissingSymbolException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class Environment {
@@ -62,13 +63,16 @@ public class Environment {
                 }
                 methodsMap.put(methodSignature, m.type);
             }
+            // add default constructor
+            Signature defCons = new Signature(c.name.toString(), List.of());
+            methodsMap.put(defCons, c.name);
         }
-        //System.out.println(fields + "\n" + methods);
+        System.out.println(fields + "\n" + methods);
     }
 
     public Type lookupClass(String name) throws MissingSymbolException {
         if (fields.containsKey(name)) {
-            return new Type("name");
+            return new Type(name);
         } else {
             throw new MissingSymbolException();
         }
@@ -96,7 +100,7 @@ public class Environment {
             if (result != null) {
                 return result;
             } else {
-                throw new MissingSymbolException(methodSignature.name);
+                throw new MissingSymbolException(methodSignature.toString());
             }
         } else {
             throw new MissingSymbolException(className.toString());
