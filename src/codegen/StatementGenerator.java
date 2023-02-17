@@ -14,18 +14,9 @@ public class StatementGenerator {
     public static void genStmt(Statement stmt, Method m)
     {
         switch (stmt) {
-            case null -> m.visitor.visitInsn(Opcodes.NOP);
+            case null -> System.out.println("came across null statement!");
             case BlockStmt s -> {
                 s.stmtBlck.forEach(b -> genStmt(b, m)); // todo: delete local variables after block is closed
-
-                // adding 'return;' at the end of void-blocks in case they are not explicit in the code (since java allows to omit them)
-                if (s.stmtBlck.isEmpty() ||
-                        (s.type.name == "void" && s.stmtBlck.lastElement().getClass() != ReturnStmt.class))
-                {
-                    Expression emptyVoidRexpr = new JNullExpr(); //TODO: the JNUll is just a dummy that shouldn't be read
-                    emptyVoidRexpr.type = new Type("void");
-                    genReturnStmt(emptyVoidRexpr, m);
-                }
             }
             case ReturnStmt s -> genReturnStmt(s.rExpr, m);
             case VarDeclStmt s -> m.localVariableIndexes.put(s.name, m.localVariableIndexes.size() + 1);
@@ -44,12 +35,12 @@ public class StatementGenerator {
                 genExpr(rexpr, m);
                 m.visitor.visitInsn(Opcodes.IRETURN);
             }
-            case "String", "null" -> {
-                genExpr(rexpr, m);
-                m.visitor.visitInsn(Opcodes.ARETURN);
-            }
             case "void" -> {
                 m.visitor.visitInsn(Opcodes.RETURN);
+            }
+            case "String", "null", default -> {
+                genExpr(rexpr, m);
+                m.visitor.visitInsn(Opcodes.ARETURN);
             }
         }
     }

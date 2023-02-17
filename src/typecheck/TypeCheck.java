@@ -142,11 +142,15 @@ public class TypeCheck {
                     throw new TypeMismatchException();
                 }
                 Type ifType = typeStatement(ifStmt.ifBlck, localScope);
-                Type elseType = typeStatement(ifStmt.elseBlck, localScope);
-                if (elseType == null || ifType.equals(elseType)) {
+                if (ifStmt.elseBlck == null) {
                     stmt.type = ifType;
                 } else {
-                    throw new TypeMismatchException();
+                    Type elseType = typeStatement(ifStmt.elseBlck, localScope);
+                    if (ifType.equals(elseType)) {
+                        stmt.type = ifType;
+                    } else {
+                        throw new TypeMismatchException();
+                    }
                 }
             }
             case WhileStmt whileStmt -> {
