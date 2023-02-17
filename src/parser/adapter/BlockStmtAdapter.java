@@ -68,6 +68,9 @@ public class BlockStmtAdapter {
                         new StmtExprStmt(stmtExpr)
                 );
             }
+            else if (stmtCxt.EmptyStatement() != null) {
+                // do nothing
+            }
             else {
                 // should never be reached
                 throw new EscapeHatchException();
