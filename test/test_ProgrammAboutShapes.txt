@@ -47,11 +47,11 @@ class someCollectionsOfObjects {
         }
     }
 
-    void manipulateRadiusOfCircle(int manipulation) {
-        if (myCircle.radius != manipulation) {
-            myCircle.radius = manipulation;
+     void manipulateRadiusOfCircle(int manipulation) {
+            if (myCircle.radius != manipulation) {
+                myCircle.radius = manipulation;
+            }
         }
-    }
 
     void someWhileMethod() {
         int i;

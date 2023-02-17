@@ -24,7 +24,7 @@ public class Main_test {
 
         System.out.println("Running Main_test");
 
-        CharStream input = CharStreams.fromFileName("./test/test3.txt");
+        CharStream input = CharStreams.fromFileName("./test/" + elevatedTest);
 
         JavaMiniLexer lexer = new JavaMiniLexer(input);
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));

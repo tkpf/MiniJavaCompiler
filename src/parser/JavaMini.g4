@@ -134,10 +134,11 @@ statement
   //  |   ForLiteral '(' forControl ')' block
     |   WhileLiteral '(' expression ')' block
     |   ReturnLiteral expression? ';'
-    |   ';'
+    |   EmptyStatement
     |   statementExpression ';'
     |   localVariableDeclaration
     ;
+
 
 statementExpression
     :   expression AssignLiteral expression
@@ -158,8 +159,6 @@ expression
 methodCallRest
     : InstLiteral Identifier '('expressionList? ')'
     ;
-
-AssignLiteral : '=' ;
 
 binaryLiterals
     : MulLiterals
@@ -197,6 +196,8 @@ type:   Identifier //('[' ']')*
     |   PrimitiveType //('[' ']')*
     ;
 
+EmptyStatement : ';';
+AssignLiteral : '=' ;
 
 PrimitiveType
     :   'boolean'
