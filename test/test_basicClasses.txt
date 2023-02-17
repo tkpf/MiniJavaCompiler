@@ -14,7 +14,7 @@ class directInitClass {
     int field1 = 1;
     char field2 = 'a';
     boolean field3 = true;
-    String field4 = "I love my mamma!"
+    String field4 = "I love my mamma!";
 }
 
 class voidMethod {
@@ -31,10 +31,10 @@ class returnMethods{
         return true;
     }
     char returnAnA(){
-        return 'a'
+        return 'a';
     }
     String returnHello(){
-        return "Hello"
+        return "Hello";
     }
 }
 
