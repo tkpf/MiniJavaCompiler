@@ -89,12 +89,12 @@ class TestClass
         while(0 < i)
         {
             i = i - 1;
-            //counter = counter + 1;
+            counter = counter + 1;
         }
-        return 5;
+        return counter;
     }
 
-    /*public void assignDebug()
+    public void assignDebug()
     {
         int j = 5;
         j = j + 1;
@@ -105,7 +105,7 @@ class TestClass
         int j;
         j = 5;
         j = j + 1;
-    }*/
+    }
 
     public void incr1(int i)
     {
@@ -118,7 +118,7 @@ class TestClass
         return i;
     }
 
-    /*public int sumUp(int num)
+    public int sumUp(int num)
     {
         int res = 0;
         while (0 < num)
@@ -127,16 +127,16 @@ class TestClass
             num = num - 1;
         }
         return res;
-    }*/
+    }
 
-    /*public String compareInts(int a, int b)
+    public String compareInts(int a, int b)
     {
         if (a == b) { return "equal";}
 
         if (a < b) { return "smaller"; }
 
         return "greater";
-    }*/
+    }
 
     public String helloWorld() {return "Hello World";}
 
