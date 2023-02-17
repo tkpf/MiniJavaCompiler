@@ -55,10 +55,15 @@ class constructorClassWithThisAssignment {
     constructorClassWithThisAssignment(int i) {
         this.i = i;
     }
+
 }
 
 class newAssignmentClass {
-    int i = new Int(99);
+   constructorClass i = new constructorClass();
+}
+
+class newAssignmentClass2 {
+   constructorClassWithThisAssignment i = new constructorClassWithThisAssignment(3);
 }
 
 class commentClass {
