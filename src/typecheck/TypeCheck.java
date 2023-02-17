@@ -228,7 +228,7 @@ public class TypeCheck {
                         throw new TypeMismatchException();
                     }
                 }
-                case "==" -> {
+                case "==", "!=" -> {
                     if (t1.equals(t2)) {
                         binaryExpr.type = new Type("boolean");
                     } else {
