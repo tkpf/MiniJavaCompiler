@@ -3,6 +3,8 @@ package parser.adapter;
 import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.Expression;
+import syntaxtree.expressions.LocalOrFieldVarExpr;
+import syntaxtree.statementexpressions.AssignStmtExpr;
 import syntaxtree.statementexpressions.StatementExpression;
 import syntaxtree.statements.*;
 
@@ -43,10 +45,21 @@ public class BlockStmtAdapter {
             }
             // check if current statement is a local variable declaration
             else if (stmtCxt.localVariableDeclaration() != null) {
+                String localOrFieldName = stmtCxt.localVariableDeclaration().variableDeclarator().variableDeclaratorId().Identifier().getText();
                 VarDeclStmt varDeclStmt =  new VarDeclStmt(
-                        stmtCxt.localVariableDeclaration().variableDeclarator().variableDeclaratorId().Identifier().getText(),
+                        localOrFieldName,
                         TypeAdapter.adapt(stmtCxt.localVariableDeclaration().type()));
                 stmts.add(varDeclStmt);
+                // check for inline initialization
+                if (stmtCxt.localVariableDeclaration().variableDeclarator().directInitialization() != null) {
+                    AssignStmtExpr directAssignStmtExpr = new AssignStmtExpr(
+                            new LocalOrFieldVarExpr(localOrFieldName),
+                            ExpressionAdapter.adapt(stmtCxt.localVariableDeclaration().variableDeclarator().directInitialization().expression())
+                    );
+                    stmts.add(
+                            new StmtExprStmt(directAssignStmtExpr)
+                    );
+                }
             }
             // check if current statement is a hidden statement expression
             else if (stmtCxt.statementExpression() != null) {
@@ -54,6 +67,9 @@ public class BlockStmtAdapter {
                 stmts.add(
                         new StmtExprStmt(stmtExpr)
                 );
+            }
+            else if (stmtCxt.EmptyStatement() != null) {
+                // do nothing
             }
             else {
                 // should never be reached
