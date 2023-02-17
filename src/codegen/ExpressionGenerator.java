@@ -13,9 +13,10 @@ import static codegen.ClassGenerator.fieldDescriptor;
 
 
 public class ExpressionGenerator {
-    public static void genExpr(Expression exp, Method m)
-    {
+    public static void genExpr(Expression exp, Method m) {
         switch (exp) {
+            case null:
+                break;
             case IntegerExpr e:
                 switch (e.i) {
                     case -1 -> m.visitor.visitInsn(Opcodes.ICONST_M1);
@@ -32,8 +33,11 @@ public class ExpressionGenerator {
                 m.visitor.visitLdcInsn(e);
                 break;
             case BoolExpr e:
-                if (e.b) { m.visitor.visitInsn(Opcodes.ICONST_1); }
-                else { m.visitor.visitInsn(Opcodes.ICONST_0); }
+                if (e.b) {
+                    m.visitor.visitInsn(Opcodes.ICONST_1);
+                } else {
+                    m.visitor.visitInsn(Opcodes.ICONST_0);
+                }
                 break;
             case StringExpr e:
                 m.visitor.visitLdcInsn(e.s);
@@ -42,12 +46,11 @@ public class ExpressionGenerator {
                 m.visitor.visitInsn(Opcodes.ACONST_NULL);
                 break;
             case LocalOrFieldVarExpr e:
-                throw new IllegalStateException("LocalOrFieldVarExpr hasn't been resolved!");
-            case LocalVar e:
-                genLocalVar(e, m);
-                break;
-            case FieldVar e:
-                genFieldVar(e, m);
+                switch (e.context) {
+                    case local -> genLocalVar(e, m);
+                    case field -> genFieldVar(e, m);
+                    case unknown -> throw new IllegalStateException("Variable unknown!");
+                }
                 break;
             case InstVarExpr e:
                 genInstVar(e, m);
@@ -73,8 +76,7 @@ public class ExpressionGenerator {
     }
 
     private static void genBinaryExpr(BinaryExpr expr, Method m) {
-        String type = "int"; //TODO: get type from expr
-        switch (type){
+        switch (expr.type.name) {
             case "int", "char":
                 switch (expr.eval) {
                     case "+" -> {
@@ -101,46 +103,78 @@ public class ExpressionGenerator {
                 break;
             case "boolean":
                 switch (expr.eval) {
-                    case "and","&&" -> {
+                    case "and", "&&" -> {
                         genExpr(expr.expr1, m);
                         genExpr(expr.expr2, m);
                         m.visitor.visitInsn(Opcodes.IAND);
                     }
-                    case "or","||" -> {
+                    case "or", "||" -> {
                         genExpr(expr.expr1, m);
                         genExpr(expr.expr2, m);
                         m.visitor.visitInsn(Opcodes.IOR);
+                    }
+                    case "<" -> {
+                        genExpr(expr.expr1, m);
+                        genExpr(expr.expr2, m);
+
+                        Label retfalse = new Label();
+                        Label end = new Label();
+
+                        m.visitor.visitJumpInsn(Opcodes.IF_ICMPGE, retfalse);
+                        m.visitor.visitInsn(Opcodes.ICONST_1);
+                        m.visitor.visitJumpInsn(Opcodes.GOTO, end);
+
+                        m.visitor.visitLabel(retfalse);
+                        m.visitor.visitInsn(Opcodes.ICONST_0);
+
+                        m.visitor.visitLabel(end);
+                    }
+                    case "==" -> {
+                        genExpr(expr.expr1, m);
+                        genExpr(expr.expr2, m);
+
+                        Label retfalse = new Label();
+                        Label end = new Label();
+
+                        m.visitor.visitJumpInsn(Opcodes.IF_ICMPNE, retfalse);
+                        m.visitor.visitInsn(Opcodes.ICONST_1);
+                        m.visitor.visitJumpInsn(Opcodes.GOTO, end);
+
+                        m.visitor.visitLabel(retfalse);
+                        m.visitor.visitInsn(Opcodes.ICONST_0);
+
+                        m.visitor.visitLabel(end);
                     }
                 }
                 break;
             case "String":
                 // TODO
-                /*switch (expr.eval){
+                switch (expr.eval) {
                     case "+":
                         genExpr(expr.expr1, m);
                         genExpr(expr.expr2, m);
                         m.visitor.visitMethodInsn(
-                                Opcodes.INVOKEDYNAMIC,
-                                null,
-                                "makeConcatWithConstants",
-                                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+                                Opcodes.INVOKEVIRTUAL,
+                                "java/lang/String",
+                                "concat",
+                                "(Ljava/lang/String;)Ljava/lang/String;",
                                 false);
                         break;
-                }*/
+                }
                 break;
 
             default:
-                throw new IllegalStateException("Unexpected value: " + type);
+                throw new IllegalStateException("Unexpected value: " + expr.type.name);
         }
     }
 
-    private static void genUnaryExpr(UnaryExpr expr, Method m){
-        switch (expr.eval){
+    private static void genUnaryExpr(UnaryExpr expr, Method m) {
+        switch (expr.eval) {
             case "-":
                 genExpr(expr.expr, m);
                 m.visitor.visitInsn(Opcodes.INEG);
                 break;
-            case "not","!":
+            case "not", "!":
                 Label retzero = new Label();
                 Label end = new Label();
 
@@ -159,8 +193,8 @@ public class ExpressionGenerator {
     }
 
 
-    private static void genLocalVar(LocalVar v, Method m) {
-        String type = "int"; //TODO get type from expression
+    private static void genLocalVar(LocalOrFieldVarExpr v, Method m) {
+        String type = v.type.name;
         int index = m.localVariableIndexes.get(v.name);
 
         switch (type) {
@@ -174,15 +208,15 @@ public class ExpressionGenerator {
 
     }
 
-    private static void genFieldVar(FieldVar f, Method m) {
-        String type = "int"; //TODO get type from expression
-
-        //m.visitor.visitFieldInsn(Opcodes.GETFIELD, ???, f.name, fieldDescriptor(f.type));
+    private static void genFieldVar(LocalOrFieldVarExpr f, Method m) {
+        String type = f.type.name;
+        m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
+        m.visitor.visitFieldInsn(Opcodes.GETFIELD, m.ownerClass.name, f.name, fieldDescriptor(f.type.name));
     }
 
     private static void genInstVar(InstVarExpr var, Method m) {
         genExpr(var.inst, m);
-        //m.visitor.visitFieldInsn(Opcodes.GETFIELD, var.inst.type.name, var.name, fieldDescriptor(var.type.name), false);
+        m.visitor.visitFieldInsn(Opcodes.GETFIELD, var.inst.type.name, var.name, fieldDescriptor(var.type.name));
     }
 
 }

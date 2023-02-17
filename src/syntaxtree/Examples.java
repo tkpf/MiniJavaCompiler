@@ -3,6 +3,9 @@ package syntaxtree;
 
 import syntaxtree.expressions.*;
 import syntaxtree.statementexpressions.AssignStmtExpr;
+import syntaxtree.statementexpressions.MethodCallStmtExpr;
+import syntaxtree.statementexpressions.NewStmtExpr;
+import syntaxtree.statementexpressions.StatementExpression;
 import syntaxtree.statements.*;
 
 import java.util.Arrays;
@@ -137,5 +140,30 @@ public class Examples {
             "TestKlasse2",
             fields1,
             new Vector<Method>(Arrays.asList( meth2, meth3, meth4, meth5 )));
+
+    public static Program program1 = new Program(new Vector<Class>(Arrays.asList(
+            new Class(
+                    "Klasse1",
+                    new Vector<Field>(),
+                    new Vector<Method>(new Vector<Method>(Arrays.asList(
+                            new Method(
+                                    "testing",
+                                    new Type("void"),
+                                    new Vector<Parameter>(),
+                                    new BlockStmt(new Vector<Statement>(Arrays.asList(
+                                            new StmtExprStmt(
+                                                    new NewStmtExpr(
+                                                    new Type("Klasse2"),
+                                                    new Vector<Expression>()))
+                                    )))
+                    ))))
+            ),
+            new Class(
+                    "Klasse2",
+                    new Vector<Field>(),
+                    new Vector<Method>())
+    )));
+
+    public static Class emptyClass = new Class("Empty", new Vector<Field>(), new Vector<Method>());
 }
 */

@@ -36,7 +36,12 @@ public class TypeCheck {
                     localScope.addField(p.name, p.type);
                 }
                 Type methodBodyType = typeStatement(m.blck, localScope);
-                if (!m.type.equals(methodBodyType)) {
+                // body of constructors must be of type `void`
+                if (m.type.equals(m.name)) {
+                    if (!methodBodyType.equals("void")) {
+                        throw new TypeMismatchException(methodBodyType.toString());
+                    }
+                }else if (!m.type.equals(methodBodyType)) {
                     throw new TypeMismatchException(methodBodyType.toString());
                 }
             }
@@ -137,11 +142,15 @@ public class TypeCheck {
                     throw new TypeMismatchException();
                 }
                 Type ifType = typeStatement(ifStmt.ifBlck, localScope);
-                Type elseType = typeStatement(ifStmt.elseBlck, localScope);
-                if (elseType == null || ifType.equals(elseType)) {
+                if (ifStmt.elseBlck == null) {
                     stmt.type = ifType;
                 } else {
-                    throw new TypeMismatchException();
+                    Type elseType = typeStatement(ifStmt.elseBlck, localScope);
+                    if (ifType.equals(elseType)) {
+                        stmt.type = ifType;
+                    } else {
+                        throw new TypeMismatchException();
+                    }
                 }
             }
             case WhileStmt whileStmt -> {
@@ -174,8 +183,12 @@ public class TypeCheck {
             }
             case NewStmtExpr newStmtExpr -> {
                 // TODO: new Integer, Char, Boolean, String, etc deprecated
-                stmtExp.type = new Type("void");
-                // TODO: check if constructor signature has been defined
+                ArrayList<Type> paramTypes = new ArrayList<>(newStmtExpr.initParams.size());
+                for (Expression e : newStmtExpr.initParams) {
+                    paramTypes.add(typeExpression(e, localScope));
+                }
+                Signature constSignature = new Signature(newStmtExpr.type.name, paramTypes);
+                stmtExp.type = env.lookupMethod(newStmtExpr.type, constSignature);
             }
             case MethodCallStmtExpr methodCallStmtExpr -> {
                 Type objType = typeExpression(methodCallStmtExpr.obj, localScope);
@@ -208,6 +221,20 @@ public class TypeCheck {
                         throw new TypeMismatchException();
                     }
                 }
+                case "<", "<=", ">=", ">" -> {
+                    if ((t1.equals("int") || t1.equals("char")) && t1.equals(t2)) {
+                        binaryExpr.type = new Type("boolean");
+                    } else {
+                        throw new TypeMismatchException();
+                    }
+                }
+                case "==", "!=" -> {
+                    if (t1.equals(t2)) {
+                        binaryExpr.type = new Type("boolean");
+                    } else {
+                        throw new TypeMismatchException();
+                    }
+                }
                 case "&&", "||" -> {
                     if (t1.equals("boolean") && t1.equals(t2)) {
                         binaryExpr.type = t1;
@@ -215,7 +242,7 @@ public class TypeCheck {
                         throw new TypeMismatchException();
                     }
                 }
-                case default -> throw new MissingSymbolException();
+                case default -> throw new MissingSymbolException(binaryExpr.eval);
             }
         }
     }

@@ -134,10 +134,11 @@ statement
   //  |   ForLiteral '(' forControl ')' block
     |   WhileLiteral '(' expression ')' block
     |   ReturnLiteral expression? ';'
-    |   ';'
+    |   EmptyStatement
     |   statementExpression ';'
     |   localVariableDeclaration
     ;
+
 
 statementExpression
     :   expression AssignLiteral expression
@@ -148,8 +149,8 @@ statementExpression
 expression
     :   primary
     |   expression InstLiteral Identifier
-    |   expression binaryLiterals expression
     |   unaryLiterals expression
+    |   expression binaryLiterals expression
     |   expression methodCallRest
     |   expression AssignLiteral expression
     |   NewLiteral creator
@@ -159,11 +160,9 @@ methodCallRest
     : InstLiteral Identifier '('expressionList? ')'
     ;
 
-AssignLiteral : '=' ;
-
 binaryLiterals
     : MulLiterals
-    | AddLIterals
+    | AddLiterals
     | CompareLiterals
     | AndOrLiterals
     ;
@@ -171,6 +170,7 @@ binaryLiterals
 unaryLiterals
     : IncLiterals
     | NotLiteral
+    | AddLiterals
     ;
 
 
@@ -196,6 +196,8 @@ type:   Identifier //('[' ']')*
     |   PrimitiveType //('[' ']')*
     ;
 
+EmptyStatement : ';';
+AssignLiteral : '=' ;
 
 PrimitiveType
     :   'boolean'
@@ -242,7 +244,7 @@ NewLiteral  : 'new' ;
 InstLiteral : '.' ;
 
 MulLiterals : ('*'|'/'|'%') ;
-AddLIterals : ('+'|'-');
+AddLiterals : ('+'|'-');
 CompareLiterals : ('<' '=' | '>' '=' | '>' | '<' | '==' | '!=');
 AndOrLiterals : '&&' | '||' ;
 IncLiterals : '++'|'--' ;

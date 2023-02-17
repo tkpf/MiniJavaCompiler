@@ -3,7 +3,9 @@ package codegen;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.Opcodes;
 import syntaxtree.Method;
+import syntaxtree.Type;
 import syntaxtree.expressions.Expression;
+import syntaxtree.expressions.JNullExpr;
 import syntaxtree.statements.*;
 import static codegen.StatementExpressionGenerator.genStmtExpr;
 import static codegen.ExpressionGenerator.*;
@@ -12,41 +14,31 @@ public class StatementGenerator {
     public static void genStmt(Statement stmt, Method m)
     {
         switch (stmt) {
-            case null:
-                m.visitor.visitInsn(Opcodes.NOP);
-                break;
-            case BlockStmt s:
+            case null -> System.out.println("came across null statement!");
+            case BlockStmt s -> {
                 s.stmtBlck.forEach(b -> genStmt(b, m)); // todo: delete local variables after block is closed
-                break;
-            case ReturnStmt s:
-                genReturnStmt(s.rExpr, m);
-                break;
-            case VarDeclStmt s:
-                m.localVariableIndexes.put(s.name, m.localVariableIndexes.size()+1);
-                break;
-            case IfStmt s:
-                genIfStmt(s, m);
-                break;
-            case WhileStmt s:
-                genWhileStmt(s, m);
-                break;
-            case StmtExprStmt s:
-                genStmtExpr(s.stmtExpr, m);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + stmt);
+            }
+            case ReturnStmt s -> genReturnStmt(s.rExpr, m);
+            case VarDeclStmt s -> m.localVariableIndexes.put(s.name, m.localVariableIndexes.size() + 1);
+            case IfStmt s -> genIfStmt(s, m);
+            case WhileStmt s -> genWhileStmt(s, m);
+            case StmtExprStmt s -> genStmtExpr(s.stmtExpr, m);
+            default -> throw new IllegalStateException("Unexpected value: " + stmt);
         }
 
     }
     public static void genReturnStmt(Expression rexpr, Method m)
     {
-        String type = "int"; //TODO: get type from rexpr
+        String type = rexpr.type.name;
         switch (type) {
             case "int", "char", "boolean" -> {
                 genExpr(rexpr, m);
                 m.visitor.visitInsn(Opcodes.IRETURN);
             }
-            case "String", "null" -> {
+            case "void" -> {
+                m.visitor.visitInsn(Opcodes.RETURN);
+            }
+            case "String", "null", default -> {
                 genExpr(rexpr, m);
                 m.visitor.visitInsn(Opcodes.ARETURN);
             }
@@ -81,4 +73,5 @@ public class StatementGenerator {
 
         m.visitor.visitLabel(end);
     }
+
 }

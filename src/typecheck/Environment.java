@@ -11,6 +11,7 @@ import typecheck.exceptions.MissingSymbolException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class Environment {
@@ -50,29 +51,28 @@ public class Environment {
             }
             HashMap<Signature, Type> methodsMap = methods.get(c.name.toString());
             for (Method m : c.meths) {
+                // create signature of method
                 ArrayList<Type> paramTypes = new ArrayList<>(m.params.size());
                 for (Parameter p : m.params) {
                     paramTypes.add(p.type);
                 }
                 Signature methodSignature = new Signature(m.name, paramTypes);
-                if (primitives.contains(m.type)) {
-                    if (methodsMap.put(methodSignature, m.type) != null) {
-                        throw new AlreadyDefinedException();
-                    }
-                } else {
-                    if (methods.containsKey(m.type)) {
-                        methodsMap.put(methodSignature, m.type);
-                    } else {
-                        throw new MissingSymbolException();
-                    }
+
+                if (methodsMap.containsKey(methodSignature)) {
+                    throw new AlreadyDefinedException(m.name);
                 }
+                methodsMap.put(methodSignature, m.type);
             }
+            // add default constructor
+            Signature defCons = new Signature(c.name.toString(), List.of());
+            methodsMap.put(defCons, c.name);
         }
+        System.out.println(fields + "\n" + methods);
     }
 
     public Type lookupClass(String name) throws MissingSymbolException {
         if (fields.containsKey(name)) {
-            return new Type("name");
+            return new Type(name);
         } else {
             throw new MissingSymbolException();
         }
@@ -100,7 +100,7 @@ public class Environment {
             if (result != null) {
                 return result;
             } else {
-                throw new MissingSymbolException(methodSignature.name);
+                throw new MissingSymbolException(methodSignature.toString());
             }
         } else {
             throw new MissingSymbolException(className.toString());

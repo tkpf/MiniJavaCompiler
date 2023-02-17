@@ -3,16 +3,21 @@ package codegen;
 import org.objectweb.asm.Opcodes;
 import syntaxtree.Method;
 import syntaxtree.expressions.FieldVar;
+import syntaxtree.expressions.LocalOrFieldVarExpr;
 import syntaxtree.expressions.LocalVar;
 import syntaxtree.statementexpressions.*;
 
+import static codegen.ClassGenerator.constructorDescriptor;
 import static codegen.ClassGenerator.methodDescriptor;
+import static codegen.ClassGenerator.fieldDescriptor;
 import static codegen.ExpressionGenerator.genExpr;
 
 
 public class StatementExpressionGenerator {
     public static void genStmtExpr(StatementExpression stx, Method m) {
         switch (stx){
+            case null:
+                break;
             case AssignStmtExpr s:
                 genAssign(s, m);
                 break;
@@ -26,28 +31,35 @@ public class StatementExpressionGenerator {
     }
 
     public static void genAssign(AssignStmtExpr s, Method m) {
-        genExpr(s.asFromExpr, m);
+        String type = s.as2Expr.type.name;
 
-        switch (s.as2Expr) {
-            case LocalVar var:
-                String type = "int"; //TODO get type from expression
-
-                int index = m.localVariableIndexes.get(var.name);
-
-                switch (type) {
-                    case "int", "char", "boolean" -> {
-                        m.visitor.visitVarInsn(Opcodes.ISTORE, index);
+        if (s.as2Expr instanceof LocalOrFieldVarExpr var) {
+            switch (var.context) {
+                case local -> {
+                    int index = m.localVariableIndexes.get(var.name);
+                    genExpr(s.asFromExpr, m);
+                    switch (type) {
+                        case "int", "char", "boolean" -> {
+                            m.visitor.visitVarInsn(Opcodes.ISTORE, index);
+                        }
+                        case default -> {
+                            m.visitor.visitVarInsn(Opcodes.ASTORE, index);
+                        }
                     }
-                    case default -> {
-                        m.visitor.visitVarInsn(Opcodes.ASTORE, index);
-                    }
+                    break;
                 }
-
-                break;
-            case FieldVar field:
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + s.as2Expr);
+                case field -> {
+                    m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
+                    genExpr(s.asFromExpr, m);
+                    m.visitor.visitFieldInsn(Opcodes.PUTFIELD, m.ownerClass.name, var.name, fieldDescriptor(var.type.name));
+                    break;
+                }
+                case unknown -> {
+                    throw new IllegalStateException("variable unknown");
+                }
+            }
+        } else {
+            throw new IllegalStateException("cannot assign to anything other than LocalOrFieldVarExpr: " + s.as2Expr);
         }
     }
 
@@ -59,11 +71,12 @@ public class StatementExpressionGenerator {
         //gen params
         s.initParams.forEach(e -> genExpr(e, m));
         // invokespecial Konstruktor
-        m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL, s.type.name, "<init>", methodDescriptor(m), false);
+        m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL, s.type.name, "<init>", constructorDescriptor(m), false);
     }
 
     public static void genMethodCall(MethodCallStmtExpr mcall, Method m) {
+        genExpr(mcall.obj, m);
         mcall.methParams.forEach(e -> genExpr(e, m));
-        // m.visitor.visitMethodInsn(Opcodes.INVOKEVIRTUAL, mcall.obj.type, mcall.meth, methodDescriptor(m), false);
+        m.visitor.visitMethodInsn(Opcodes.INVOKEVIRTUAL, mcall.obj.type.name, mcall.meth, methodDescriptor(m), false);
     }
 }
