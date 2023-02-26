@@ -3,6 +3,7 @@ package parser.adapter;
 import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.Expression;
+import syntaxtree.expressions.ThisExpr;
 import syntaxtree.statementexpressions.AssignStmtExpr;
 import syntaxtree.statementexpressions.MethodCallStmtExpr;
 import syntaxtree.statementexpressions.NewStmtExpr;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Vector;
 
 public class StatementExpressionAdapter {
+    /*
     public static StatementExpression adapt (JavaMiniParser.ExpressionContext ctx) throws EscapeHatchException {
         // check if statement expression is a New Creator StmtExpr
         if (ctx.NewLiteral() != null) {
@@ -47,7 +49,7 @@ public class StatementExpressionAdapter {
             throw new EscapeHatchException();
         }
     }
-
+*/
     public static StatementExpression adapt (JavaMiniParser.StatementExpressionContext ctx) throws EscapeHatchException {
         // check if statement expression is a New Creator StmtExpr
         if (ctx.NewLiteral() != null) {
@@ -66,14 +68,22 @@ public class StatementExpressionAdapter {
         // check if statement expression is an assignment StmtExpr
         else if (ctx.AssignLiteral() != null) {
             return new AssignStmtExpr(
-                    ExpressionAdapter.adapt(ctx.expression(0)),
-                    ExpressionAdapter.adapt(ctx.expression(1))
+                    PrimaryExpressionAdapter.adapt(ctx.primary()),
+                    ExpressionAdapter.adapt(ctx.expression())
             );
         }
         // check if statement expression is a method call
         else if (ctx.methodCallRest() != null) {
+            // todo object via typchecker inferieren anstatt "this" parse
+            Expression objExpr;
+            if (ctx.primary() != null) {
+                objExpr = PrimaryExpressionAdapter.adapt(ctx.primary());
+            }
+            else {
+                objExpr = new ThisExpr();
+            }
             return new MethodCallStmtExpr(
-                    ExpressionAdapter.adapt(ctx.expression(0)),
+                    objExpr,
                     ctx.methodCallRest().Identifier().getText(),
                     ExpressionListAdapter.adapt(ctx.methodCallRest().expressionList())
             );

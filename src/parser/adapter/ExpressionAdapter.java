@@ -37,10 +37,15 @@ public class ExpressionAdapter {
                             ctx.expression(0)),
                     ctx.Identifier().getText());
         }
-        else {//todo
-            StatementExpression stmtExpr = StatementExpressionAdapter.adapt(ctx);
+        // check for StatementExpression
+        else if (ctx.statementExpression() != null) {
+            StatementExpression stmtExpr = StatementExpressionAdapter.adapt(ctx.statementExpression());
             return new StmtExprExpr(stmtExpr);
-        } // StatementExpression
+        }
+        // this should never be reached
+        else {
+            throw new EscapeHatchException();
+        }
 
     }
 }
