@@ -5,10 +5,10 @@ import typecheck.exceptions.AlreadyDefinedException;
 import typecheck.exceptions.MissingSymbolException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Optional;
 
 public class LocalScope {
-    private ArrayList<Scope> layers;
+    private final ArrayList<Scope> layers;
     private int currentScope;
 
     public LocalScope(Type className) {
@@ -18,15 +18,32 @@ public class LocalScope {
     }
 
     public void addField(String name, Type type) throws AlreadyDefinedException {
-        layers.get(currentScope).addField(name, type);
+        if(!layers.get(currentScope).addField(name, type)) {
+            throw new AlreadyDefinedException(name);
+        }
     }
 
     public Type lookupField(String name) throws MissingSymbolException {
-        // TODO: Implement nested blocks
-        return layers.get(currentScope).lookupField(name);
+        for (int i = currentScope; i >= 0; i--) {
+            Optional<Type> result = layers.get(i).lookupField(name);
+            if (result.isPresent()) {
+                return result.get();
+            }
+        }
+        throw new MissingSymbolException(name);
     }
 
     public Type getCurrentClass() {
         return layers.get(currentScope).thisClass;
+    }
+
+    public void newBlock() {
+        Type thisClass = getCurrentClass();
+        currentScope += 1;
+        layers.add(currentScope, new Scope(thisClass));
+    }
+
+    public void closeBlock() {
+        currentScope -= 1;
     }
 }

@@ -5,6 +5,7 @@ import typecheck.exceptions.AlreadyDefinedException;
 import typecheck.exceptions.MissingSymbolException;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 public class Scope {
     public final Type thisClass;
@@ -17,37 +18,37 @@ public class Scope {
         this.methods = new HashMap<>();
     }
 
-    public void addField(String name, Type type) throws AlreadyDefinedException {
+    public boolean addField(String name, Type type) {
         if (fields.containsKey(name)) {
-            throw new AlreadyDefinedException(name);
+            return false;
         } else {
             fields.put(name, type);
+            return true;
         }
     }
 
-    public Type lookupField(String name) throws MissingSymbolException {
-        Type result = fields.get(name);
-        if (result == null) {
-            throw new MissingSymbolException(name);
+    public Optional<Type> lookupField(String name) {
+        if (fields.containsKey(name)) {
+            return Optional.of(fields.get(name));
         } else {
-            return result;
+            return Optional.empty();
         }
     }
 
-    public void addMethod(Signature sig, Type type) throws AlreadyDefinedException {
+    public boolean addMethod(Signature sig, Type type) {
         if (methods.containsKey(sig)) {
-            throw new AlreadyDefinedException(sig.toString());
+            return false;
         } else {
             methods.put(sig, type);
+            return true;
         }
     }
 
-    public Type lookupMethod(Signature sig) throws MissingSymbolException {
-        Type result = methods.get(sig);
-        if (result == null) {
-            throw new MissingSymbolException(sig.toString());
+    public Optional<Type> lookupMethod(Signature sig) {
+        if (methods.containsKey(sig)) {
+            return Optional.of(methods.get(sig));
         } else {
-            return result;
+            return Optional.empty();
         }
     }
 

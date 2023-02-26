@@ -41,7 +41,7 @@ public class TypeCheck {
                     if (!methodBodyType.equals("void")) {
                         throw new TypeMismatchException(methodBodyType.toString());
                     }
-                }else if (!m.type.equals(methodBodyType)) {
+                } else if (!m.type.equals(methodBodyType)) {
                     throw new TypeMismatchException(methodBodyType.toString());
                 }
             }
