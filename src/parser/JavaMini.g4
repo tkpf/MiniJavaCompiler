@@ -134,11 +134,14 @@ statement
   //  |   ForLiteral '(' forControl ')' block
     |   WhileLiteral '(' expression ')' block
     |   ReturnLiteral expression? ';'
-    |   EmptyStatement
+    |   emptyStatement
     |   statementExpression ';'
     |   localVariableDeclaration
     ;
 
+emptyStatement
+    : ';'
+    ;
 
 statementExpression
     :   expression AssignLiteral expression
@@ -196,7 +199,6 @@ type:   Identifier //('[' ']')*
     |   PrimitiveType //('[' ']')*
     ;
 
-EmptyStatement : ';';
 AssignLiteral : '=' ;
 
 PrimitiveType

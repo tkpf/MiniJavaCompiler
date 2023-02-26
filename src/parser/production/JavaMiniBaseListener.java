@@ -257,6 +257,18 @@ public class JavaMiniBaseListener implements JavaMiniListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterEmptyStatement(JavaMiniParser.EmptyStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEmptyStatement(JavaMiniParser.EmptyStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStatementExpression(JavaMiniParser.StatementExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}

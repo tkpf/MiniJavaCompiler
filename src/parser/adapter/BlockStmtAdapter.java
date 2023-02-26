@@ -79,7 +79,7 @@ public class BlockStmtAdapter {
                         new StmtExprStmt(stmtExpr)
                 );
             }
-            else if (stmtCxt.EmptyStatement() != null) {
+            else if (stmtCxt.emptyStatement() != null) {
                 // do nothing
             }
             else {

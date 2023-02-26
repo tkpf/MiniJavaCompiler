@@ -131,6 +131,12 @@ public interface JavaMiniVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatement(JavaMiniParser.StatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JavaMiniParser#emptyStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEmptyStatement(JavaMiniParser.EmptyStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#statementExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

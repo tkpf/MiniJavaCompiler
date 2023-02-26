@@ -208,6 +208,16 @@ public interface JavaMiniListener extends ParseTreeListener {
 	 */
 	void exitStatement(JavaMiniParser.StatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JavaMiniParser#emptyStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterEmptyStatement(JavaMiniParser.EmptyStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaMiniParser#emptyStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitEmptyStatement(JavaMiniParser.EmptyStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JavaMiniParser#statementExpression}.
 	 * @param ctx the parse tree
 	 */
