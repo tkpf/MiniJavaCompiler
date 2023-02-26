@@ -135,7 +135,11 @@ public class TypeCheck {
                 stmt.type = resultType;
             }
             case ReturnStmt returnStmt -> {
-                stmt.type = typeExpression(returnStmt.rExpr, localScope);
+                if (returnStmt.rExpr == null) {
+                    stmt.type = new Type("void");
+                } else {
+                    stmt.type = typeExpression(returnStmt.rExpr, localScope);
+                }
             }
             case IfStmt ifStmt -> {
                 if (!typeExpression(ifStmt.boolExpr, localScope).equals("boolean")) {
