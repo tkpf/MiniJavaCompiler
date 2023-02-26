@@ -8,7 +8,16 @@ class TestClass {
         else
         {
             TestClass t = new TestClass();
-            return t.doNothingRecursion(repetitions - 1);
+            t.doNothingRecursion(repetitions - 1);
         }
     }
+
+    public int sumUpRecursive(int num)
+        {
+            if (num == 0) {
+                return 0;
+            }
+            return sumUpRecursive(num - 1) + num;
+        }
+
 }

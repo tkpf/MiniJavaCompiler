@@ -47,9 +47,7 @@ public class BlockStmtAdapter {
                     rStmt = new ReturnStmt(ExpressionAdapter.adapt(rExprCtx));
                 }
                 else {
-                    rStmt = new ReturnStmt(
-                            new JNullExpr()
-                    );
+                    rStmt = new ReturnStmt(null);
                 }
 
                 stmts.add(rStmt);
