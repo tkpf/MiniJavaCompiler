@@ -1,0 +1,14 @@
+class TestClass {
+    public void doNothingRecursion(int repetitions)
+    {
+        if (repetitions == 0)
+        {
+            return;
+        }
+        else
+        {
+            TestClass t = new TestClass();
+            return t.doNothingRecursion(repetitions - 1);
+        }
+    }
+}

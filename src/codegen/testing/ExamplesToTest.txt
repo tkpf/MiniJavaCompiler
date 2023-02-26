@@ -60,8 +60,8 @@ class TestClass
         }
         return sumUpRecursive(num - 1) + num;
     }*/
-
-    /*public void doNothingRecursion(int repetitions)
+/*
+    public void doNothingRecursion(int repetitions)
     {
         if (repetitions == 0)
         {
@@ -70,7 +70,7 @@ class TestClass
         else
         {
             TestClass t = new TestClass();
-            t.doNothingRecursion(repetitions - 1);
+            return t.doNothingRecursion(repetitions - 1);
         }
     }*/
 
