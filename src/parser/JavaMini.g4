@@ -151,7 +151,6 @@ statementExpression
 
 expression
     :   primary
-    |   expression InstLiteral Identifier
     |   unaryLiterals expression
     |   expression binaryLiterals expression
     |   statementExpression
@@ -185,6 +184,7 @@ creator
 
 primary
     :   '(' expression ')'
+    |   primary InstLiteral Identifier
     |   RefLiteral
     |   typeLiteral
     |   Identifier
