@@ -144,8 +144,8 @@ emptyStatement
     ;
 
 statementExpression
-    :   expression AssignLiteral expression
-    |   expression methodCallRest
+    :   primary AssignLiteral expression
+    |   (primary InstLiteral)? methodCallRest
     |   NewLiteral creator
     ;
 
@@ -154,13 +154,11 @@ expression
     |   expression InstLiteral Identifier
     |   unaryLiterals expression
     |   expression binaryLiterals expression
-    |   expression methodCallRest
-    |   expression AssignLiteral expression
-    |   NewLiteral creator
+    |   statementExpression
     ;
 
 methodCallRest
-    : InstLiteral Identifier '('expressionList? ')'
+    : Identifier '('expressionList? ')'
     ;
 
 binaryLiterals
