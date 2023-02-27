@@ -180,7 +180,7 @@ public class ClassGenerator {
     static void cw2file(ClassWriter cw) throws IOException {
         byte[] bytes = cw.toByteArray();
         String className = new ClassReader(bytes).getClassName();
-        File outputFile = new File(".\\out", className + ".class");
+        File outputFile = new File("./out", className + ".class");
         FileOutputStream output = new FileOutputStream(outputFile);
         output.write(bytes);
         output.close();
