@@ -48,13 +48,6 @@ class TestClass
         return new Empty();
     }
 
-    public Empty createEmpty2()
-    {
-        Empty e;
-        e = new Empty();
-        return e;
-    }
-
     public int choose(int a, int b, boolean c)
     {
         if(c) { return a; }
@@ -62,13 +55,28 @@ class TestClass
     }
 
 
-    /*public int sumUpRecursive(int num)
+    public int sumUpRecursive(int num)
     {
         if (num == 0) {
             return 0;
         }
-        return sumUpRecursive(num - 1) + num;
-    }*/
+        return this.sumUpRecursive(num - 1) + num;
+    }
+
+    public void doNothingRecursion(int repetitions)
+    {
+        if (repetitions < 1)
+        {
+            TestClass t = new TestClass();
+            t.doNothingRecursion(repetitions - 1);
+        }
+    }
+
+    public Empty testMethodCall()
+    {
+        TestClass t = new TestClass();
+        return t.createEmpty();
+    }
 
     public boolean isSmaller(int a, int b)
     {
@@ -160,7 +168,3 @@ class TestClass
 
 
 }
-
-
-
-
