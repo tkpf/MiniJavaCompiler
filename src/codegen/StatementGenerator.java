@@ -14,7 +14,7 @@ public class StatementGenerator {
     public static void genStmt(Statement stmt, Method m)
     {
         switch (stmt) {
-            case null -> System.out.println("came across null statement!");
+            case null -> {} //System.out.println("came across null statement!");
             case BlockStmt s -> {
                 s.stmtBlck.forEach(b -> genStmt(b, m)); // todo: delete local variables after block is closed
             }

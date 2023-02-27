@@ -177,18 +177,14 @@ public class ClassGenerator {
         return "("+paramDesc+")V";
     }
 
-    static void cw2file(ClassWriter cw) throws IOException {
+    static void cw2file(ClassWriter cw, String outputDirectory) throws IOException {
         byte[] bytes = cw.toByteArray();
         String className = new ClassReader(bytes).getClassName();
-        File outputFile = new File("./out", className + ".class");
+        File outputFile = new File(outputDirectory, className + ".class");
         FileOutputStream output = new FileOutputStream(outputFile);
         output.write(bytes);
         output.close();
     }
 
-    /*public static void main(String[] args) throws IOException {
-        ClassWriter cw;
-        cw = generateClassCode(Examples.ast6);
-        cw2file(cw);
-    }*/
+
 }
