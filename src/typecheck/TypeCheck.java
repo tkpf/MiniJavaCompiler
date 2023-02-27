@@ -195,6 +195,9 @@ public class TypeCheck {
                 stmtExp.type = env.lookupMethod(newStmtExpr.type, constSignature);
             }
             case MethodCallStmtExpr methodCallStmtExpr -> {
+                if (methodCallStmtExpr.obj == null) {
+                    methodCallStmtExpr.obj = new ThisExpr();
+                }
                 Type objType = typeExpression(methodCallStmtExpr.obj, localScope);
                 ArrayList<Type> paramTypes = new ArrayList<>(methodCallStmtExpr.methParams.size());
                 for (Expression exp : methodCallStmtExpr.methParams) {
