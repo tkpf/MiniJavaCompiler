@@ -58,16 +58,12 @@ class TestClass
         if (num == 0) {
             return 0;
         }
-        return sumUpRecursive(num - 1) + num;
+        return this.sumUpRecursive(num - 1) + num;
     }
 
     public void doNothingRecursion(int repetitions)
     {
-        if (repetitions == 0)
-        {
-            return;
-        }
-        else
+        if (repetitions < 1)
         {
             TestClass t = new TestClass();
             t.doNothingRecursion(repetitions - 1);
@@ -170,7 +166,3 @@ class TestClass
 
 
 }
-
-
-
-

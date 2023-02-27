@@ -14,7 +14,7 @@ public class StatementGenerator {
     public static void genStmt(Statement stmt, Method m)
     {
         switch (stmt) {
-            case null -> System.out.println("came across null statement!");
+            case null -> {} //System.out.println("came across null statement!");
             case BlockStmt s -> {
                 s.stmtBlck.forEach(b -> genStmt(b, m)); // todo: delete local variables after block is closed
             }
@@ -29,8 +29,12 @@ public class StatementGenerator {
     }
     public static void genReturnStmt(Expression rexpr, Method m)
     {
-        String type = rexpr.type.name;
-        switch (type) {
+        if(rexpr == null)
+        {
+            m.visitor.visitInsn(Opcodes.RETURN);
+            return;
+        }
+        switch (rexpr.type.name) {
             case "int", "char", "boolean" -> {
                 genExpr(rexpr, m);
                 m.visitor.visitInsn(Opcodes.IRETURN);
