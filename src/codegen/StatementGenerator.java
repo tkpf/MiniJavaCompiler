@@ -29,8 +29,12 @@ public class StatementGenerator {
     }
     public static void genReturnStmt(Expression rexpr, Method m)
     {
-        String type = rexpr.type.name;
-        switch (type) {
+        if(rexpr == null)
+        {
+            m.visitor.visitInsn(Opcodes.RETURN);
+            return;
+        }
+        switch (rexpr.type.name) {
             case "int", "char", "boolean" -> {
                 genExpr(rexpr, m);
                 m.visitor.visitInsn(Opcodes.IRETURN);
