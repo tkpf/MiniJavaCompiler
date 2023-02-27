@@ -71,7 +71,8 @@ public class StatementExpressionGenerator {
         //gen params
         s.initParams.forEach(e -> genExpr(e, m));
         // invokespecial Konstruktor
-        m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL, s.type.name, "<init>", constructorDescriptor(m), false);
+        String paramDesc = s.initParams.stream().map(e -> fieldDescriptor(e.type.name)).reduce("", String::concat);
+        m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL, s.type.name, "<init>", "("+paramDesc+")V", false);
     }
 
     public static void genMethodCall(MethodCallStmtExpr mcall, Method m) {
