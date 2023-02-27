@@ -135,7 +135,11 @@ public class TypeCheck {
                 stmt.type = resultType;
             }
             case ReturnStmt returnStmt -> {
-                stmt.type = typeExpression(returnStmt.rExpr, localScope);
+                if (returnStmt.rExpr == null) {
+                    stmt.type = new Type("void");
+                } else {
+                    stmt.type = typeExpression(returnStmt.rExpr, localScope);
+                }
             }
             case IfStmt ifStmt -> {
                 if (!typeExpression(ifStmt.boolExpr, localScope).equals("boolean")) {
@@ -191,6 +195,9 @@ public class TypeCheck {
                 stmtExp.type = env.lookupMethod(newStmtExpr.type, constSignature);
             }
             case MethodCallStmtExpr methodCallStmtExpr -> {
+                if (methodCallStmtExpr.obj == null) {
+                    methodCallStmtExpr.obj = new ThisExpr();
+                }
                 Type objType = typeExpression(methodCallStmtExpr.obj, localScope);
                 ArrayList<Type> paramTypes = new ArrayList<>(methodCallStmtExpr.methParams.size());
                 for (Expression exp : methodCallStmtExpr.methParams) {

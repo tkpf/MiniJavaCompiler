@@ -12,6 +12,13 @@ public class PrimaryExpressionAdapter {
         if (ctx.expression() != null) {
             return ExpressionAdapter.adapt(ctx.expression());
         }
+        // check for Instance Variable Expression
+        else if (ctx.InstLiteral() != null) {
+            return InstVarExpressionAdapter.adapt(
+                    PrimaryExpressionAdapter.adapt(
+                            ctx.primary()),
+                    ctx.Identifier().getText());
+        }
         else if (ctx.RefLiteral() != null) {
             return switch (ctx.RefLiteral().getText()) {
                 case "this" -> new ThisExpr();

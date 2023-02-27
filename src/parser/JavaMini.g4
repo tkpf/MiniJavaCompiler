@@ -134,30 +134,30 @@ statement
   //  |   ForLiteral '(' forControl ')' block
     |   WhileLiteral '(' expression ')' block
     |   ReturnLiteral expression? ';'
-    |   EmptyStatement
+    |   emptyStatement
     |   statementExpression ';'
     |   localVariableDeclaration
     ;
 
+emptyStatement
+    : ';'
+    ;
 
 statementExpression
-    :   expression AssignLiteral expression
-    |   expression methodCallRest
+    :   primary AssignLiteral expression
+    |   (primary InstLiteral)? methodCallRest
     |   NewLiteral creator
     ;
 
 expression
     :   primary
-    |   expression InstLiteral Identifier
     |   unaryLiterals expression
     |   expression binaryLiterals expression
-    |   expression methodCallRest
-    |   expression AssignLiteral expression
-    |   NewLiteral creator
+    |   statementExpression
     ;
 
 methodCallRest
-    : InstLiteral Identifier '('expressionList? ')'
+    : Identifier '('expressionList? ')'
     ;
 
 binaryLiterals
@@ -184,6 +184,7 @@ creator
 
 primary
     :   '(' expression ')'
+    |   primary InstLiteral Identifier
     |   RefLiteral
     |   typeLiteral
     |   Identifier
@@ -196,7 +197,6 @@ type:   Identifier //('[' ']')*
     |   PrimitiveType //('[' ']')*
     ;
 
-EmptyStatement : ';';
 AssignLiteral : '=' ;
 
 PrimitiveType

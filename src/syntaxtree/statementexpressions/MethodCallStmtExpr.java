@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public final class MethodCallStmtExpr extends StatementExpression {
 
-    public final Expression obj;
+    public Expression obj;
     public final String meth;
     public final Vector<Expression> methParams; //todo datatype right?
 

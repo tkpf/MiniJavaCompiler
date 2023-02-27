@@ -22,9 +22,11 @@ public class Main_test {
         String basicTest = "test_basicClasses.txt";
         String elevatedTest = "test_ProgrammAboutShapes.txt";
 
+        String emptyStatementTest = "emptyStatement_test";
+
         System.out.println("Running Main_test");
 
-        CharStream input = CharStreams.fromFileName("./test/" + elevatedTest);
+        CharStream input = CharStreams.fromFileName("./test/" + emptyStatementTest);
 
         JavaMiniLexer lexer = new JavaMiniLexer(input);
         JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));

@@ -3,6 +3,7 @@ package parser.adapter;
 import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.Expression;
+import syntaxtree.expressions.JNullExpr;
 import syntaxtree.expressions.LocalOrFieldVarExpr;
 import syntaxtree.statementexpressions.AssignStmtExpr;
 import syntaxtree.statementexpressions.StatementExpression;
@@ -39,8 +40,16 @@ public class BlockStmtAdapter {
             }
             // check if current statement is return-statement
             else if (stmtCxt.ReturnLiteral() != null) {
-                JavaMiniParser.ExpressionContext rExprCtx = stmtCxt.expression();
-                ReturnStmt rStmt = new ReturnStmt(ExpressionAdapter.adapt(rExprCtx));
+                // check for empty expression
+                ReturnStmt rStmt;
+                if (stmtCxt.expression() != null) {
+                    JavaMiniParser.ExpressionContext rExprCtx = stmtCxt.expression();
+                    rStmt = new ReturnStmt(ExpressionAdapter.adapt(rExprCtx));
+                }
+                else {
+                    rStmt = new ReturnStmt(null);
+                }
+
                 stmts.add(rStmt);
             }
             // check if current statement is a local variable declaration
@@ -68,7 +77,7 @@ public class BlockStmtAdapter {
                         new StmtExprStmt(stmtExpr)
                 );
             }
-            else if (stmtCxt.EmptyStatement() != null) {
+            else if (stmtCxt.emptyStatement() != null) {
                 // do nothing
             }
             else {

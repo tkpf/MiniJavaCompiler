@@ -48,6 +48,13 @@ class TestClass
         return new Empty();
     }
 
+    public Empty createEmpty2()
+    {
+        Empty e;
+        e = new Empty();
+        return e;
+    }
+
     public int choose(int a, int b, boolean c)
     {
         if(c) { return a; }
@@ -55,13 +62,13 @@ class TestClass
     }
 
 
-    public int sumUpRecursive(int num)
+    /*public int sumUpRecursive(int num)
     {
         if (num == 0) {
             return 0;
         }
         return sumUpRecursive(num - 1) + num;
-    }
+    }*/
 
     public boolean isSmaller(int a, int b)
     {
@@ -87,6 +94,30 @@ class TestClass
         return counter;
     }
 
+    public void assignDebug()
+    {
+        int j = 5;
+        j = j + 1;
+    }
+
+    public void assignDebug2()
+    {
+        int j;
+        j = 5;
+        j = j + 1;
+    }
+
+    public void incr1(int i)
+    {
+        i = i + 1;
+    }
+
+    public int incr1int(int i)
+    {
+        i = i + 1;
+        return i;
+    }
+
     public int sumUp(int num)
     {
         int res = 0;
@@ -107,12 +138,19 @@ class TestClass
         return "greater";
     }
 
+    public String helloWorld() {return "Hello World";}
+
+
+    public boolean compareObjects(Object a, Object b) {return a == b;}
+
     public String addStrings(String a, String b) { return a + b; }
+
 
 
     public int testStore()
     {
-        Store st = new Store();
+        Store st;
+        st = new Store();
         st.countUp();
         st.countUp();
         st.countUp();

@@ -30,17 +30,15 @@ public class ExpressionAdapter {
                     ctx.unaryLiterals().start.getText()
             );
         }
-        // check for Instance Variable Expression
-        else if (ctx.InstLiteral() != null) {
-            return InstVarExpressionAdapter.adapt(
-                    ExpressionAdapter.adapt(
-                            ctx.expression(0)),
-                    ctx.Identifier().getText());
-        }
-        else {//todo
-            StatementExpression stmtExpr = StatementExpressionAdapter.adapt(ctx);
+        // check for StatementExpression
+        else if (ctx.statementExpression() != null) {
+            StatementExpression stmtExpr = StatementExpressionAdapter.adapt(ctx.statementExpression());
             return new StmtExprExpr(stmtExpr);
-        } // StatementExpression
+        }
+        // this should never be reached
+        else {
+            throw new EscapeHatchException();
+        }
 
     }
 }

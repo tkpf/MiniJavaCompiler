@@ -130,25 +130,38 @@ public class ExpressionGenerator {
                         m.visitor.visitLabel(end);
                     }
                     case "==" -> {
-                        genExpr(expr.expr1, m);
-                        genExpr(expr.expr2, m);
+                        switch (expr.expr1.type.name) {
+                            case "int", "char" -> {
+                                genExpr(expr.expr1, m);
+                                genExpr(expr.expr2, m);
+                                Label retfalse = new Label();
+                                Label end = new Label();
+                                m.visitor.visitJumpInsn(Opcodes.IF_ICMPNE, retfalse);
+                                m.visitor.visitInsn(Opcodes.ICONST_1);
+                                m.visitor.visitJumpInsn(Opcodes.GOTO, end);
+                                m.visitor.visitLabel(retfalse);
+                                m.visitor.visitInsn(Opcodes.ICONST_0);
+                                m.visitor.visitLabel(end);
+                            }
+                            case default -> {
+                                genExpr(expr.expr1, m);
+                                genExpr(expr.expr2, m);
+                                Label retfalsea = new Label();
+                                Label enda = new Label();
+                                m.visitor.visitJumpInsn(Opcodes.IF_ACMPNE, retfalsea);
+                                m.visitor.visitInsn(Opcodes.ICONST_1);
+                                m.visitor.visitJumpInsn(Opcodes.GOTO, enda);
+                                m.visitor.visitLabel(retfalsea);
+                                m.visitor.visitInsn(Opcodes.ICONST_0);
+                                m.visitor.visitLabel(enda);
+                            }
+                        }
 
-                        Label retfalse = new Label();
-                        Label end = new Label();
 
-                        m.visitor.visitJumpInsn(Opcodes.IF_ICMPNE, retfalse);
-                        m.visitor.visitInsn(Opcodes.ICONST_1);
-                        m.visitor.visitJumpInsn(Opcodes.GOTO, end);
-
-                        m.visitor.visitLabel(retfalse);
-                        m.visitor.visitInsn(Opcodes.ICONST_0);
-
-                        m.visitor.visitLabel(end);
                     }
                 }
                 break;
             case "String":
-                // TODO
                 switch (expr.eval) {
                     case "+":
                         genExpr(expr.expr1, m);
