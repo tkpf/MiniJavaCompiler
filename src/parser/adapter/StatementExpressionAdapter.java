@@ -3,7 +3,6 @@ package parser.adapter;
 import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.Expression;
-import syntaxtree.expressions.ThisExpr;
 import syntaxtree.statementexpressions.AssignStmtExpr;
 import syntaxtree.statementexpressions.MethodCallStmtExpr;
 import syntaxtree.statementexpressions.NewStmtExpr;
@@ -74,13 +73,12 @@ public class StatementExpressionAdapter {
         }
         // check if statement expression is a method call
         else if (ctx.methodCallRest() != null) {
-            // todo object via typchecker inferieren anstatt "this" parse
             Expression objExpr;
             if (ctx.primary() != null) {
                 objExpr = PrimaryExpressionAdapter.adapt(ctx.primary());
             }
             else {
-                objExpr = new ThisExpr();
+                objExpr = null;
             }
             return new MethodCallStmtExpr(
                     objExpr,
