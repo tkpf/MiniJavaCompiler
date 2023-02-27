@@ -7,9 +7,6 @@ public abstract sealed class Expression
 
     public Type type;
 
-    public void codeGen() {
-        //todo implement codeGen
-    }
 
     @Override
     public String toString() {
