@@ -3,7 +3,7 @@ package syntaxtree.expressions;
 import syntaxtree.Type;
 
 public abstract sealed class Expression
-        permits StringExpr, BinaryExpr, BoolExpr, CharExpr, InstVarExpr, IntegerExpr, JNullExpr, LocalOrFieldVarExpr, StmtExprExpr, SuperExpr, ThisExpr, UnaryExpr, LocalVar, FieldVar {
+        permits StringExpr, BinaryExpr, BoolExpr, CharExpr, InstVarExpr, IntegerExpr, JNullExpr, LocalOrFieldVarExpr, StmtExprExpr, SuperExpr, ThisExpr, UnaryExpr {
 
     public Type type;
 

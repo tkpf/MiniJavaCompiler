@@ -2,9 +2,7 @@ package codegen;
 
 import org.objectweb.asm.Opcodes;
 import syntaxtree.Method;
-import syntaxtree.expressions.FieldVar;
 import syntaxtree.expressions.LocalOrFieldVarExpr;
-import syntaxtree.expressions.LocalVar;
 import syntaxtree.statementexpressions.*;
 
 import static codegen.ClassGenerator.constructorDescriptor;
