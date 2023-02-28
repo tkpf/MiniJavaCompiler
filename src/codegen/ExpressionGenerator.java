@@ -64,9 +64,6 @@ public class ExpressionGenerator {
             case ThisExpr e:
                 m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
                 break;
-            case SuperExpr e:
-                m.visitor.visitLdcInsn(Object.class);
-                break;
             case StmtExprExpr e:
                 genStmtExpr(e.stmtExprExpr, m);
                 break;
