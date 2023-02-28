@@ -45,13 +45,11 @@ public class StatementExpressionGenerator {
                             m.visitor.visitVarInsn(Opcodes.ASTORE, index);
                         }
                     }
-                    break;
                 }
                 case field -> {
                     m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
                     genExpr(s.asFromExpr, m);
-                    m.visitor.visitFieldInsn(Opcodes.PUTFIELD, m.ownerClass.name, var.name, fieldDescriptor(var.type.name));
-                    break;
+                    m.visitor.visitFieldInsn(Opcodes.PUTFIELD, m.ownerClass.name.name, var.name, fieldDescriptor(var.type.name));
                 }
                 case unknown -> {
                     throw new IllegalStateException("variable unknown");

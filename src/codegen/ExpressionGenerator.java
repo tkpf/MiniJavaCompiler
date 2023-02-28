@@ -224,7 +224,7 @@ public class ExpressionGenerator {
     private static void genFieldVar(LocalOrFieldVarExpr f, Method m) {
         String type = f.type.name;
         m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
-        m.visitor.visitFieldInsn(Opcodes.GETFIELD, m.ownerClass.name, f.name, fieldDescriptor(f.type.name));
+        m.visitor.visitFieldInsn(Opcodes.GETFIELD, m.ownerClass.name.name, f.name, fieldDescriptor(f.type.name));
     }
 
     private static void genInstVar(InstVarExpr var, Method m) {
