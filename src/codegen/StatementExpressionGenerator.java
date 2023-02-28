@@ -58,10 +58,11 @@ public class StatementExpressionGenerator {
                 }
             }
         } else if (s.as2Expr instanceof InstVarExpr var) {
-            //m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
+            System.out.println(Opcodes.PUTFIELD + " " + var.inst.type.name + " " + var.name + " " + fieldDescriptor(var.inst.type.name));
+            System.out.println(s.asFromExpr);
             genExpr(var.inst, m);
             genExpr(s.asFromExpr, m);
-            m.visitor.visitFieldInsn(Opcodes.PUTFIELD, var.inst.type.name, var.name, fieldDescriptor(var.inst.type.name));
+            m.visitor.visitFieldInsn(Opcodes.PUTFIELD, var.inst.type.name, var.name, fieldDescriptor(var.type.name));
         } else {
             throw new IllegalStateException("cannot assign to anything other than LocalOrFieldVarExpr: " + s.as2Expr);
         }
