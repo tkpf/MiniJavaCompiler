@@ -232,7 +232,7 @@ public class TypeCheck {
                     }
                 }
                 case "==", "!=" -> {
-                    if (t1.equals(t2)) {
+                    if (t1.equals(t2) || t1.equals("null") || t2.equals("null")) {
                         binaryExpr.type = new Type("boolean");
                     } else {
                         throw new TypeMismatchException();
