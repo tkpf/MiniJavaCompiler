@@ -1,5 +1,7 @@
 package typecheck;
 
+import syntaxtree.Method;
+import syntaxtree.Parameter;
 import syntaxtree.Type;
 
 import java.util.ArrayList;
@@ -12,6 +14,14 @@ public class Signature {
     public Signature(String name, List<Type> args) {
         this.name = name;
         this.args = args;
+    }
+
+    public static Signature of(Method method) {
+        ArrayList<Type> paramTypes = new ArrayList<>(method.params.size());
+        for (Parameter p : method.params) {
+            paramTypes.add(p.type);
+        }
+        return new Signature(method.name, paramTypes);
     }
 
     @Override

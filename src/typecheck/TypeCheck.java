@@ -15,12 +15,12 @@ import java.util.Vector;
 public class TypeCheck {
 
     public Program prgm;
-    public Environment env;
+    public GlobalScope global;
 
     public TypeCheck(Program prgm)
             throws MissingSymbolException, AlreadyDefinedException {
         this.prgm = prgm;
-        this.env = new Environment(prgm);
+        this.global = new GlobalScope(prgm);
     }
 
     public void check() throws TypeMismatchException, MissingSymbolException, AlreadyDefinedException {
@@ -41,7 +41,7 @@ public class TypeCheck {
                     if (!methodBodyType.equals("void")) {
                         throw new TypeMismatchException(methodBodyType.toString());
                     }
-                }else if (!m.type.equals(methodBodyType)) {
+                } else if (!m.type.equals(methodBodyType)) {
                     throw new TypeMismatchException(methodBodyType.toString());
                 }
             }
@@ -62,7 +62,7 @@ public class TypeCheck {
             }
             case InstVarExpr instVarExpr -> {
                 Type inst = typeExpression(instVarExpr.inst, localScope);
-                exp.type = env.lookupField(inst, instVarExpr.name);
+                exp.type = global.lookupField(inst, instVarExpr.name);
             }
             case LocalOrFieldVarExpr loFVarExpr -> {
                 Type varType;
@@ -71,7 +71,7 @@ public class TypeCheck {
                     loFVarExpr.context = LocalOrFieldVarExpr.VarType.local;
                     exp.type = varType;
                 } catch (MissingSymbolException localMissing) {
-                    varType = env.lookupField(localScope.thisClass, loFVarExpr.name);
+                    varType = global.lookupField(localScope.getCurrentClass(), loFVarExpr.name);
                     loFVarExpr.context = LocalOrFieldVarExpr.VarType.field;
                     exp.type = varType;
                 }
@@ -83,7 +83,7 @@ public class TypeCheck {
                 exp.type = new Type("Object");
             }
             case ThisExpr thisExpr -> {
-                exp.type = localScope.thisClass;
+                exp.type = localScope.getCurrentClass();
             }
             case UnaryExpr unaryExpr -> {
                 Type t1 = typeExpression(unaryExpr.expr, localScope);
@@ -192,7 +192,7 @@ public class TypeCheck {
                     paramTypes.add(typeExpression(e, localScope));
                 }
                 Signature constSignature = new Signature(newStmtExpr.type.name, paramTypes);
-                stmtExp.type = env.lookupMethod(newStmtExpr.type, constSignature);
+                stmtExp.type = global.lookupMethod(newStmtExpr.type, constSignature);
             }
             case MethodCallStmtExpr methodCallStmtExpr -> {
                 if (methodCallStmtExpr.obj == null) {
@@ -204,7 +204,7 @@ public class TypeCheck {
                     paramTypes.add(typeExpression(exp, localScope));
                 }
                 Signature methodSignature = new Signature(methodCallStmtExpr.meth, paramTypes);
-                stmtExp.type = env.lookupMethod(objType, methodSignature);
+                stmtExp.type = global.lookupMethod(objType, methodSignature);
             }
         }
         return stmtExp.type;
