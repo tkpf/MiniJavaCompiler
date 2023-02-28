@@ -54,6 +54,6 @@ public class Scope {
 
     @Override
     public String toString() {
-        return fields.toString() + " " + methods.toString();
+        return fields.toString() + "\n" + methods.toString();
     }
 }
