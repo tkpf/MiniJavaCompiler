@@ -20,18 +20,20 @@ public class Main {
         }
         String outputPath = "./out";
 
-        ProgramGenerator.compile(args[0], outputPath);
+        ProgramGenerator.compile(args[0], outputPath, true);
         javaCompileMain(args[1], outputPath);
+        javaRunMain(args[1], outputPath);
     }
 
+    private static void javaRunMain(String main, String outputPath)
+            throws IOException, InterruptedException {
+        String command = "java -cp " + outputPath + " " + main.replace(".java", "");
+        runProcess(command);
+    }
     private static void javaCompileMain(String main, String outputPath)
             throws IOException, InterruptedException {
-        String command = "javac -cp " + outputPath + " -d " + outputPath + " " + main;
-        Process process = Runtime.getRuntime().exec(command);
-        printLines(" stdout:", process.getInputStream());
-        printLines(" stderr:", process.getErrorStream());
-        process.waitFor();
-        System.out.println(" exitValue() " + process.exitValue());
+    String command = "javac -cp " + outputPath + " -d " + outputPath + " " + main;
+        runProcess(command);
     }
 
     private static void printLines(String cmd, InputStream ins) throws IOException {
@@ -42,7 +44,8 @@ public class Main {
             System.out.println(cmd + " " + line);
         }
     }
-    private static void runProcess(String command) throws Exception {
+    private static void runProcess(String command)
+            throws IOException, InterruptedException {
         Process pro = Runtime.getRuntime().exec(command);
         printLines(command + " stdout:", pro.getInputStream());
         printLines(command + " stderr:", pro.getErrorStream());
