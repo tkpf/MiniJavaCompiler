@@ -6,6 +6,7 @@ import syntaxtree.*;
 import syntaxtree.Class;
 import syntaxtree.expressions.Expression;
 import syntaxtree.expressions.JNullExpr;
+import syntaxtree.statementexpressions.MethodCallStmtExpr;
 import syntaxtree.statements.ReturnStmt;
 
 import java.io.File;
@@ -102,7 +103,7 @@ public class ClassGenerator {
     {
         m.visitor.visitCode();
 
-        m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
+        //m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
         generateParameters(m);
 
         genStmt(m.blck, m);
@@ -168,6 +169,16 @@ public class ClassGenerator {
             paramDesc += fieldDescriptor(p.type.name);
         }
         return "("+paramDesc+")"+fieldDescriptor(m.type.name);
+    }
+
+    static String methodDescriptor(MethodCallStmtExpr mcall)
+    {
+        String paramDesc = "";
+        for (Expression expr : mcall.methParams)
+        {
+            paramDesc += fieldDescriptor(expr.type.name);
+        }
+        return "("+paramDesc+")"+fieldDescriptor(mcall.type.name);
     }
 
     static String constructorDescriptor(Method m){

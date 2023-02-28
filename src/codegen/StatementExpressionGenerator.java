@@ -58,7 +58,7 @@ public class StatementExpressionGenerator {
                 }
             }
         } else if (s.as2Expr instanceof InstVarExpr var) {
-            System.out.println(Opcodes.PUTFIELD + " " + var.inst.type.name + " " + var.name + " " + fieldDescriptor(var.inst.type.name));
+            System.out.println(Opcodes.PUTFIELD + " " + var.inst.type.name + " " + var.name + " " + fieldDescriptor(var.type.name));
             System.out.println(s.asFromExpr);
             genExpr(var.inst, m);
             genExpr(s.asFromExpr, m);
@@ -83,6 +83,6 @@ public class StatementExpressionGenerator {
     public static void genMethodCall(MethodCallStmtExpr mcall, Method m) {
         genExpr(mcall.obj, m);
         mcall.methParams.forEach(e -> genExpr(e, m));
-        m.visitor.visitMethodInsn(Opcodes.INVOKEVIRTUAL, mcall.obj.type.name, mcall.meth, methodDescriptor(m), false);
+        m.visitor.visitMethodInsn(Opcodes.INVOKEVIRTUAL, mcall.obj.type.name, mcall.meth, methodDescriptor(mcall), false);
     }
 }
