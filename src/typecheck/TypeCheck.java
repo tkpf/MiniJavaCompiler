@@ -105,10 +105,6 @@ public class TypeCheck {
                     default -> throw new MissingSymbolException();
                 }
             }
-            case LocalVar localVar -> {
-            }
-            case FieldVar fieldVar -> {
-            }
         }
         return exp.type;
     }
