@@ -17,7 +17,8 @@ public class PrimaryExpressionAdapter {
             return InstVarExpressionAdapter.adapt(
                     PrimaryExpressionAdapter.adapt(
                             ctx.primary()),
-                    ctx.Identifier().getText());
+                            ctx.Identifier().getText()
+            );
         }
         else if (ctx.RefLiteral() != null) {
             return switch (ctx.RefLiteral().getText()) {

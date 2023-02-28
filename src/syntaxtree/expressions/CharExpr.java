@@ -1,7 +1,7 @@
 package syntaxtree.expressions;
 
 public final class CharExpr extends Expression {
-    final private char c;
+    final public char c;
 
     public CharExpr(char c) { this.c = c; }
 

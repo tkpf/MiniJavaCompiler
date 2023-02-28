@@ -14,7 +14,7 @@ public class TypeLiteralAdapter {
         }
         else if (ctx.CharacterLiteral() != null) {
             return new CharExpr(
-                    ctx.CharacterLiteral().getText().charAt(0));
+                    ctx.CharacterLiteral().getText().charAt(1));
         }
         else if (ctx.DecimalLiteral() != null) {
             return new IntegerExpr(

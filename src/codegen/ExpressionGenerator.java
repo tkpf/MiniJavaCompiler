@@ -30,7 +30,7 @@ public class ExpressionGenerator {
                 }
                 break;
             case CharExpr e:
-                m.visitor.visitLdcInsn(e);
+                m.visitor.visitLdcInsn(e.c);
                 break;
             case BoolExpr e:
                 if (e.b) {
