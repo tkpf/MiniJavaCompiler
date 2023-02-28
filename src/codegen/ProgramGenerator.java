@@ -35,7 +35,7 @@ public class ProgramGenerator {
         TypeCheck typeCheck = new TypeCheck(prgm);
         typeCheck.check();
 
-        if(print) { System.out.print(prgm); }
+        if(print) { System.out.println(prgm); }
 
         generateProgram(prgm, outputPath);
     }
