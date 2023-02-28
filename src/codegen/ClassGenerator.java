@@ -127,7 +127,9 @@ public class ClassGenerator {
         generateParameters(m);
         genStmt(m.blck, m);
 
-        if (m.blck.stmtBlck.lastElement().getClass() != ReturnStmt.class)
+        // adding 'return;' at the end of void-blocks in case they are not explicit in the code (since java allows to omit them)
+        if (m.blck.stmtBlck.isEmpty() ||
+                (Objects.equals(m.blck.type.name, "void") && m.blck.stmtBlck.lastElement().getClass() != ReturnStmt.class))
         {
             m.visitor.visitInsn(Opcodes.RETURN);
         }

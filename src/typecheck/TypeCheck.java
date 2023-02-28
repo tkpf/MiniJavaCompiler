@@ -79,9 +79,6 @@ public class TypeCheck {
             case StmtExprExpr stmtExprExpr -> {
                 exp.type = typeStatementExpression(stmtExprExpr.stmtExprExpr, localScope);
             }
-            case SuperExpr superExpr -> {
-                exp.type = new Type("Object");
-            }
             case ThisExpr thisExpr -> {
                 exp.type = localScope.getCurrentClass();
             }

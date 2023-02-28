@@ -3,7 +3,6 @@ package parser.adapter;
 import parser.exceptions.EscapeHatchException;
 import parser.production.JavaMiniParser;
 import syntaxtree.expressions.Expression;
-import syntaxtree.expressions.SuperExpr;
 import syntaxtree.expressions.ThisExpr;
 
 public class PrimaryExpressionAdapter {
@@ -21,11 +20,12 @@ public class PrimaryExpressionAdapter {
             );
         }
         else if (ctx.RefLiteral() != null) {
-            return switch (ctx.RefLiteral().getText()) {
-                case "this" -> new ThisExpr();
-                case "super" -> new SuperExpr();
-                default -> throw new EscapeHatchException(); // should never be reached
-            };
+            if (ctx.RefLiteral().getText().equals("this")) {
+                return new ThisExpr();
+            }
+            else {
+                throw new EscapeHatchException(); // should never be reached
+            }
         }
         else if (ctx.typeLiteral() != null) {
             return TypeLiteralAdapter.adapt(ctx.typeLiteral());
