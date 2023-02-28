@@ -58,8 +58,6 @@ public class StatementExpressionGenerator {
                 }
             }
         } else if (s.as2Expr instanceof InstVarExpr var) {
-            System.out.println(Opcodes.PUTFIELD + " " + var.inst.type.name + " " + var.name + " " + fieldDescriptor(var.type.name));
-            System.out.println(s.asFromExpr);
             genExpr(var.inst, m);
             genExpr(s.asFromExpr, m);
             m.visitor.visitFieldInsn(Opcodes.PUTFIELD, var.inst.type.name, var.name, fieldDescriptor(var.type.name));

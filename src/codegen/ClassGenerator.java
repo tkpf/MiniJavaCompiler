@@ -103,7 +103,7 @@ public class ClassGenerator {
     {
         m.visitor.visitCode();
 
-        //m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
+        m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
         generateParameters(m);
 
         genStmt(m.blck, m);
