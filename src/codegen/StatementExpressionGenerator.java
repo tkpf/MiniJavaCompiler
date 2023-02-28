@@ -2,6 +2,7 @@ package codegen;
 
 import org.objectweb.asm.Opcodes;
 import syntaxtree.Method;
+import syntaxtree.expressions.InstVarExpr;
 import syntaxtree.expressions.LocalOrFieldVarExpr;
 import syntaxtree.statementexpressions.*;
 
@@ -56,6 +57,12 @@ public class StatementExpressionGenerator {
                     throw new IllegalStateException("variable unknown");
                 }
             }
+        } else if (s.as2Expr instanceof InstVarExpr var) {
+            System.out.println(Opcodes.PUTFIELD + " " + var.inst.type.name + " " + var.name + " " + fieldDescriptor(var.inst.type.name));
+            System.out.println(s.asFromExpr);
+            genExpr(var.inst, m);
+            genExpr(s.asFromExpr, m);
+            m.visitor.visitFieldInsn(Opcodes.PUTFIELD, var.inst.type.name, var.name, fieldDescriptor(var.type.name));
         } else {
             throw new IllegalStateException("cannot assign to anything other than LocalOrFieldVarExpr: " + s.as2Expr);
         }
