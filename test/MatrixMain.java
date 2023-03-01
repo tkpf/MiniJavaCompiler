@@ -1,10 +1,15 @@
 public class MatrixMain {
     public static void main(String[] args) {
-        int[][] aM1 = {{1,2,3}, {4,5,6}, {7,8,9}};
+        int[][] aM1 = {{1,2,3},
+                       {4,5,6},
+                       {7,8,9}};
         Matrix m1 = getMatrix(aM1);
-        int[][] aM2 = {{1,2}, {4,5}, {7,8}};
+        int[][] aM2 = {{1,2},
+                       {4,5},
+                       {7,8}};
         Matrix m2 = getMatrix(aM2);
-        int[][] aM3 = {{1,2,3}, {4,5,6}};
+        int[][] aM3 = {{1,2,3},
+                       {4,5,6}};
         Matrix m3 = getMatrix(aM3);
 
         printMatrix(m1);

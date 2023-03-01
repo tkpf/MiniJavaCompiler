@@ -15,12 +15,13 @@ import java.util.Vector;
 
 public class TypeCheck {
 
-    public Program prgm;
-    public GlobalScope global;
+    public final Program prgm;
+    public final GlobalScope global;
 
     public TypeCheck(Program prgm)
             throws MissingSymbolException, AlreadyDefinedException {
         this.prgm = prgm;
+        // constructor populates global scope from untyped program AST
         this.global = new GlobalScope(prgm);
     }
 
@@ -179,7 +180,6 @@ public class TypeCheck {
                 }
             }
             case NewStmtExpr newStmtExpr -> {
-                // TODO: new Integer, Char, Boolean, String, etc deprecated
                 ArrayList<Type> paramTypes = new ArrayList<>(newStmtExpr.initParams.size());
                 for (Expression e : newStmtExpr.initParams) {
                     paramTypes.add(typeExpression(e, localScope));

@@ -8,7 +8,7 @@ public final class MethodCallStmtExpr extends StatementExpression {
 
     public Expression obj;
     public final String meth;
-    public final Vector<Expression> methParams; //todo datatype right?
+    public final Vector<Expression> methParams;
 
     public MethodCallStmtExpr (Expression obj, String meth, Vector<Expression> methParams) {
         this.obj = obj;
@@ -18,7 +18,7 @@ public final class MethodCallStmtExpr extends StatementExpression {
 
     @Override
     public String toString() {
-        String result = "(MethodCall " + obj + " " + meth + " [";
+        String result = "(MethodCall" + super.toString() + obj + " " + meth + " [";
         if (methParams != null) {
             for (Expression e : methParams) {
                 result += e + " ";
