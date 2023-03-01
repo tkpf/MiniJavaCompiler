@@ -45,6 +45,6 @@ public class ProgramGenerator {
     }
 
     public static void main(String[] args) throws IOException, EscapeHatchException, MissingSymbolException, AlreadyDefinedException, TypeMismatchException {
-        compile("./src/codegen/testing/ExamplesToTest.txt", "./out");
+        compile("./src/codegen/testing/ExamplesToTest.txt", "./out/compiler output");
     }
 }
