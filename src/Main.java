@@ -1,3 +1,11 @@
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import parser.adapter.ProgramAdapter;
+import parser.production.JavaMiniLexer;
+import parser.production.JavaMiniParser;
+import syntaxtree.Program;
+import typecheck.TypeCheck;
 import codegen.ProgramGenerator;
 import parser.exceptions.EscapeHatchException;
 import typecheck.exceptions.AlreadyDefinedException;
@@ -10,46 +18,77 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args)
-            throws EscapeHatchException, IOException,
-            MissingSymbolException, AlreadyDefinedException,
-            TypeMismatchException, InterruptedException {
-        if (args.length != 2) {
-            System.out.println("Help text.");
-            return;
-        }
-        String outputPath = "./out";
+    static boolean printAST = false;
+    static boolean printGlobalScope = false;
+    static boolean runJava = true;
+    static String outputPath = "./out";
 
-        ProgramGenerator.compile(args[0], outputPath, true);
-        javaCompileMain(args[1], outputPath);
-        javaRunMain(args[1], outputPath);
+    public static void main(String[] args)
+            throws EscapeHatchException, IOException, InterruptedException,
+                   MissingSymbolException, AlreadyDefinedException, TypeMismatchException
+    {
+        if (args.length < 1 || args.length > 2) {
+            helpText();
+            System.exit(1);
+        }
+
+        miniJavaCompile(args[0]);
+        if (args.length > 1) javaCompileMain(args[1]);
+        if (runJava) javaRunMain(args[1]);
     }
 
-    private static void javaRunMain(String main, String outputPath)
+    private static void miniJavaCompile(String sourceFile)
+            throws IOException, EscapeHatchException,
+                   MissingSymbolException, AlreadyDefinedException, TypeMismatchException
+    {
+        CharStream input = CharStreams.fromFileName(sourceFile);
+
+        JavaMiniLexer lexer = new JavaMiniLexer(input);
+        JavaMiniParser parser = new JavaMiniParser(new CommonTokenStream(lexer));
+
+        // generate yet-untyped AST
+        Program prgm = ProgramAdapter.adapt(parser.compilationUnit());
+
+        TypeCheck typeCheck = new TypeCheck(prgm);
+        typeCheck.check();
+        if(printAST) { System.out.println(prgm); }
+
+        ProgramGenerator.generateProgram(prgm, outputPath);
+    }
+
+    private static void javaCompileMain(String main)
+            throws IOException, InterruptedException {
+        String command = "javac -cp " + outputPath + " -d " + outputPath + " " + main;
+        int exit = runProcess(command);
+    }
+    private static void javaRunMain(String main)
             throws IOException, InterruptedException {
         String command = "java -cp " + outputPath + " " + main.replace(".java", "");
-        runProcess(command);
-    }
-    private static void javaCompileMain(String main, String outputPath)
-            throws IOException, InterruptedException {
-    String command = "javac -cp " + outputPath + " -d " + outputPath + " " + main;
-        runProcess(command);
+        int exit = runProcess(command);
     }
 
-    private static void printLines(String cmd, InputStream ins) throws IOException {
+    private static int runProcess(String command) throws IOException, InterruptedException {
+        Process process = Runtime.getRuntime().exec(command);
+        System.out.println("Running process invoked by \"" + command + "\"");
+        streamPrinter("", process.getInputStream());
+        streamPrinter("ERR: ", process.getErrorStream());
+        process.waitFor();
+        return process.exitValue();
+    }
+
+    private static void streamPrinter(String prefix, InputStream ins) throws IOException {
         String line = null;
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(ins));
+        BufferedReader in = new BufferedReader(new InputStreamReader(ins));
         while ((line = in.readLine()) != null) {
-            System.out.println(cmd + " " + line);
+            System.out.println(prefix + line);
         }
     }
-    private static void runProcess(String command)
-            throws IOException, InterruptedException {
-        Process pro = Runtime.getRuntime().exec(command);
-        printLines(command + " stdout:", pro.getInputStream());
-        printLines(command + " stderr:", pro.getErrorStream());
-        pro.waitFor();
-        System.out.println(command + " exitValue() " + pro.exitValue());
+
+    private static void helpText() {
+        System.out.println("""
+                USAGE:
+                    java Main [-agr] [-o output_dir] minijava_target_file [main_file]
+                """);
     }
+
 }
