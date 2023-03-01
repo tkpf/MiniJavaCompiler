@@ -44,7 +44,7 @@ public class MiniJavaCompiler {
 
         miniJavaCompile(sourceFile);
         if (!(mainFile.equals(""))) javaCompileMain(mainFile);
-        if (runJava) javaRunMain(mainFile);
+        if (runJava && !mainFile.equals("")) javaRunMain(mainFile);
     }
 
     private static void parseArgs(String[] args) {
