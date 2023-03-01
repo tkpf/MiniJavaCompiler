@@ -10,6 +10,7 @@ import typecheck.exceptions.MissingSymbolException;
 import typecheck.exceptions.TypeMismatchException;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Vector;
 
 public class TypeCheck {
@@ -65,15 +66,14 @@ public class TypeCheck {
                 exp.type = global.lookupField(inst, instVarExpr.name);
             }
             case LocalOrFieldVarExpr loFVarExpr -> {
-                Type varType;
-                try {
-                    varType = localScope.lookupField(loFVarExpr.name);
-                    loFVarExpr.context = LocalOrFieldVarExpr.VarType.local;
-                    exp.type = varType;
-                } catch (MissingSymbolException localMissing) {
-                    varType = global.lookupField(localScope.getCurrentClass(), loFVarExpr.name);
-                    loFVarExpr.context = LocalOrFieldVarExpr.VarType.field;
-                    exp.type = varType;
+                Optional<Type> localVarType = localScope.lookupField(loFVarExpr.name);
+                    if (localVarType.isPresent()) {
+                        loFVarExpr.context = LocalOrFieldVarExpr.VarType.local;
+                        exp.type = localVarType.get();
+                    } else {                                   // this might be a future issue for nested classes
+                        Type fieldVarType = global.lookupField(localScope.getCurrentClass(), loFVarExpr.name);
+                        loFVarExpr.context = LocalOrFieldVarExpr.VarType.field;
+                        exp.type = fieldVarType;
                 }
             }
             case StmtExprExpr stmtExprExpr -> {

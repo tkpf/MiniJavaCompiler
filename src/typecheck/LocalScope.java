@@ -23,14 +23,14 @@ public class LocalScope {
         }
     }
 
-    public Type lookupField(String name) throws MissingSymbolException {
+    public Optional<Type> lookupField(String name) throws MissingSymbolException {
         for (int i = currentScope; i >= 0; i--) {
             Optional<Type> result = layers.get(i).lookupField(name);
             if (result.isPresent()) {
-                return result.get();
+                return result;
             }
         }
-        throw new MissingSymbolException(name);
+        return Optional.empty();
     }
 
     public Type getCurrentClass() {
