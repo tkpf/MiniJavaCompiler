@@ -21,5 +21,7 @@ public class TestingExamples {
 
     public static void main(String[] args) throws IOException, MissingSymbolException, AlreadyDefinedException, TypeMismatchException, EscapeHatchException {
         compile("./src/codegen/testing/ExamplesToTest.txt", "./out", true);
+        compile("./test/test_basicClasses.txt", "./out/compiler output", true);
+        compile("./test/test_ProgrammAboutShapes.txt", "./out/compiler output", true);
     }
 }
