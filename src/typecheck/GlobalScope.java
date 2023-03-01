@@ -66,7 +66,6 @@ public class GlobalScope {
             Signature defCons = new Signature(cls.name.toString(), List.of());
             thisClassScope.addMethod(defCons, cls.name);
         }
-        System.out.println("Global scope:\n" + classes);
     }
 
     private Scope getClassScope(Type className) throws MissingSymbolException {
