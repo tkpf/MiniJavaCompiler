@@ -246,4 +246,8 @@ public class TypeCheck {
             }
         }
     }
+
+    public String getGlobalScope() {
+        return global.toString();
+    }
 }
