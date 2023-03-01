@@ -12,12 +12,12 @@ public final class BlockStmt extends Statement {
 
     @Override
     public String toString() {
-        String result = "[Block" + super.toString();
+        String result = "(Block" + super.toString() + "[";
         for (Statement s : stmtBlck) {
             result += s.toString() + " ";
         }
-        result = result.substring(0, result.length() - 1);
-        result += "]";
+        if (stmtBlck.size() > 0) result = result.substring(0, result.length() - 1);
+        result += "])";
         return result;
     }
 }

@@ -13,6 +13,6 @@ public final class VarDeclStmt extends Statement {
 
     @Override
     public String toString() {
-        return "(VarDecl:" + type + " " + name + ")";
+        return "(VarDecl" + super.toString() + name + ")";
     }
 }

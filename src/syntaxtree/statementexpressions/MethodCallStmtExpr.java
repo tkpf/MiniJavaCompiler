@@ -24,7 +24,7 @@ public final class MethodCallStmtExpr extends StatementExpression {
                 result += e + " ";
             }
         }
-        result += "])";
+        result = result.substring(0, result.length() - 1) + "])";
         return result;
     }
 }
