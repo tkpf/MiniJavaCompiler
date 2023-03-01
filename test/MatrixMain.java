@@ -13,6 +13,9 @@ public class MatrixMain {
 
         printMatrix(m1.mult(m1));
         printMatrix(m2.mult(m3));
+
+        printMatrix(m2);
+        printMatrix(m2.transpose());
     }
 
     public static void printMatrix(Matrix mat) {
@@ -25,7 +28,7 @@ public class MatrixMain {
         System.out.println();
     }
 
-    public static void printVector(LinkedList vec) {
+    public static void printVector(LinkedVector vec) {
         for (int i = 0; i < vec.length; i++) {
             System.out.print(vec.get(i) + " ");
         }
@@ -35,7 +38,7 @@ public class MatrixMain {
     public static Matrix getMatrix(int[][] arrayMatrix) {
         Matrix result = new Matrix();
         for (int[] col : arrayMatrix) {
-            LinkedList newRow = new LinkedList();
+            LinkedVector newRow = new LinkedVector();
             for (int val : col) {
                 newRow.add(val);
             }
