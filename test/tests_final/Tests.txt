@@ -1,0 +1,234 @@
+// empty classes
+
+class emptyClass {}
+
+class commentClass {
+    //this part is empty but contains strong words: this super int String
+    /*
+    this is also
+    very
+    very
+    empty
+    */
+}
+
+// testing fields
+
+class basicTypeFieldClass {
+    int field1;
+    char field2;
+    boolean field3;
+}
+
+class stringFieldClass {
+    String field1;
+}
+
+class Nothing {
+    void doNothing(){}
+}
+
+class Store
+{
+    int store;
+
+    Store(int i){
+        store = i;
+    }
+
+    Store(){
+        store = 0;
+    }
+
+    void countUp() {
+        store = store + 1;
+    }
+}
+
+// testing statements
+
+class returnMethods{
+    int returnFive(){
+        return 5;
+    }
+    boolean returnTrue(){
+        return true;
+    }
+    char returnAnA(){
+        return 'a';
+    }
+    String returnHello(){
+        return "Hello";
+    }
+    public emptyClass createEmpty()
+    {
+        return new emptyClass();
+    }
+}
+
+class methodsWithInput{
+    void thisMethodHasAnInput(int i) {}
+}
+
+class LoopsAndIfs {
+    public int choose(int a, int b, boolean c)
+    {
+        if(c) { return a; }
+        else { return b; }
+    }
+
+    public int sumUp(int num)
+    {
+        int res = 0;
+        while (0 < num)
+        {
+            res = res + num;
+            num = num - 1;
+        }
+        return res;
+    }
+
+    public int sumUpRecursive(int num)
+    {
+        if (num == 0) {
+            return 0;
+        }
+        return this.sumUpRecursive(num - 1) + num;
+    }
+
+    public void doNothingRecursion(int repetitions)
+    {
+        if (repetitions < 1)
+        {
+            LoopsAndIfs l = new LoopsAndIfs();
+            l.doNothingRecursion(repetitions - 1);
+        }
+    }
+
+    public void spin(int i)
+    {
+        while(0 < i)
+        {
+            i = i - 1;
+        }
+    }
+
+    public int count(int i)
+    {
+        int counter = 0;
+        while(0 < i)
+        {
+            i = i - 1;
+            counter = counter + 1;
+        }
+        return counter;
+    }
+}
+
+// testing constructors
+
+class constructorClass{
+    constructorClass(){}
+}
+
+class constructorClassWithThisAssignment {
+    int i;
+    constructorClassWithThisAssignment(int i) {
+        this.i = i;
+    }
+}
+
+class newAssignmentClass {
+   constructorClass i = new constructorClass();
+}
+
+class newAssignmentClass2 {
+   constructorClassWithThisAssignment i = new constructorClassWithThisAssignment(3);
+}
+
+// testing operators
+
+class Operators {
+    public String addStrings(String a, String b) { return a + b; }
+
+    public boolean isSmaller(int a, int b)
+    {
+        return a < b;
+    }
+
+    public boolean compareObjects(Object a, Object b) {return a == b;}
+}
+
+
+
+// some sample classes
+
+class Circle {
+    int radius;
+
+    Circle(int radius) {
+        this.radius = radius;
+    }
+
+    int approximateCircumference() {
+        return radius * 3;
+    }
+
+    boolean guessRadius(int guess) {
+        return (radius == guess);
+    }
+
+}
+
+class Rectangle {
+    int a;
+    int b;
+
+    Rectangle (int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    int getLongerEdge() {
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+}
+
+class someCollectionsOfObjects {
+    int i = 4;
+    Circle myCircle = new Circle(5);
+    Rectangle myRectangle = new Rectangle(3, i);
+
+    boolean checkIfRectangleWasInitializedRight() {
+        if (myRectangle.getLongerEdge() == i) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+     void manipulateRadiusOfCircle(int manipulation) {
+            if (myCircle.radius != manipulation) {
+                myCircle.radius = manipulation;
+            }
+        }
+
+    void someWhileMethod() {
+        int i;
+        i = 10;
+        int j = 5;;
+        while (i > j) {
+            j = j+1;
+        }
+    }
+
+    void someWhileMethodWithWildFormatting(){
+        int i; i=10;
+        int j          = 5;
+        ;while(i>j){j=j+1;}}
+}
