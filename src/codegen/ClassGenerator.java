@@ -7,6 +7,11 @@ import syntaxtree.Class;
 import syntaxtree.expressions.Expression;
 import syntaxtree.expressions.JNullExpr;
 import syntaxtree.statementexpressions.MethodCallStmtExpr;
+import syntaxtree.expressions.LocalOrFieldVarExpr;
+import syntaxtree.expressions.StmtExprExpr;
+import syntaxtree.statementexpressions.AssignStmtExpr;
+import syntaxtree.statementexpressions.StatementExpression;
+import syntaxtree.statements.BlockStmt;
 import syntaxtree.statements.ReturnStmt;
 
 import java.io.File;
@@ -15,8 +20,11 @@ import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Objects;
+import java.util.Vector;
 import java.util.function.BinaryOperator;
 
+import static codegen.ExpressionGenerator.genExpr;
+import static codegen.StatementExpressionGenerator.genAssign;
 import static codegen.StatementGenerator.*;
 
 public class ClassGenerator {
@@ -45,9 +53,19 @@ public class ClassGenerator {
                     "value").visitEnd();
         }
 
+        if(inputClass.meths.stream().noneMatch(m -> Objects.equals(m.name, inputClass.name.name)))
+        {
+            inputClass.meths.add(
+                    new Method(
+                            inputClass.name.name,
+                            inputClass.name,
+                            new Vector<>(),
+                            new BlockStmt(new Vector<>())
+                            )
+            );
+        }
 
-
-        // generating methods
+            // generating methods
         for(Method m : inputClass.meths)
         {
             if (Objects.equals(m.name, inputClass.name.name))
@@ -59,7 +77,7 @@ public class ClassGenerator {
                         null,
                         null);
                m.visitor.visitEnd();
-               m.ownerClass = inputClass.name;
+               m.ownerClass = inputClass;
                generateConstructor(m);
             }
             else
@@ -71,14 +89,14 @@ public class ClassGenerator {
                         null,
                         null);
                 m.visitor.visitEnd();
-                m.ownerClass = inputClass.name;
+                m.ownerClass = inputClass;
                 generateMethodCode(m);
             }
         }
 
-        // generate deafault constructor if no constructor is explicitly stated
+        // generate default constructor if no constructor is explicitly stated
 
-        if(inputClass.meths.stream().noneMatch(m -> Objects.equals(m.name, inputClass.name.name))) {
+        /*if(inputClass.meths.stream().noneMatch(m -> Objects.equals(m.name, inputClass.name.name))) {
             MethodVisitor constructor = cw.visitMethod(
                     Opcodes.ACC_PUBLIC,
                     "<init>",
@@ -91,7 +109,7 @@ public class ClassGenerator {
             constructor.visitInsn(Opcodes.RETURN);
             constructor.visitMaxs(0, 0);
             constructor.visitEnd();
-        }
+        }*/
 
 
         cw.visitEnd();
@@ -125,6 +143,7 @@ public class ClassGenerator {
 
         m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
         m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL,"java/lang/Object", "<init>", "()V", false);
+        generateFieldAssignments(m);
         generateParameters(m);
         genStmt(m.blck, m);
 
@@ -138,6 +157,19 @@ public class ClassGenerator {
         m.visitor.visitMaxs(0, 0);
         m.visitor.visitEnd();
     }
+
+    private static void generateFieldAssignments(Method m)
+    {
+        for (Field f : m.ownerClass.fields)
+        {
+            if (f.assignment instanceof AssignStmtExpr s) {
+                genAssign(s, m);
+            } else if (f.assignment != null){
+                throw new IllegalStateException("Unexpected value: " + f.assignment);
+            }
+        }
+    }
+
 
 
     private static void generateParameters(Method m) {

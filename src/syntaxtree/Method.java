@@ -11,7 +11,7 @@ public class Method {
 
     final public String name;
     final public Type type;
-    public Type ownerClass;
+    public Class ownerClass;
     final public Vector<Parameter> params;
     final public BlockStmt blck;
 

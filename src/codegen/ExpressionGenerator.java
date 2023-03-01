@@ -72,6 +72,24 @@ public class ExpressionGenerator {
         }
     }
 
+    private static void cmprExpr(BinaryExpr expr, int op, Method m)
+    {
+        genExpr(expr.expr1, m);
+        genExpr(expr.expr2, m);
+
+        Label retfalse = new Label();
+        Label end = new Label();
+
+        m.visitor.visitJumpInsn(op, retfalse);
+        m.visitor.visitInsn(Opcodes.ICONST_1);
+        m.visitor.visitJumpInsn(Opcodes.GOTO, end);
+
+        m.visitor.visitLabel(retfalse);
+        m.visitor.visitInsn(Opcodes.ICONST_0);
+
+        m.visitor.visitLabel(end);
+    }
+
     private static void genBinaryExpr(BinaryExpr expr, Method m) {
         switch (expr.type.name) {
             case "int", "char":
@@ -111,65 +129,49 @@ public class ExpressionGenerator {
                         m.visitor.visitInsn(Opcodes.IOR);
                     }
                     case "<" -> {
-                        genExpr(expr.expr1, m);
-                        genExpr(expr.expr2, m);
-
-                        Label retfalse = new Label();
-                        Label end = new Label();
-
-                        m.visitor.visitJumpInsn(Opcodes.IF_ICMPGE, retfalse);
-                        m.visitor.visitInsn(Opcodes.ICONST_1);
-                        m.visitor.visitJumpInsn(Opcodes.GOTO, end);
-
-                        m.visitor.visitLabel(retfalse);
-                        m.visitor.visitInsn(Opcodes.ICONST_0);
-
-                        m.visitor.visitLabel(end);
+                        cmprExpr(expr, Opcodes.IF_ICMPGE, m);
+                    }
+                    case "<=" -> {
+                        cmprExpr(expr, Opcodes.IF_ICMPGT, m);
+                    }
+                    case ">=" -> {
+                        cmprExpr(expr, Opcodes.IF_ICMPLT, m);
+                    }
+                    case ">" -> {
+                        cmprExpr(expr, Opcodes.IF_ICMPLE, m);
                     }
                     case "==" -> {
                         switch (expr.expr1.type.name) {
                             case "int", "char" -> {
-                                genExpr(expr.expr1, m);
-                                genExpr(expr.expr2, m);
-                                Label retfalse = new Label();
-                                Label end = new Label();
-                                m.visitor.visitJumpInsn(Opcodes.IF_ICMPNE, retfalse);
-                                m.visitor.visitInsn(Opcodes.ICONST_1);
-                                m.visitor.visitJumpInsn(Opcodes.GOTO, end);
-                                m.visitor.visitLabel(retfalse);
-                                m.visitor.visitInsn(Opcodes.ICONST_0);
-                                m.visitor.visitLabel(end);
+                                cmprExpr(expr, Opcodes.IF_ICMPNE, m);
                             }
                             case default -> {
-                                genExpr(expr.expr1, m);
-                                genExpr(expr.expr2, m);
-                                Label retfalsea = new Label();
-                                Label enda = new Label();
-                                m.visitor.visitJumpInsn(Opcodes.IF_ACMPNE, retfalsea);
-                                m.visitor.visitInsn(Opcodes.ICONST_1);
-                                m.visitor.visitJumpInsn(Opcodes.GOTO, enda);
-                                m.visitor.visitLabel(retfalsea);
-                                m.visitor.visitInsn(Opcodes.ICONST_0);
-                                m.visitor.visitLabel(enda);
+                                cmprExpr(expr, Opcodes.IF_ACMPNE, m);
                             }
                         }
-
-
+                    }
+                    case "!=" -> {
+                        switch (expr.expr1.type.name) {
+                            case "int", "char" -> {
+                                cmprExpr(expr, Opcodes.IF_ICMPEQ, m);
+                            }
+                            case default -> {
+                                cmprExpr(expr, Opcodes.IF_ACMPEQ, m);
+                            }
+                        }
                     }
                 }
                 break;
             case "String":
-                switch (expr.eval) {
-                    case "+":
-                        genExpr(expr.expr1, m);
-                        genExpr(expr.expr2, m);
-                        m.visitor.visitMethodInsn(
-                                Opcodes.INVOKEVIRTUAL,
-                                "java/lang/String",
-                                "concat",
-                                "(Ljava/lang/String;)Ljava/lang/String;",
-                                false);
-                        break;
+                if ("+".equals(expr.eval)) {
+                    genExpr(expr.expr1, m);
+                    genExpr(expr.expr2, m);
+                    m.visitor.visitMethodInsn(
+                            Opcodes.INVOKEVIRTUAL,
+                            "java/lang/String",
+                            "concat",
+                            "(Ljava/lang/String;)Ljava/lang/String;",
+                            false);
                 }
                 break;
 
@@ -180,25 +182,21 @@ public class ExpressionGenerator {
 
     private static void genUnaryExpr(UnaryExpr expr, Method m) {
         switch (expr.eval) {
-            case "-":
+            case "-" -> {
                 genExpr(expr.expr, m);
                 m.visitor.visitInsn(Opcodes.INEG);
-                break;
-            case "not", "!":
+            }
+            case "not", "!" -> {
                 Label retzero = new Label();
                 Label end = new Label();
-
                 genExpr(expr.expr, m);
-
                 m.visitor.visitJumpInsn(Opcodes.IFNE, retzero);
                 m.visitor.visitInsn(Opcodes.ICONST_1);
                 m.visitor.visitJumpInsn(Opcodes.GOTO, end);
-
                 m.visitor.visitLabel(retzero);
                 m.visitor.visitInsn(Opcodes.ICONST_0);
-
                 m.visitor.visitLabel(end);
-                break;
+            }
         }
     }
 
@@ -221,7 +219,7 @@ public class ExpressionGenerator {
     private static void genFieldVar(LocalOrFieldVarExpr f, Method m) {
         String type = f.type.name;
         m.visitor.visitVarInsn(Opcodes.ALOAD, 0);
-        m.visitor.visitFieldInsn(Opcodes.GETFIELD, m.ownerClass.name, f.name, fieldDescriptor(f.type.name));
+        m.visitor.visitFieldInsn(Opcodes.GETFIELD, m.ownerClass.name.name, f.name, fieldDescriptor(f.type.name));
     }
 
     private static void genInstVar(InstVarExpr var, Method m) {
