@@ -20,9 +20,14 @@ public class ClassAdapter {
         // load members
         Vector<JavaMiniParser.MemberContext> members = new Vector<>();
         for (JavaMiniParser.ClassBodyDeclarationContext classBodyDeclaration : ctx.classBody().classBodyDeclaration()) {
-            members.add(classBodyDeclaration.member());
+            if (classBodyDeclaration.member() != null) {
+                members.add(classBodyDeclaration.member());
+            }
+            else {
+                // empty line with semicolon
+            }
         }
-        //load fields and methods
+        // load fields and methods
         Vector<Method> methods = new Vector<>();
         Vector<Field> fields = new Vector<>();
 
