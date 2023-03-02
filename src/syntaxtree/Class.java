@@ -21,16 +21,16 @@ public class Class {
 
     @Override
     public String toString() {
-        String result = "(Class " + this.name + " [F ";
-        for (Field f : this.fields) {
+        String result = "(Class " + name + " [";
+        for (Field f : fields) {
             result += f + " ";
         }
-        result = result.substring(0, result.length() - 1);
-        result += "] [M ";
+        if (fields.size() > 0) result = result.substring(0, result.length() - 1);
+        result += "] [";
         for (Method m : meths) {
             result += m + " ";
         }
-        result = result.substring(0, result.length() - 1);
+        if (meths.size() > 0) result = result.substring(0, result.length() - 1);
         result += "])";
         return result;
     }

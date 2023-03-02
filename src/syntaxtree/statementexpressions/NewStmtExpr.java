@@ -7,16 +7,18 @@ import java.util.Vector;
 
 public final class NewStmtExpr extends StatementExpression {
 
+    public final String name;
     public final Vector<Expression> initParams;
 
     public NewStmtExpr (Type type, Vector<Expression> initParams) {
-        this.type = type;
+        // TODO: refactor
+        this.name = type.name;
         this.initParams = initParams;
     }
 
     @Override
     public String toString() {
-        String result = "(New " + type + " [";
+        String result = "(New" + super.toString() + name + " [";
         if (initParams != null) {
             for (Expression e : initParams) {
                 result += e + " ";

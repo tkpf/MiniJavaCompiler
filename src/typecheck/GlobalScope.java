@@ -98,4 +98,13 @@ public class GlobalScope {
             throw new MissingSymbolException(methodSignature.toString());
         }
     }
+
+    @Override
+    public String toString() {
+        String result = "GlobalScope:\n";
+        for (Type cls : classes.keySet()) {
+            result += "Class " + cls.name + ": " + classes.get(cls).toString() + "\n";
+        }
+        return result;
+    }
 }

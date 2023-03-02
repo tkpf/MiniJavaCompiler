@@ -66,14 +66,14 @@ public class StatementExpressionGenerator {
 
     public static void genNew(NewStmtExpr s, Method m) {
         // new Klasse
-        m.visitor.visitTypeInsn(Opcodes.NEW, s.type.name);
+        m.visitor.visitTypeInsn(Opcodes.NEW, s.name);
         // dup
         m.visitor.visitInsn(Opcodes.DUP);
         //gen params
         s.initParams.forEach(e -> genExpr(e, m));
         // invokespecial Konstruktor
         String paramDesc = s.initParams.stream().map(e -> fieldDescriptor(e.type.name)).reduce("", String::concat);
-        m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL, s.type.name, "<init>", "("+paramDesc+")V", false);
+        m.visitor.visitMethodInsn(Opcodes.INVOKESPECIAL, s.name, "<init>", "("+paramDesc+")V", false);
     }
 
     public static void genMethodCall(MethodCallStmtExpr mcall, Method m) {
