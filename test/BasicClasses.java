@@ -192,6 +192,7 @@ class AddingStrings {
 
 class WildFormatting {
         int i;char a2343;boolean B734skjdo;
+        ;
         void someWhileMethodWithWildFormatting(){
         ;
         int i; i=10;
