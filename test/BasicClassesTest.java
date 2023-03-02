@@ -1,4 +1,4 @@
-public class BasicTestMain {
+public class BasicClassesTest {
     public static void main(String[] var0) {
         System.out.println("This is the default java compiler compiled Main file.");
 
