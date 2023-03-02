@@ -101,6 +101,7 @@ public class GlobalScope {
         for (Type cls : classes.keySet()) {
             result += "Class " + cls.name + ": " + classes.get(cls).toString() + "\n";
         }
+        if (classes.keySet().size() > 0) result = result.substring(0, result.length() -1);
         return result;
     }
 }
