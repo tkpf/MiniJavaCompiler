@@ -103,18 +103,18 @@ public class MiniJavaCompiler {
 
     private static void javaCompileMain(String main)
             throws IOException, InterruptedException {
-        String command = "javac -cp " + outputPath + " -d " + outputPath + " " + main;
+        String[] command = {"javac", "-cp", outputPath, "-d", outputPath, main};
         int exit = runProcess(command);
     }
     private static void javaRunMain(String main)
             throws IOException, InterruptedException {
-        String command = "java -cp " + outputPath + " " + main.replace(".java", "");
+        String[] command = {"java", "-cp", outputPath, main.replace(".java", "")};
         int exit = runProcess(command);
     }
 
-    private static int runProcess(String command) throws IOException, InterruptedException {
+    private static int runProcess(String[] command) throws IOException, InterruptedException {
         Process process = Runtime.getRuntime().exec(command);
-        if (verbose) System.out.println("Running process invoked by \"" + command + "\"");
+        if (verbose) System.out.println("Running process invoked by \"" + String.join(" ", command) + "\"");
         streamPrinter("", process.getInputStream());
         streamPrinter("ERR: ", process.getErrorStream());
         process.waitFor();
