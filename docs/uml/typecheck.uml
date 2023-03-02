@@ -3,41 +3,44 @@
   <ID>JAVA</ID>
   <OriginalElement>typecheck</OriginalElement>
   <nodes>
-    <node x="278.625" y="369.0">typecheck.Signature</node>
-    <node x="-187.0" y="660.0">typecheck.LocalScope</node>
-    <node x="262.125" y="1140.0">typecheck.exceptions</node>
-    <node x="77.0" y="671.5">typecheck.GlobalScope</node>
-    <node x="-187.0" y="928.0">typecheck.TypeCheck</node>
-    <node x="-71.5" y="369.0">typecheck.Scope</node>
+    <node x="-63.5" y="40.19841803278685">typecheck.GlobalScope</node>
+    <node x="-63.5" y="-294.687868852459">typecheck.Scope</node>
+    <node x="570.7537704918032" y="-5.801581967213153">typecheck.TypeCheck</node>
+    <node x="350.17639344262295" y="-294.687868852459">typecheck.Signature</node>
+    <node x="664.2537704918032" y="-211.68786885245902">typecheck.exceptions</node>
+    <node x="258.6268852459016" y="17.198418032786847">typecheck.LocalScope</node>
   </nodes>
   <notes />
   <edges>
     <edge source="typecheck.TypeCheck" target="typecheck.LocalScope" relationship="CREATE">
-      <point x="-87.0" y="-120.5" />
-      <point x="0.0" y="109.0" />
+      <point x="-216.5" y="11.5" />
+      <point x="122.0" y="0.0" />
     </edge>
     <edge source="typecheck.Scope" target="typecheck.Signature" relationship="TO_MANY">
       <point x="141.0" y="-23.0" />
       <point x="-106.5" y="0.0" />
     </edge>
     <edge source="typecheck.LocalScope" target="typecheck.Scope" relationship="TO_MANY">
-      <point x="0.0" y="-109.0" />
-      <point x="-65.0" y="635.0" />
-      <point x="69.5" y="635.0" />
-      <point x="0.0" y="120.5" />
+      <point x="1.1475409843342277E-4" y="-109.00041803278685" />
+      <point x="380.627" y="-20.67534426229509" />
+      <point x="284.3381967213115" y="-20.67534426229509" />
+      <point x="284.3381967213115" y="-99.09737704918035" />
+      <point x="141.1747540983606" y="75.09049180327867" />
     </edge>
     <edge source="typecheck.TypeCheck" target="typecheck.GlobalScope" relationship="TO_ONE">
-      <point x="182.0" y="-120.5" />
+      <point x="0.0" y="120.49999999999999" />
+      <point x="787.2537704918032" y="280.7810409836065" />
+      <point x="63.5" y="280.7810409836065" />
       <point x="0.0" y="97.5" />
     </edge>
     <edge source="typecheck.GlobalScope" target="typecheck.Scope" relationship="TO_MANY">
-      <point x="0.0" y="-97.5" />
-      <point x="204.0" y="635.0" />
-      <point x="69.5" y="635.0" />
-      <point x="0.0" y="120.5" />
+      <point x="0.0" y="-97.50041803278683" />
+      <point x="63.5" y="-18.0" />
+      <point x="77.5" y="-18.0" />
+      <point x="0.0" y="120.49986885245902" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="161.0" y="769.0" />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="470.0000000000001" y="-7.0" />
   <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>
