@@ -22,10 +22,6 @@ public class GlobalScope {
     );
     HashMap<Type, Scope> classes;
 
-    public GlobalScope() {
-        classes = new HashMap<>();
-    }
-
     public GlobalScope(Program prgm)
             throws AlreadyDefinedException, MissingSymbolException {
         classes = new HashMap<>();

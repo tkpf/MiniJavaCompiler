@@ -1,0 +1,33 @@
+(Program [
+  (Class A [
+    (Field:int a (Assign:void (FieldVar:int a) (int 1))) (Field:boolean b)
+    ] [
+    (Method:int m2 [(Parameter:int a)] (Block:int [
+      (Return:int (LocalVar:int a))]))])
+  (Class StmtExprTest [
+    (Field:A a (Assign:void (FieldVar:A a) (StmtExprExpr:A (New:void A []))))
+    ] [
+    (Method:void v [] (Block:void [
+      (VarDecl:int j)
+      (StmtExprStmt:void (Assign:void (LocalVar:int j) (int 0)))
+      (VarDecl:boolean b)
+      (VarDecl:A aa)
+      (StmtExprStmt:void (New:void A []))
+      (VarDecl:A aaa)
+      (StmtExprStmt:void (Assign:void
+        (LocalVar:A aaa)
+        (StmtExprExpr:A (New:void A []))))
+      (StmtExprStmt:void (MethodCall:void (LocalVar:A aaa) m2 [(int 1)]))
+      (VarDecl:int i)
+      (StmtExprStmt:void (Assign:void
+        (LocalVar:int i)
+        (StmtExprExpr:int (MethodCall:void (LocalVar:A aaa) m2 [(LocalVar:int j)]))))
+      (StmtExprStmt:void (Assign:void
+        (LocalVar:int j)
+        (InstVar (FieldVar:A a) a)))
+      (StmtExprStmt:void (Assign:void
+        (InstVar (LocalVar:A aaa) a)
+        (StmtExprExpr:int (MethodCall:void (FieldVar:A a) m2 [(LocalVar:int i)]))))
+    ]))
+  ])
+])

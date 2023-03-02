@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>typecheck</OriginalElement>
+  <nodes>
+    <node x="278.625" y="369.0">typecheck.Signature</node>
+    <node x="-187.0" y="660.0">typecheck.LocalScope</node>
+    <node x="262.125" y="1140.0">typecheck.exceptions</node>
+    <node x="77.0" y="671.5">typecheck.GlobalScope</node>
+    <node x="-187.0" y="928.0">typecheck.TypeCheck</node>
+    <node x="-71.5" y="369.0">typecheck.Scope</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="typecheck.TypeCheck" target="typecheck.LocalScope" relationship="CREATE">
+      <point x="-87.0" y="-120.5" />
+      <point x="0.0" y="109.0" />
+    </edge>
+    <edge source="typecheck.Scope" target="typecheck.Signature" relationship="TO_MANY">
+      <point x="141.0" y="-23.0" />
+      <point x="-106.5" y="0.0" />
+    </edge>
+    <edge source="typecheck.LocalScope" target="typecheck.Scope" relationship="TO_MANY">
+      <point x="0.0" y="-109.0" />
+      <point x="-65.0" y="635.0" />
+      <point x="69.5" y="635.0" />
+      <point x="0.0" y="120.5" />
+    </edge>
+    <edge source="typecheck.TypeCheck" target="typecheck.GlobalScope" relationship="TO_ONE">
+      <point x="182.0" y="-120.5" />
+      <point x="0.0" y="97.5" />
+    </edge>
+    <edge source="typecheck.GlobalScope" target="typecheck.Scope" relationship="TO_MANY">
+      <point x="0.0" y="-97.5" />
+      <point x="204.0" y="635.0" />
+      <point x="69.5" y="635.0" />
+      <point x="0.0" y="120.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="161.0" y="769.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
