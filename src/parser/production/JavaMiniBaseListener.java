@@ -305,30 +305,6 @@ public class JavaMiniBaseListener implements JavaMiniListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterExpressionList(JavaMiniParser.ExpressionListContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -384,6 +360,30 @@ public class JavaMiniBaseListener implements JavaMiniListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTypeLiteral(JavaMiniParser.TypeLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
