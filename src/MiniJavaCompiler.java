@@ -57,6 +57,7 @@ public class MiniJavaCompiler {
                     switch (c) {
                         case 'a' -> printAST = true;
                         case 'g' -> printGlobalScope = true;
+                        case 'h' -> { helpText(); System.exit(0); }
                         case 'r' -> runJava = true;
                         case 'v' -> verbose = true;
                         default -> { } // ignore
@@ -128,7 +129,7 @@ public class MiniJavaCompiler {
     private static void helpText() {
         System.out.println("""
                 USAGE:
-                    java Main [-agrv] [-o output_dir] [main_file.java] minijava_target_file
+                    java Main [-aghrv] [-o output_dir] [main_file.java] minijava_target_file
                 DESCRIPTION:
                     Compiles <minijava_target_file> with the MiniJavaCompiler, creating
                     compiled class-files in the "./out/" directory by default.
@@ -137,7 +138,9 @@ public class MiniJavaCompiler {
                 OPTIONS:
                     -a : Prints string representation of typed AST.
                     -g : Prints contents of global scope of program.
-                    -r : Runs supplied main method directly after compilation.
+                    -h : Print this help message.
+                    -r : Runs supplied main-file directly after compilation. Ignored if
+                         there is none.
                     -v : Run verbosely.
                     -o output_dir : Generated class-files will be saved in <output_dir>.
                                     Path is relative to current working directory.
