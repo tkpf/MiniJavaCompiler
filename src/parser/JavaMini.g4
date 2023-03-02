@@ -12,17 +12,17 @@ typeDeclaration
     ;
 
 classDeclaration
-    :   'class' Identifier ('extends' type)? classBody
+    :   'class' Identifier classBody
     ;
 
 modifier
-    :   'public'     // class or interface
-    |   'protected'  // class or interface
-    |   'private'    // class or interface
-    |   'abstract'   // class or interface
-    |   'static'     // class or interface
-    |   'final'      // class only -- does not apply to interfaces
-    |   'strictfp'   // class or interface
+    // public scope is implemented by default, so parser only parses 'public' modifier
+    :   'public'
+    // |   'protected'
+    // |   'private'
+    // |   'abstract'
+    // |   'static'
+    // |   'final'
     ;
 
 classBody
@@ -37,12 +37,15 @@ classBodyDeclaration
 member
     :   methodDeclaration
     |   fieldDeclaration
-  //  |   constructorDeclaration // constructor is seen as method with method name (class name) as type
-   // |   classDeclaration
+    // constructor is seen as method with method name (class name) as type
+    //  |   constructorDeclaration
+    // no nested classes
+    // |   classDeclaration
     ;
 
 methodDeclaration
-    :   type? Identifier formalParameters methodDeclarationRest     //if no type is available the method may be a constructor
+    // if no type is available the method may be a constructor
+    :   type? Identifier formalParameters methodDeclarationRest
     |   VoidLiteral Identifier formalParameters methodDeclarationRest
     ;
 
@@ -72,58 +75,23 @@ fieldDeclaration
     :   type variableDeclarator ';'
     ;
 
-/*
-variableDeclarators
-    :   variableDeclarator (',' variableDeclarator)*
-    ;
-*/
-
 variableDeclarator
     :   variableDeclaratorId directInitialization?
     ;
 
 directInitialization
-    :   AssignLiteral expression      //variableInitializer
+    :   AssignLiteral expression
     ;
 
 variableDeclaratorId
-    :   Identifier //('[' ']')*
-    ;
-
-/*
-variableInitializer
-    :   arrayInitializer
-    |   expression
-    ;
-
-arrayInitializer
-    :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
-    ;
-*/
-/*
-constructorDeclaration
     :   Identifier
-        constructorBody
     ;
 
-constructorBody
-    :   block
-    ;
-
-*/
-// STATEMENTS / BLOCKS
+// STATEMENTS and EXPRESSIONS
 
 block
     :   '{' statement* '}'
     ;
-
-/*
-blockStatement
-    :   localVariableDeclaration
-    |   classDeclaration
-    |   statement
-    ;
-*/
 
 localVariableDeclaration
     :   modifier* type variableDeclarator ';'
@@ -160,20 +128,6 @@ methodCallRest
     : Identifier '('expressionList? ')'
     ;
 
-binaryLiterals
-    : MulLiterals
-    | AddLiterals
-    | CompareLiterals
-    | AndOrLiterals
-    ;
-
-unaryLiterals
-    : IncLiterals
-    | NotLiteral
-    | AddLiterals
-    ;
-
-
 expressionList
     :   expression (',' expression)*
     ;
@@ -190,24 +144,9 @@ primary
     |   Identifier
     ;
 
-// EXPRESSIONS
-
 
 type:   Identifier //('[' ']')*
     |   PrimitiveType //('[' ']')*
-    ;
-
-AssignLiteral : '=' ;
-
-PrimitiveType
-    :   'boolean'
-    |   'char'
-    |   'byte'
-    |   'short'
-    |   'int'
-    |   'long'
-    |   'float'
-    |   'double'
     ;
 
 typeLiteral
@@ -218,10 +157,23 @@ typeLiteral
     |   DecimalLiteral
     ;
 
+binaryLiterals
+    : MulLiterals
+    | AddLiterals
+    | CompareLiterals
+    | AndOrLiterals
+    ;
+
+unaryLiterals
+    : IncLiterals
+    | NotLiteral
+    | AddLiterals
+    ;
+
 
 // LEXER
 
-// LEXER
+AssignLiteral : '=' ;
 
 IfLiteral : 'if' ;
 WhileLiteral : 'while' ;
@@ -237,6 +189,17 @@ CharacterLiteral : '\'' ( EscapeSequence | ~('\''|'\\') ) '\'' ;
 StringLiteral : '"' ( EscapeSequence | ~('\\'|'"') )* '"' ;
 
 NullLiteral : 'null' ;
+
+PrimitiveType
+    :   'boolean'
+    |   'char'
+    |   'byte'
+    |   'short'
+    |   'int'
+    |   'long'
+    |   'float'
+    |   'double'
+    ;
 
 VoidLiteral : 'void' ;
 NewLiteral  : 'new' ;

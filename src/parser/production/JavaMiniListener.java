@@ -248,26 +248,6 @@ public interface JavaMiniListener extends ParseTreeListener {
 	 */
 	void exitMethodCallRest(JavaMiniParser.MethodCallRestContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JavaMiniParser#binaryLiterals}.
-	 * @param ctx the parse tree
-	 */
-	void enterBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JavaMiniParser#binaryLiterals}.
-	 * @param ctx the parse tree
-	 */
-	void exitBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link JavaMiniParser#unaryLiterals}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JavaMiniParser#unaryLiterals}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link JavaMiniParser#expressionList}.
 	 * @param ctx the parse tree
 	 */
@@ -317,4 +297,24 @@ public interface JavaMiniListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTypeLiteral(JavaMiniParser.TypeLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaMiniParser#binaryLiterals}.
+	 * @param ctx the parse tree
+	 */
+	void enterBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaMiniParser#binaryLiterals}.
+	 * @param ctx the parse tree
+	 */
+	void exitBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaMiniParser#unaryLiterals}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaMiniParser#unaryLiterals}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx);
 }

@@ -1,0 +1,220 @@
+public class emptyClass {
+    public emptyClass() {
+    }
+}
+
+public class basicTypeFieldClass {
+    public int field1;
+    public char field2;
+    public boolean field3;
+
+    public basicTypeFieldClass() {
+    }
+}
+
+public class stringFieldClass {
+    public String field1;
+
+    public stringFieldClass() {
+    }
+}
+
+public class Nothing {
+    public void doNothing() {
+    }
+
+    public Nothing() {
+    }
+}
+
+public class Store {
+    public int store;
+
+    public Store(int var1) {
+        this.store = var1;
+    }
+
+    public Store() {
+        this.store = 0;
+    }
+
+    public void countUp() {
+        ++this.store;
+    }
+}
+
+public class returnMethods {
+    public int returnFive() {
+        return 5;
+    }
+
+    public boolean returnTrue() {
+        return true;
+    }
+
+    public char returnAnA() {
+        return 'a';
+    }
+
+    public String returnHello() {
+        return "Hello";
+    }
+
+    public emptyClass createEmpty() {
+        return new emptyClass();
+    }
+
+    public returnMethods() {
+    }
+}
+
+public class methodsWithInput {
+    public void thisMethodHasAnInput(int var1) {
+    }
+
+    public methodsWithInput() {
+    }
+}
+
+
+public class LoopsAndIfs {
+    public int choose(int var1, int var2, boolean var3) {
+        return var3 ? var1 : var2;
+    }
+
+    public int sumUp(int var1) {
+        int var2;
+        for(var2 = 0; 0 < var1; --var1) {
+            var2 += var1;
+        }
+
+        return var2;
+    }
+
+    public int sumUpRecursive(int var1) {
+        return var1 == 0 ? 0 : this.sumUpRecursive(var1 - 1) + var1;
+    }
+
+    public void doNothingRecursion(int var1) {
+        if (var1 < 1) {
+            LoopsAndIfs var2 = new LoopsAndIfs();
+            var2.doNothingRecursion(var1 - 1);
+        }
+
+    }
+
+    public void spin(int var1) {
+        while(0 < var1) {
+            --var1;
+        }
+
+    }
+
+    public int count(int var1) {
+        int var2;
+        for(var2 = 0; 0 < var1; ++var2) {
+            --var1;
+        }
+
+        return var2;
+    }
+
+    public LoopsAndIfs() {
+    }
+}
+
+
+public class constructorClass {
+    public constructorClass() {
+    }
+}
+
+public class constructorClassWithThisAssignment {
+    public int i;
+
+    public constructorClassWithThisAssignment(int var1) {
+        this.i = var1;
+    }
+}
+
+public class newAssignmentClass {
+    public constructorClass i = new constructorClass();
+
+    public newAssignmentClass() {
+    }
+}
+
+public class newAssignmentClass2 {
+    public constructorClassWithThisAssignment i = new constructorClassWithThisAssignment(3);
+
+    public newAssignmentClass2() {
+    }
+}
+
+public class Operators {
+    public String addStrings(String var1, String var2) {
+        return var1.concat(var2);
+    }
+
+    public boolean isSmaller(int var1, int var2) {
+        return var1 < var2;
+    }
+
+    public boolean compareObjects(Object var1, Object var2) {
+        return var1 == var2;
+    }
+
+    public Operators() {
+    }
+}
+
+public class Circle {
+    public int radius;
+
+    public Circle(int var1) {
+        this.radius = var1;
+    }
+
+    public int approximateCircumference() {
+        return this.radius * 3;
+    }
+
+    public boolean guessRadius(int var1) {
+        return this.radius == var1;
+    }
+}
+
+public class Rectangle {
+    public int a;
+    public int b;
+
+    public Rectangle(int var1, int var2) {
+        this.a = var1;
+        this.b = var2;
+    }
+
+    public int getLongerEdge() {
+        return this.a > this.b ? this.a : this.b;
+    }
+}
+
+public class someCollectionsOfObjects {
+    public int i = 4;
+    public Circle myCircle = new Circle(5);
+    public Rectangle myRectangle;
+
+    public boolean checkIfRectangleWasInitializedRight() {
+        return this.myRectangle.getLongerEdge() == this.i;
+    }
+
+    public void manipulateRadiusOfCircle(int var1) {
+        if (this.myCircle.radius != var1) {
+            this.myCircle.radius = var1;
+        }
+
+    }
+
+    public someCollectionsOfObjects() {
+        this.myRectangle = new Rectangle(3, this.i);
+    }
+}

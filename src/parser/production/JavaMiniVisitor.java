@@ -155,18 +155,6 @@ public interface JavaMiniVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMethodCallRest(JavaMiniParser.MethodCallRestContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#binaryLiterals}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JavaMiniParser#unaryLiterals}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link JavaMiniParser#expressionList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -196,4 +184,16 @@ public interface JavaMiniVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTypeLiteral(JavaMiniParser.TypeLiteralContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavaMiniParser#binaryLiterals}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBinaryLiterals(JavaMiniParser.BinaryLiteralsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavaMiniParser#unaryLiterals}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnaryLiterals(JavaMiniParser.UnaryLiteralsContext ctx);
 }
