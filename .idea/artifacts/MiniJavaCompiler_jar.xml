@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MiniJavaCompiler:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MiniJavaCompiler_jar</output-path>
+    <root id="archive" name="MiniJavaCompiler.jar">
+      <element id="module-output" name="MiniJavaCompiler" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/asm-9.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/antlr-4.11.1-complete.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/asm-util-9.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
