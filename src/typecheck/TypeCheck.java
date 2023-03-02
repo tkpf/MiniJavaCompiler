@@ -29,7 +29,7 @@ public class TypeCheck {
         for (Class c : prgm.classes) {
             for (Field f : c.fields) {
                 if (f.assignment != null) {
-                    typeStatementExpression(f.assignment, new LocalScope(c.name));
+                    typeStatementExpression(f.assignment, new LocalScope(c.name), false);
                 }
             }
             for (Method m : c.meths) {
@@ -78,7 +78,7 @@ public class TypeCheck {
                 }
             }
             case StmtExprExpr stmtExprExpr -> {
-                exp.type = typeStatementExpression(stmtExprExpr.stmtExprExpr, localScope);
+                exp.type = typeStatementExpression(stmtExprExpr.stmtExprExpr, localScope, true);
             }
             case ThisExpr thisExpr -> {
                 exp.type = localScope.getCurrentClass();
@@ -111,10 +111,13 @@ public class TypeCheck {
             throws TypeMismatchException, MissingSymbolException, AlreadyDefinedException {
         switch (stmt) {
             case BlockStmt blockStmt -> {
-                int m = blockStmt.stmtBlck.size();
-                Vector<Type> types = new Vector<>(m);
+                ArrayList<Type> types = new ArrayList<>(blockStmt.stmtBlck.size());
                 for (Statement s : blockStmt.stmtBlck) {
-                    types.add(typeStatement(s, localScope));
+                    Type stmtType = typeStatement(s, localScope);
+                    // ignore type of `VarDeclStmt` for block type deduction
+                    if (!(s instanceof VarDeclStmt)) {
+                        types.add(stmtType);
+                    }
                 }
                 Type resultType = new Type("void");
                 for (Type t : types) {
@@ -158,16 +161,16 @@ public class TypeCheck {
                 stmt.type = typeStatement(whileStmt.blck, localScope);
             }
             case StmtExprStmt stmtExprStmt -> {
-                stmt.type = typeStatementExpression(stmtExprStmt.stmtExpr, localScope);
+                stmt.type = typeStatementExpression(stmtExprStmt.stmtExpr, localScope, false);
             }
             case VarDeclStmt varDeclStmt -> {
                 localScope.addField(varDeclStmt.name, varDeclStmt.type);
-                stmt.type = new Type("void");
+                // type already set by parser adapter
             }
         }
         return stmt.type;
     }
-    public Type typeStatementExpression(StatementExpression stmtExp, LocalScope localScope)
+    public Type typeStatementExpression(StatementExpression stmtExp, LocalScope localScope, boolean fromAssign)
             throws MissingSymbolException, TypeMismatchException {
         switch (stmtExp) {
             case AssignStmtExpr assignStmtExpr -> {
@@ -184,8 +187,15 @@ public class TypeCheck {
                 for (Expression e : newStmtExpr.initParams) {
                     paramTypes.add(typeExpression(e, localScope));
                 }
-                Signature constSignature = new Signature(newStmtExpr.type.name, paramTypes);
-                stmtExp.type = global.lookupMethod(newStmtExpr.type, constSignature);
+                Signature constSignature = new Signature(newStmtExpr.name, paramTypes);
+                // `newStmtExpr.name` equals its type
+                Type innerType = global.lookupMethod(new Type(newStmtExpr.name), constSignature);
+                // type of `NewStmtExpr` always `void`
+                stmtExp.type = new Type("void");
+                // but if coming from an assignment context return "inner type",
+                //meaning the class that is being instantiated to the
+                //encapsulating `StmtExprExpr`
+                if (fromAssign) return innerType;
             }
             case MethodCallStmtExpr methodCallStmtExpr -> {
                 if (methodCallStmtExpr.obj == null) {
@@ -197,7 +207,9 @@ public class TypeCheck {
                     paramTypes.add(typeExpression(exp, localScope));
                 }
                 Signature methodSignature = new Signature(methodCallStmtExpr.meth, paramTypes);
-                stmtExp.type = global.lookupMethod(objType, methodSignature);
+                methodCallStmtExpr.innerType = global.lookupMethod(objType, methodSignature);
+                stmtExp.type = new Type("void");
+                if (fromAssign) return methodCallStmtExpr.innerType;
             }
         }
         return stmtExp.type;
@@ -214,7 +226,6 @@ public class TypeCheck {
             switch (binaryExpr.eval) {
                 case "+", "-", "*", "/", "%" -> {
                     // TODO: typecasting?
-                    //if (t2.equals("String") && t1.equals("int") || t1.equals("char"))
                     if ((t1.equals("int") || t1.equals("char")) && t1.equals(t2)) {
                         binaryExpr.type = t1;
                     } else {

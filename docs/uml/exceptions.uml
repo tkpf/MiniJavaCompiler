@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>typecheck.exceptions</OriginalElement>
+  <nodes>
+    <node x="-40.71999999999997" y="-393.44">typecheck.GlobalScope</node>
+    <node x="-226.75" y="-299.0">typecheck.exceptions.AlreadyDefinedException</node>
+    <node x="268.12" y="-299.0">typecheck.exceptions.TypeMismatchException</node>
+    <node x="-173.75" y="-487.88">typecheck.TypeCheck</node>
+    <node x="17.25" y="-299.0">typecheck.exceptions.MissingSymbolException</node>
+    <node x="-226.75" y="-393.44">typecheck.LocalScope</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="typecheck.TypeCheck" target="typecheck.LocalScope" relationship="CREATE">
+      <point x="-19.75" y="14.5" />
+      <point x="-131.5" y="-419.44" />
+      <point x="-107.25" y="-419.44" />
+      <point x="56.0" y="-14.5" />
+    </edge>
+    <edge source="typecheck.GlobalScope" target="typecheck.exceptions.AlreadyDefinedException" relationship="CREATE">
+      <point x="0.0" y="14.5" />
+      <point x="27.28000000000003" y="-325.0" />
+      <point x="-114.75" y="-325.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="typecheck.TypeCheck" target="typecheck.exceptions.MissingSymbolException" relationship="CREATE">
+      <point x="62.0" y="0.0" />
+      <point x="148.0" y="-473.38" />
+      <point x="148.0" y="-325.0" />
+      <point x="128.75" y="-325.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="typecheck.TypeCheck" target="typecheck.exceptions.TypeMismatchException" relationship="CREATE">
+      <point x="0.0" y="-14.5" />
+      <point x="-111.75" y="-473.38" />
+      <point x="377.12" y="-473.38" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="typecheck.GlobalScope" target="typecheck.exceptions.MissingSymbolException" relationship="CREATE">
+      <point x="22.5" y="14.5" />
+      <point x="49.78000000000003" y="-325.0" />
+      <point x="128.75" y="-325.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="typecheck.LocalScope" target="typecheck.exceptions.AlreadyDefinedException" relationship="CREATE">
+      <point x="0.0" y="14.5" />
+      <point x="-163.25" y="-325.0" />
+      <point x="-114.75" y="-325.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="typecheck.TypeCheck" target="typecheck.GlobalScope" relationship="CREATE">
+      <point x="12.0" y="14.5" />
+      <point x="-99.75" y="-439.0752000000001" />
+      <point x="-3.75" y="-439.0752000000001" />
+      <point x="-3.75" y="-378.94" />
+      <point x="-68.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.5625" showDependencies="true" x="124.0" y="-327.3952000000001" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

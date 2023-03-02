@@ -210,7 +210,7 @@ public class ClassGenerator {
         {
             paramDesc += fieldDescriptor(expr.type.name);
         }
-        return "("+paramDesc+")"+fieldDescriptor(mcall.type.name);
+        return "("+paramDesc+")"+fieldDescriptor(mcall.innerType.name);
     }
 
     static String constructorDescriptor(Method m){

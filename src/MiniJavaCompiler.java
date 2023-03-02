@@ -16,6 +16,7 @@ import java.io.*;
 
 public class MiniJavaCompiler {
     static boolean printAST = false;
+    static boolean printUntyped = false;
     static boolean printGlobalScope = false;
     static boolean runJava = false;
     static boolean verbose = false;
@@ -59,6 +60,7 @@ public class MiniJavaCompiler {
                         case 'g' -> printGlobalScope = true;
                         case 'h' -> { helpText(); System.exit(0); }
                         case 'r' -> runJava = true;
+                        case 'u' -> printUntyped = true;
                         case 'v' -> verbose = true;
                         default -> { } // ignore
                     }
@@ -87,12 +89,13 @@ public class MiniJavaCompiler {
         // generate yet-untyped AST
         if (verbose) System.out.println("Generating untyped abstract syntax tree.");
         Program prgm = ProgramAdapter.adapt(parser.compilationUnit());
+        if (printUntyped) System.out.println(prgm);
 
         if (verbose) System.out.println("Typing abstract syntax tree.");
         TypeCheck typeCheck = new TypeCheck(prgm);
-        if (printGlobalScope) { System.out.println(typeCheck.getGlobalScope()); }
+        if (printGlobalScope) System.out.println(typeCheck.getGlobalScope());
         typeCheck.check();
-        if (printAST) { System.out.println(prgm); }
+        if (printAST) System.out.println(prgm);
 
         if (verbose) System.out.println("Compiling abstract syntax tree into class files.");
         ProgramGenerator.generateProgram(prgm, outputPath);
@@ -129,7 +132,7 @@ public class MiniJavaCompiler {
     private static void helpText() {
         System.out.println("""
                 USAGE:
-                    java Main [-aghrv] [-o output_dir] [main_file.java] minijava_target_file
+                    java Main [-aghruv] [-o output_dir] [main_file.java] minijava_target_file
                 DESCRIPTION:
                     Compiles <minijava_target_file> with the MiniJavaCompiler, creating
                     compiled class-files in the "./out/" directory by default.
@@ -137,6 +140,8 @@ public class MiniJavaCompiler {
                     installed `javac` compiler.
                 OPTIONS:
                     -a : Prints string representation of typed AST.
+                    -u : Prints string representation of yet-untyped AST before the
+                         typechecker is invoked.
                     -g : Prints contents of global scope of program.
                     -h : Print this help message.
                     -r : Runs supplied main-file directly after compilation. Ignored if

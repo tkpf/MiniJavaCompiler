@@ -26,16 +26,14 @@ public class Signature {
 
     @Override
     public String toString() {
-        String result = name + ":";
-        if (args.size() == 0) {
-            result += "()";
-        } else {
-            for (Type t : args) {
-                result += t + "->";
-            }
+        String result = name + "(";
+        for (Type t : args) {
+            result += t + ", ";
+        }
+        if (args.size() > 0) {
             result = result.substring(0, result.length() - 2);
         }
-        return result;
+        return result + ")";
     }
 
     @Override
