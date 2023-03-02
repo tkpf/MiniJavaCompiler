@@ -1,4 +1,4 @@
-package tests_final;
+package codegen.tests_final;
 
 import parser.exceptions.EscapeHatchException;
 import typecheck.exceptions.AlreadyDefinedException;
@@ -11,6 +11,6 @@ import static codegen.ProgramGenerator.compile;
 
 public class TestsMain {
     public static void main(String[] args) throws EscapeHatchException, MissingSymbolException, AlreadyDefinedException, TypeMismatchException, IOException {
-        compile("./test/tests_final/Tests.txt", "./test/tests_final/out");
+        compile("./test/tests_final/Examples.txt", "./test/tests_final/out");
     }
 }

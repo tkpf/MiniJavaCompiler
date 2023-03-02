@@ -2,15 +2,6 @@
 
 class emptyClass {}
 
-class commentClass {
-    //this part is empty but contains strong words: this super int String
-    /*
-    this is also
-    very
-    very
-    empty
-    */
-}
 
 // testing fields
 
@@ -217,18 +208,4 @@ class someCollectionsOfObjects {
                 myCircle.radius = manipulation;
             }
         }
-
-    void someWhileMethod() {
-        int i;
-        i = 10;
-        int j = 5;;
-        while (i > j) {
-            j = j+1;
-        }
-    }
-
-    void someWhileMethodWithWildFormatting(){
-        int i; i=10;
-        int j          = 5;
-        ;while(i>j){j=j+1;}}
 }
