@@ -207,9 +207,9 @@ public class TypeCheck {
                     paramTypes.add(typeExpression(exp, localScope));
                 }
                 Signature methodSignature = new Signature(methodCallStmtExpr.meth, paramTypes);
-                Type innerType = global.lookupMethod(objType, methodSignature);
+                methodCallStmtExpr.innerType = global.lookupMethod(objType, methodSignature);
                 stmtExp.type = new Type("void");
-                if (fromAssign) return innerType;
+                if (fromAssign) return methodCallStmtExpr.innerType;
             }
         }
         return stmtExp.type;

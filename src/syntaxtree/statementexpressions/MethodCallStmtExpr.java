@@ -1,5 +1,6 @@
 package syntaxtree.statementexpressions;
 
+import syntaxtree.Type;
 import syntaxtree.expressions.Expression;
 
 import java.util.Vector;
@@ -9,6 +10,7 @@ public final class MethodCallStmtExpr extends StatementExpression {
     public Expression obj;
     public final String meth;
     public final Vector<Expression> methParams;
+    public Type innerType;
 
     public MethodCallStmtExpr (Expression obj, String meth, Vector<Expression> methParams) {
         this.obj = obj;
